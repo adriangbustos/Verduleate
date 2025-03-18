@@ -1,0 +1,47 @@
+<body>
+  <p-toast />
+
+  <section>
+    <div class="container" id="container">
+      <form [formGroup]="signUpForm" (ngSubmit)="submit()">
+        <h1 style="font-size: 30px;">Crear Cuenta</h1>
+        <div class="social-icons">
+          <a (click)="loginWithGoogle()" class="icon"><i class="fa-brands fa-google-plus-g"></i><span>Google</span></a>
+        </div>
+
+        <div class="card flex justify-content-center">
+          <div class="flex flex-column gap-2">
+            <input (blur)="showError('email')" (input)="checkTouched('email')" id="email" type="text" class="w-full"
+              formControlName="email" placeholder="Correo" />
+            <div class="password-container">
+              <input [type]="passwordVisible ? 'text' : 'password'" formControlName="password"
+                (blur)="showError('password')" (input)="checkTouched('password')" id="password"
+                placeholder="Contraseña" />
+              <button type="button" (click)="togglePasswordVisibility()">
+                <!-- Icono de Font Awesome para ver/ocultar contraseña -->
+                <i class="fa-regular" [ngClass]="passwordVisible ? 'fa-eye-slash' : 'fa-eye'"
+                  [ngStyle]="{ opacity: 0.5}"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <p-button label="Crear Cuenta" type="submit"></p-button>
+        <a href="login-comprador" id="forgot">¿Ya tienes cuenta?</a>
+      </form>
+    </div>
+
+    <div class="container2">
+      <button (click)="goToHome()"><i class='bx bx-home'></i></button>
+      <h2>''del campo a tu mesa''</h2>
+    </div>
+  </section>
+
+  <!-- Popup de carga -->
+  <div *ngIf="isLoading" class="popup">
+    <div class="loading-container">
+      <div class="spinner"></div>
+      <p>Creando tu cuenta...</p>
+    </div>
+
+  </div>
+</body>

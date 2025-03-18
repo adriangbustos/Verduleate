@@ -1,0 +1,271 @@
+@import url('https://fonts.googleapis.com/css2?family=Delicious+Handrawn&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&family=Zen+Tokyo+Zoo&display=swap');
+
+* {
+    font-family: 'Rubik';
+}
+
+html {
+    height: 100vh;
+    overflow: hidden;
+}
+
+header {
+    margin: 40px 40px 20px 40px;
+}
+
+header h1 {
+    font-size: 25px;
+    color: rgb(43, 43, 43);
+}
+
+form {
+    margin: 20px 40px 40px 40px;
+    display: flex;
+}
+
+:host ::ng-deep ul,
+ol {
+    margin: 0;
+}
+
+aside {
+    width: 50%;
+}
+
+p {
+    margin-bottom: 10px;
+}
+
+:host ::ng-deep .p-inputtext {
+    width: 350px;
+    border-color: grey;
+}
+
+:host ::ng-deep .p-dropdown {
+    width: 350px;
+    border-color: grey;
+    z-index: 0;
+    position: static;
+}
+
+
+:host ::ng-deep .p-inputtext:enabled:hover {
+    border-color: green;
+}
+
+:host ::ng-deep .p-inputtext:enabled:focus {
+    outline: 0 none;
+    outline-offset: 0;
+    box-shadow: none;
+    border-color: green;
+}
+
+
+/* Calendar */
+:host ::ng-deep .p-calendar {
+    width: 300px;
+}
+
+:host ::ng-deep .p-calendar:focus {
+    width: 300px;
+    outline: none;
+    box-shadow: none;
+}
+
+:host ::ng-deep .p-calendar:not(.p-calendar-disabled).p-focus>.p-inputtext {
+    outline: none;
+    box-shadow: none;
+}
+
+/* Calendar - Datepicker */
+:host ::ng-deep .p-datepicker .p-datepicker-header .p-datepicker-title .p-datepicker-year:enabled:hover,
+.p-datepicker .p-datepicker-header .p-datepicker-title .p-datepicker-month:enabled:hover {
+    color: green;
+}
+
+:host ::ng-deep .p-datepicker .p-datepicker-header .p-datepicker-title .p-datepicker-month:hover {
+    color: green;
+}
+
+:host ::ng-deep .p-datepicker table td>span.p-highlight {
+    color: green;
+    background: #e3fedf;
+}
+
+:host ::ng-deep .p-datepicker table td>span.p-highlight:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+:host ::ng-deep .p-datepicker .p-monthpicker .p-monthpicker-month:focus,
+:host ::ng-deep .p-datepicker .p-yearpicker .p-yearpicker-year:focus,
+:host ::ng-deep .p-datepicker:focus,
+:host ::ng-deep .p-datepicker td>span {
+    outline: none;
+    box-shadow: none;
+}
+
+/* Dropdowns */
+:host ::ng-deep .p-dropdown:not(.p-disabled).p-focus {
+    outline: none;
+    border-color: green;
+    box-shadow: none;
+}
+
+:host ::ng-deep .p-dropdown:not(.p-disabled):hover {
+    outline: none;
+    box-shadow: none;
+    border-color: green;
+}
+
+:host ::ng-deep .p-dropdown:not(.p-disabled) {
+    border-color: grey;
+}
+
+:host ::ng-deep .p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight {
+    color: green;
+}
+
+:host ::ng-deep .p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight.p-focus {
+    background: rgba(223, 255, 219, 0.83);
+}
+
+:host ::ng-deep .p-dropdown .p-dropdown-label {
+    width: 250px;
+}
+
+/* Textarea */
+:host ::ng-deep .p-inputtext textarea {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+textarea {
+    width: 100%;
+    max-width: 500px;
+    height: 175px;
+    padding: 12px;
+    font-size: 16px;
+    line-height: 1.5;
+    resize: none !important;
+    font-family: Arial, sans-serif;
+    margin-bottom: 10px;
+    border: 1px solid grey;
+    border-radius: 8px;
+    background-color: #ffffff;
+    color: #4b5563;
+    outline: none;
+    transition: all 0.3s ease-in-out;
+    resize: vertical;
+}
+
+textarea:focus {
+    border-color: green;
+}
+
+
+.buttons {
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+:host ::ng-deep .p-button:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+:host ::ng-deep .p-button-danger {
+    width: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: static;
+}
+
+i {
+    margin: 0;
+    padding: 0;
+}
+
+:host ::ng-deep .p-button-success {
+    width: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: static;
+    gap: 10px;
+}
+
+
+span {
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.buttons {
+    margin-top: 25px;
+    margin-bottom: 0;
+}
+
+:host ::ng-deep .p-datepicker .p-yearpicker .p-yearpicker-year.p-highlight {
+    color: green;
+    background: #cbffce;
+}
+
+:host ::ng-deep .p-calendar {
+    width: 350px;
+}
+
+:host ::ng-deep .p-calendar:focus {
+    width: 350px;
+    outline: none;
+    box-shadow: none;
+}
+
+
+:host ::ng-deep .p-button {
+    outline: none;
+    box-shadow: none;
+}
+
+:host ::ng-deep .p-datepicker .p-datepicker-header .p-datepicker-title .p-datepicker-year,
+.p-datepicker .p-datepicker-header .p-datepicker-title .p-datepicker-month:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+:host ::ng-deep .p-datepicker .p-datepicker-header .p-datepicker-title .p-datepicker-month:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+:host ::ng-deep .p-datepicker .p-datepicker-header .p-datepicker-next:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+:host ::ng-deep .p-datepicker .p-datepicker-header .p-datepicker-prev:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+:host ::ng-deep .p-inputnumber-buttons-stacked .p-inputnumber-input {
+    width: 300px !important;
+}
+
+:host ::ng-deep .p-inputnumber-buttons-stacked .p-inputnumber-button-group .p-button.p-inputnumber-button {
+    background-color: rgb(11, 168, 11);
+    color: white;
+    border-color: rgb(11, 168, 11);
+    transition: all ease-in-out 0.3s;
+}
+
+:host ::ng-deep .p-inputnumber-buttons-stacked .p-inputnumber-button-group .p-button.p-inputnumber-button:hover {
+    background-color: rgb(7, 140, 7);
+    border-color: rgb(7, 140, 7);
+}

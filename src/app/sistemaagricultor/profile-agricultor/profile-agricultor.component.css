@@ -1,0 +1,445 @@
+@import url('https://fonts.googleapis.com/css2?family=Delicious+Handrawn&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&family=Zen+Tokyo+Zoo&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins';
+}
+
+body {
+    padding-top: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+
+#foto,
+#busqueda,
+#menu {
+    flex: 0.24;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Imagen */
+#foto img {
+    margin-top: 15px;
+    width: 200px;
+    margin-left: 1cm;
+    height: 100%;
+}
+
+
+.searchBox {
+    display: flex;
+    align-items: center;
+    margin-top: 25px;
+    box-shadow: 0px 4px 44px -20px rgba(0, 0, 0, 0.67);
+    justify-content: space-between;
+    gap: 8px;
+    background: #ffffff;
+    height: 60px;
+    border-radius: 50px;
+    width: 500px;
+    position: relative;
+    border: 1px solid green;
+}
+
+.searchButton {
+    color: white;
+    position: absolute;
+    right: 8px;
+    font-size: 20px;
+    cursor: pointer;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: green;
+    border: 0;
+    transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+}
+
+/*hover effect*/
+button:hover {
+    color: #fff;
+    background-color: rgb(0, 207, 0);
+}
+
+.searchInput {
+    flex: 1;
+    border: none;
+    background: none;
+    outline: none;
+    color: black;
+    font-size: 15px;
+    padding: 20px;
+}
+
+
+/* The design is inspired from Galahhad*/
+
+.popup {
+    margin-top: 20px;
+    margin-left: 1cm;
+    --burger-bg: #00bf63;
+    --burger-color: #333;
+    --burger-line-border-radius: 0.1875em;
+    --burger-diameter: 2.5em;
+    --burger-btn-border-radius: calc(var(--burger-diameter) / 2);
+    --burger-line-transition: 0.3s;
+    --burger-transition: all 0.1s ease-in-out;
+    --burger-enable-outline-color: var(--burger-bg);
+    --burger-enable-outline-width: 0.125em;
+    --burger-enable-outline-offset: var(--burger-enable-outline-width);
+    /* nav */
+    --nav-padding-x: 0.25em;
+    --nav-padding-y: 0.625em;
+    --nav-border-radius: 0.375em;
+    --nav-border-color: #ccc;
+    --nav-border-width: 0.0625em;
+    --nav-shadow-color: rgba(0, 0, 0, 0.1);
+    --nav-shadow-width: 0 1px 5px;
+    --nav-bg: #ffffff;
+    --nav-font-family: "Poppins", sans-serif;
+    --nav-default-scale: 0.8;
+    --nav-active-scale: 1;
+    --nav-position-left: 0;
+    --nav-position-right: unset;
+    /* if you want to change sides just switch one property */
+    /* from properties to "unset" and the other to 0 */
+    /* title */
+    --nav-title-size: 0.625em;
+    --nav-title-color: #777;
+    --nav-title-padding-x: 1rem;
+    --nav-title-padding-y: 0.25em;
+    /* nav button */
+    --nav-button-padding-x: 1rem;
+    --nav-button-padding-y: 0.375em;
+    --nav-button-border-radius: 0.375em;
+    --nav-button-font-size: 17px;
+    --nav-button-hover-bg: rgb(5, 120, 20);
+    --nav-button-hover-text-color: #fff;
+    --nav-button-distance: 0.875em;
+    /* underline */
+    --underline-border-width: 0.0625em;
+    --underline-border-color: #ccc;
+    --underline-margin-y: 0.3125em;
+}
+
+/* popup settings 👆 */
+
+.popup {
+    display: flex;
+    justify-content: center;
+}
+
+.popup input {
+    display: none;
+}
+
+.burger {
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    background: white;
+    width: 80px;
+    height: 50px;
+    border-radius: 30px;
+    border: 1px solid green;
+    cursor: pointer;
+    overflow: hidden;
+    transition: var(--burger-transition);
+    outline: var(--burger-enable-outline-width) solid transparent;
+    outline-offset: 0;
+}
+
+.popup-window {
+    transform: scale(var(--nav-default-scale));
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    padding: var(--nav-padding-y) var(--nav-padding-x);
+    background: var(--nav-bg);
+    font-family: var(--nav-font-family);
+    color: var(--nav-text-color);
+    border-radius: var(--nav-border-radius);
+    box-shadow: var(--nav-shadow-width) var(--nav-shadow-color);
+    border: var(--nav-border-width) solid var(--nav-border-color);
+    top: 50%;
+    left: unset;
+    right: 8%;
+    z-index: 10000;
+    transition: var(--burger-transition);
+    margin-top: 30px;
+}
+
+.popup-window legend {
+    padding: var(--nav-title-padding-y) var(--nav-title-padding-x);
+    margin: 0;
+    color: var(--nav-title-color);
+    font-size: var(--nav-title-size);
+    text-transform: uppercase;
+}
+
+.popup-window ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.popup-window ul button {
+    outline: none;
+    width: 100%;
+    border: none;
+    background: none;
+    display: flex;
+    align-items: center;
+    color: var(--burger-color);
+    font-size: var(--nav-button-font-size);
+    padding: var(--nav-button-padding-y) var(--nav-button-padding-x);
+    white-space: nowrap;
+    border-radius: var(--nav-button-border-radius);
+    cursor: pointer;
+    column-gap: var(--nav-button-distance);
+}
+
+.popup-window ul li:nth-child(1) svg,
+.popup-window ul li:nth-child(2) svg {
+    color: #00bf63;
+}
+
+.popup-window ul li:nth-child(4) svg,
+.popup-window ul li:nth-child(5) svg {
+    color: rgb(153, 153, 153);
+}
+
+
+
+.popup-window hr {
+    margin: var(--underline-margin-y) 0;
+    border: none;
+    border-bottom: var(--underline-border-width) solid var(--underline-border-color);
+}
+
+/* actions */
+
+.popup-window ul button:hover,
+.popup-window ul button:focus-visible,
+.popup-window ul button:hover svg,
+.popup-window ul button:focus-visible svg {
+    color: var(--nav-button-hover-text-color);
+    background: var(--nav-button-hover-bg);
+}
+
+.burger:hover {
+    box-shadow: 3px 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.burger:active {
+    transform: scale(var(--burger-active-scale));
+}
+
+.popup input:checked~nav {
+    transform: scale(var(--nav-active-scale));
+    visibility: visible;
+    opacity: 1;
+}
+
+.space {
+    height: 20px;
+    width: 100%;
+    background-color: white;
+    border-bottom: 1px solid rgba(0, 128, 0, 0.426);
+}
+
+.main {
+    position: fixed;
+    /* Keep the header fixed */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    /* Ensure it stays above other elements */
+    background: white;
+    /* Ensure the background is solid */
+    overflow: visible;
+    /* Allow overflow for the pseudo-element */
+}
+
+.perfil {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 68%;
+    background-color: white;
+}
+
+h4 {
+    color: rgb(43, 43, 43);
+    margin-bottom: 5px;
+}
+
+a,
+p {
+    text-decoration: none;
+    color: rgb(72, 72, 72);
+}
+
+hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    opacity: 0.5;
+}
+
+aside {
+    border: 1px solid green;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.pie-pagina {
+    width: 100%;
+    background-color: #ebfbe7;
+    margin-top: 50px;
+    border-top: 1px solid rgba(0, 128, 0, 0.426);
+}
+
+.pie-pagina .grupo-1 {
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 50px;
+    padding: 10px 0px;
+}
+
+.box2 a {
+    cursor: pointer;
+}
+
+.pie-pagina .grupo-1 .box2 figure {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pie-pagina .grupo-1 .box2 figure img {
+    width: 250px;
+}
+
+.pie-pagina .grupo-1 .box2 h2 {
+    color: green;
+    margin-top: 50px;
+    margin-bottom: 25px;
+    font-size: 20px;
+}
+
+.pie-pagina .grupo-1 .box2 p {
+    color: green;
+    margin-bottom: 5px;
+    text-align: justify;
+}
+
+.pie-pagina .grupo-1 .red-social a {
+    display: inline-block;
+    text-decoration: none;
+    width: 45px;
+    height: 45px;
+    line-height: 45px;
+    color: white;
+    margin-right: 10px;
+    transition: 0.3s ease-in-out;
+    background-color: green;
+    text-align: center;
+    border: 1px solid green;
+}
+
+.pie-pagina .grupo-1 .red-social a:hover {
+    background-color: rgb(255, 255, 255);
+    color: green;
+}
+
+.pie-pagina .grupo-2 {
+    background-color: #67b260;
+    padding: 15px 10px;
+    text-align: center;
+    color: #fff;
+}
+
+.pie-pagina .grupo-2 small {
+    font-size: 15px;
+}
+
+.box2 a {
+    color: green;
+    line-height: 2;
+    transition: 0.3s ease-in-out;
+    text-decoration: none;
+}
+
+.box2 a:hover {
+    color: black;
+}
+
+#modify {
+    cursor: pointer;
+    transition: all ease-in-out 0.3s;
+}
+
+#modify:hover {
+    color: green;
+}
+
+.buttonSave {
+    width: 80px;
+    height: 50px;
+    background-color: rgb(4, 188, 4);
+    border-radius: 10px;
+    border: 1px solid rgb(4, 188, 4);
+    cursor: pointer;
+    transition: all ease-in-out 0.2s;
+}
+
+i {
+    font-size: 20px;
+    color: white;
+}
+
+:host ::ng-deep .p-inputtext:focus {
+    outline: none;
+    border-color: green;
+    box-shadow: none;
+}
+
+:host ::ng-deep .p-inputtext {
+    height: 40px;
+    padding: 10px;
+    width: 90%;
+}
+
+:host ::ng-deep .p-inputtext:hover {
+    border-color: green;
+}

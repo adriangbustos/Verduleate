@@ -1,0 +1,33 @@
+<body>
+    <section>
+        <p-toast></p-toast>
+        <button class="perfil" (click)="goToProfile()">
+            <i class='bx bx-home'></i>
+            <h1>Mi Perfil</h1>
+            <p>Sus datos personales y donde sabemos cómo podemos contactarle.</p>
+        </button>
+        <button class="hacienda" (click)="goHacienda()">
+            <i class='bx bx-user'></i>
+            <h1>Mi Hacienda</h1>
+            <p>Toda la información sobre la ubicación de donde obtiene sus cultivos</p>
+        </button>
+        <button class="intercambio" (click)="onLogout()">
+            <i class='bx bx-exit'></i>
+            <h1>Cambiar de Sistema</h1>
+            <p>Seleccione un sistema diferente si desea modificar su entorno de trabajo.</p>
+        </button>
+        <button class="borrarcuenta" (click)="showDialog()">
+            <i class='bx bx-message-alt-x'></i>
+            <h1>Borrar Cuenta</h1>
+            <p>Si desea eliminar su cuenta, tenga en cuenta que esta acción es irreversible.</p>
+        </button>
+    </section>
+    <p-dialog [draggable]="false" header="¿Seguro que desea eliminar su cuenta?" [modal]="true" [(visible)]="visible"
+        [style]="{ width: '30rem' }">
+        <p style="margin-bottom: 20px;">Está acción es IRREVERSIBLE</p>
+        <div>
+            <p-button severity="danger" (click)="deleteAccount()"><i class='bx bx-error-alt'></i>Eliminar
+                Cuenta</p-button>
+        </div>
+    </p-dialog>
+</body>

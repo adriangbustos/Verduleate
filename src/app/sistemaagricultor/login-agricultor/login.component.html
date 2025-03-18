@@ -1,0 +1,57 @@
+<body>
+    <p-toast />
+
+    <section>
+        <div class="container" id="container">
+            <form [formGroup]="loginForm">
+                <h1 style="font-size: 30px;">Iniciar Sesión</h1>
+                <div class="social-icons">
+                    <a (click)="loginWithGoogle()" class="icon"><i
+                            class="fa-brands fa-google-plus-g"></i><span>Google</span></a>
+                </div>
+
+                <div class="card flex justify-content-center">
+                    <div class="flex flex-column gap-2">
+                        <input (blur)="showError('email')" (input)="checkTouched('email')" id="email" type="text"
+                            class="w-full" formControlName="email" placeholder="Correo" />
+                        <div class="password-container">
+                            <input [type]="passwordVisible ? 'text' : 'password'" formControlName="password"
+                                id="password" placeholder="Contraseña" />
+                            <button type="button" (click)="togglePasswordVisibility()">
+                                <!-- Icono de Font Awesome para ver/ocultar contraseña -->
+                                <i class="fa-regular" [ngClass]="passwordVisible ? 'fa-eye-slash' : 'fa-eye'"
+                                    [ngStyle]="{ opacity: 0.5}"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <p-button (click)="login()" label="Entrar" type="submit" styleClass="login-button"></p-button>
+                <p-button (onClick)="showDialog()" styleClass="forgot-password-button">¿Olvidaste tu
+                    contraseña?</p-button>
+            </form>
+        </div>
+
+        <div class="container2">
+            <button (click)="goToHome()"><i class='bx bx-home'></i></button>
+            <h2 style="width: 70%; text-align: center;">''tus verduras llegando más lejos''</h2>
+            <a href="signup-agricultor">¿No tienes cuenta?</a>
+        </div>
+    </section>
+    <div *ngIf="isLoading" class="popup">
+        <div class="loading-container">
+            <div class="spinner"></div>
+            <p>Entrando a su cuenta...</p>
+        </div>
+    </div>
+    <p-dialog header="Reestablecer Contraseña" [draggable]="false" [modal]="true" [(visible)]="visible"
+        [style]="{ width: '25rem' }">
+        <div class="flex align-items-center gap-3 mb-5">
+            <label for="email" class="font-semibold w-6rem">Correo</label>
+            <input pInputText id="email" class="flex-auto" [(ngModel)]="correo" autocomplete="off" />
+        </div>
+        <div class="flex justify-content-end gap-2">
+            <p-button (onClick)="recoverPassword()" label="Reestablecer" styleClass="password-button"
+                (onClick)="visible = false" />
+        </div>
+    </p-dialog>
+</body>

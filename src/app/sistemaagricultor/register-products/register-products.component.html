@@ -1,0 +1,129 @@
+<html>
+    <p-toast></p-toast>
+<header>
+    <h1>Registre su producto</h1>
+</header>
+<form [formGroup]="registerProductForm" style="display: flex; flex-direction: column;">
+    <div style="display: flex; flex-direction: row;">
+        <aside>
+            <div>
+                <p>Fruta/Verdura</p>
+                <input type="text" pInputText formControlName="vegetal" />
+            </div>
+            <div>
+                <p>Provincia de Origen</p>
+                <p-dropdown [options]="states" formControlName="provincia" optionLabel="state" placeholder="" />
+            </div>
+            <div>
+                <p>Cantidad Disponible</p>
+                <p-inputNumber inputId="integeronly" [showButtons]="true" [step]="1" [min]="0"
+                    formControlName="cantidadDisponible" />
+            </div>
+            <div>
+                <p>Descripción</p>
+                <textarea rows="5" cols="25" formControlName="descripcionCultivo"
+                    placeholder="Escriba una breve descripción del cuidado del cultivo (50 caracteres mínimo)"></textarea>
+            </div>
+
+        </aside>
+        <aside>
+            <div>
+                <div>
+                    <p>Fecha de Cosecha</p>
+                    <p-calendar></p-calendar>
+                </div>
+                <div>
+                    <p style="display: flex; align-items: center; gap: 10px;">Categoría <i class='bx bx-info-circle'
+                            (click)="showDialog()" style="cursor: pointer;"></i> </p>
+                    <p-dropdown [options]="clasificacion" formControlName="categoria" optionLabel="clase"
+                        placeholder="" />
+                </div>
+                <div>
+                    <p style="display: flex; align-items: center; gap: 10px;">Unidad de Medida <i
+                            class='bx bx-info-circle' (click)="showDialog2()" style="cursor: pointer;"></i> </p>
+                    <p-dropdown [options]="masa" formControlName="medida" optionLabel="peso" placeholder="" />
+                </div>
+                <div>
+                    <p>Precio por Unidad de Medida</p>
+                    <p-inputNumber mode="decimal" currency="USD" [showButtons]="true" [step]="0.01" [min]="0"
+                        mode="currency" formControlName="precio" />
+                </div>
+                <div
+                    style="width: 500px; padding-top: 5px; padding-bottom: 5px; position: fixed; border: 1px solid green; border-radius: 16px; margin-top: 40px;">
+                    <img style="margin-top: 10px; margin-left: 20px;" src="../../../assets/Compartir.png" width="60px">
+                    <h1
+                        style="margin-top: 10px; margin-left: 20px; margin-bottom: 5px; font-size: 20px; color: rgb(41, 41, 41);">
+                        "No hablarás falso testimonio." Éxodo 20:16 </h1>
+                    <p
+                        style="font-size: 13px; text-align: justify; margin-left: 20px; line-height: 1.5; margin-right: 20px; color: rgb(41, 41, 41); margin-top: 5px; font-size: 15px;">
+                        Llegase a darse el caso de fraude
+                        con la información que esté proporcionando, su cuenta será eliminada automáticamente.</p>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <div class="buttons">
+        <p-button severity="danger" (onClick)="abort()"> <span class="loadingSpan"> <i class='bx bx-exit'></i>
+                Cancelar</span></p-button>
+        <p-button severity="success" [loading]="loading" (onClick)="load()" [disabled]="!isFormValid()"> <span><i
+                    class='bx bx-save'></i>Guardar</span></p-button>
+    </div>
+</form>
+
+</html>
+
+<p-dialog header="¿Qué son ''Categorías''?" [draggable]="false" [modal]="true" [(visible)]="visible"
+    [style]="{ width: '50rem' }">
+    <p style="line-height: 1.5; margin-top: 0; padding-top: 0;">
+        La categoría de una fruta o verdura hace referencia a la clasificación que se le da por varios motivos: su parte
+        comestible, su forma de crecimiento y sus características botánicas. En <strong>Verdulate</strong>, dividimos
+        los cultivos en los siguientes grupos:
+    </p>
+
+    <ul style="line-height: 1.5; text-align: justify;">
+        <li><strong>Hojas</strong>: Aquellas plantas cuya parte comestible son las hojas. <br> Ejemplos: lechuga,
+            espinaca,
+            acelga.</li>
+        <li><strong>Hortalizas</strong>: Generalmente se refiere a las plantas cultivadas por sus partes comestibles que
+            no son frutas. <br> Ejemplos: brócoli, zanahoria (aunque la zanahoria también es raíz, puede considerarse
+            hortaliza).</li>
+        <li><strong>Tallos</strong>: Son plantas cuyo tallo es la parte comestible. <br> Ejemplos: apio, espárragos,
+            cebollines.</li>
+        <li><strong>Raíces</strong>: Se refiere a las plantas cuyo sistema radicular es el comestible. <br> Ejemplos:
+            zanahoria, nabo, remolacha.</li>
+        <li><strong>Tubérculos</strong>: Son plantas que almacenan nutrientes en sus raíces o tallos engrosados.
+            <br> Ejemplos: papa, batata, yuca.
+        </li>
+        <li><strong>Bulbos</strong>: Son plantas con una estructura subterránea que crece en forma de capa. <br>
+            Ejemplos:
+            ajo, cebolla, puerro.</li>
+        <li><strong>Frutos</strong>: Son plantas que desarrollan un fruto comestible que contiene semillas. <br>
+            Ejemplos:
+            manzana, plátano, tomate.</li>
+        <li><strong>Semillas</strong>: Son aquellas plantas que se consumen por sus semillas. <br> Ejemplos: guisante,
+            frijol, maíz.</li>
+    </ul>
+
+    <p style="line-height: 1.5; text-align: justify;">
+        Por favor, verifique a qué categoría se encuentra su fruta o verdura, si no la ve, indague en la web para
+        obtener más detalles sobre su clasificación.
+    </p>
+</p-dialog>
+
+
+<p-dialog header="¿Qué es ''Unidad de Medida''?" [draggable]="false" [modal]="true" [(visible)]="visible2"
+    [style]="{ width: '50rem' }">
+    <p style="line-height: 2; text-align: justify;"> En <strong>Verdulate</strong>, la <strong>Unidad de
+            Medida</strong> se refiere a la forma en que determinamos la
+        cantidad de un producto para su venta y pago. Es un concepto similar al que encontramos en los mercados
+        tradicionales, donde surgen preguntas como: </p>
+    <ul style="line-height: 2; text-align: justify;">
+        <li><strong>“¿A cuánto la libra?”</strong>: En este caso, la unidad de medida se basa en el peso, definiendo el
+            precio del producto según su cantidad en libras.</li>
+        <li><strong>“Un dólar de...”</strong>: Muchas veces, los vendedores ajustan la cantidad del producto según el
+            dinero entregado, lo que genera variaciones en la cantidad recibida. Para evitar inconsistencias y
+            garantizar transparencia en cada compra, en Verdulate hemos decidido estandarizar todas las ventas en
+            función del peso.</li>
+    </ul>
+</p-dialog>

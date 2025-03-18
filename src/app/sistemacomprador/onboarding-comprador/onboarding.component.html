@@ -1,0 +1,117 @@
+<p-toast></p-toast>
+<div class="progress">
+  <p-progressBar [value]="progressValue" />
+</div>
+
+<body>
+  <div class="card">
+    <form [formGroup]="onboardingForm">
+      <p-stepper orientation="vertical" [linear]="true">
+        <p-stepperPanel header="Información Básica">
+          <ng-template pTemplate="content" let-nextCallback="nextCallback" let-index="index">
+            <div id="inputAreas">
+              <div class="input-group">
+                <label for="nombre">Nombre</label><br>
+                <input id="fullname" formControlName="fullname" type="text" pInputText class="w-full mb-3">
+              </div>
+              <div class="input-group">
+                <label for="birthday">Fecha de Nacimiento</label><br>
+                <p-calendar styleClass="w-full mb-3" formControlName="birthday" id="birthday" />
+              </div>
+            </div>
+            <div class="flex py-4">
+              <p-button pRipple (onClick)="nextCallback.emit()" (onClick)="increaseProgress()"
+                [disabled]="!isStepValid(1)"><i class='bx bx-down-arrow-alt'></i><span>Siguiente</span></p-button>
+            </div>
+          </ng-template>
+        </p-stepperPanel>
+        <p-stepperPanel header="Dirección">
+          <ng-template pTemplate="content" let-prevCallback="prevCallback" let-nextCallback="nextCallback"
+            let-index="index">
+            <div class="flex flex-column h-12rem">
+              <div
+                class="border-2 border-dashed surface-border border-round surface-ground flex-auto flex justify-content-center align-items-center font-medium">
+                <div id="inputAreas">
+                  <div class="input-group">
+                    <label for="nombre">Dirección</label><br>
+                    <input id="address" formControlName="address" type="text" placeholder="Agrega tu dirección"
+                      pInputText class="w-full mb-3">
+                  </div>
+                </div>
+
+
+                <div id="map"></div>
+              </div>
+            </div>
+            <div class="flex py-4 gap-2">
+              <p-button (onClick)="nextCallback.emit()" (onClick)="increaseProgress()" [disabled]="!isStepValid(2)"><i
+                  class='bx bx-down-arrow-alt'></i><span>Siguiente</span></p-button>
+              <p-button severity="secondary" (onClick)="prevCallback.emit()" (onClick)="decreaseProgress()"><i
+                  class='bx bx-up-arrow-alt'></i><span>Atrás</span></p-button>
+            </div>
+          </ng-template>
+        </p-stepperPanel>
+        <p-stepperPanel header="Contacto">
+          <ng-template pTemplate="content" let-prevCallback="prevCallback" let-nextCallback="nextCallback"
+            let-index="index">
+            <div class="flex flex-column h-12rem">
+              <div
+                class="border-2 border-dashed surface-border border-round surface-ground flex-auto flex justify-content-center align-items-center font-medium">
+                <div id="inputAreas">
+                  <div class="input-group">
+                    <label for="cellphone">Celular</label><br>
+                    <p-inputMask mask="(999) 99999-9999" id="cellphone" formControlName="cellphone"
+                      placeholder="(999) 999-9999" />
+                  </div>
+                  <div class="input-group">
+                    <label for="gender">Género</label><br>
+                    <p-dropdown [options]="gender" formControlName="gender" optionLabel="gender" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="flex py-4 gap-2">
+              <p-button (onClick)="nextCallback.emit()" (onClick)="increaseProgress()" [disabled]="!isStepValid(3)"><i
+                  class='bx bx-down-arrow-alt'></i><span>Siguiente</span></p-button>
+              <p-button severity="secondary" (onClick)="prevCallback.emit()" (onClick)="decreaseProgress()"><i
+                  class='bx bx-up-arrow-alt'></i><span>Atrás</span></p-button>
+            </div>
+          </ng-template>
+        </p-stepperPanel>
+        <p-stepperPanel header="Extra">
+          <ng-template pTemplate="content" let-prevCallback="prevCallback" let-nextCallback="nextCallback"
+            let-index="index">
+            <div class="flex flex-column h-12rem">
+              <div
+                class="border-2 border-dashed surface-border border-round surface-ground flex-auto flex justify-content-center align-items-center font-medium">
+                <div id="inputAreas">
+                  <div class="input-group">
+                    <label for="ads">¿Cómo nos conoció?</label><br>
+                    <p-dropdown [options]="ads" formControlName="ads" optionLabel="advertisements" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="flex py-4 gap-2">
+              <p-button (click)="submit()" [disabled]="!isStepValid(4)"><i
+                  class='bx bx-send'></i><span>Enviar</span></p-button>
+              <p-button severity="secondary" (onClick)="prevCallback.emit()" (onClick)="decreaseProgress()"><i
+                  class='bx bx-up-arrow-alt'></i><span>Atrás</span></p-button>
+            </div>
+          </ng-template>
+        </p-stepperPanel>
+      </p-stepper>
+    </form>
+  </div>
+  <div class="video">
+    <video autoplay loop muted>
+      <source src="../../assets/Video.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div *ngIf="isLoading" class="popup">
+    <div class="loading-container">
+      <div class="spinner"></div>
+      <p>Completando perfil...</p>
+    </div>
+  </div>
+</body>

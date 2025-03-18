@@ -1,0 +1,205 @@
+<header class="header">
+    <div class="logo">
+        <img src="assets/LogoCompleto.png">
+    </div>
+    <div>
+        <button class="boton-elegante" (click)="goToCompradores()">Compradores</button>
+        <button class="boton-elegante" (click)="goToAgricultores()">Agricultores</button>
+        <button class="btn" (click)="scrollToSection()"><i class="fa-solid fa-phone fa-xs"></i></button>
+    </div>
+</header>
+<div class="container">
+    <div class="slider">
+
+        <input type="radio" name="slider" id="slideOne" checked>
+        <input type="radio" name="slider" id="slideTwo">
+
+        <div class="buttons">
+            <label for="slideOne"><i class='bx bxs-left-arrow'></i></label>
+            <label for="slideTwo"><i class='bx bxs-right-arrow'></i></label>
+        </div>
+
+        <div class="content">
+            <div class="firstslide">
+                <div id="posicion2">
+                    <h2 id="welcome2">Bienvenido,</h2>
+                    <h1 id="text2">¿Desea vender<br><span>sin intermediarios?</span></h1>
+
+                </div>
+                <button class="animated-button2" (click)="goToAgricultores()">
+                    <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
+                        </path>
+                    </svg>
+                    <span class="text">Regístrese o Inicie Sesión</span>
+                    <span class="circle"></span>
+                    <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
+                        </path>
+                    </svg>
+                </button>
+            </div>
+            <div class="secondslide">
+                <div id="posicion">
+                    <h2 id="welcome">Bienvenido,</h2>
+                    <h1 id="text">¿Quiere verduras a <br><span>precios bajos?</span></h1>
+                </div>
+
+                <button class="animated-button" (click)="goToCompradores()">
+                    <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
+                        </path>
+                    </svg>
+                    <span class="text">Regístrese o Inicie Sesión</span>
+                    <span class="circle"></span>
+                    <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
+                        </path>
+                    </svg>
+                </button>
+
+
+            </div>
+        </div>
+
+
+    </div>
+
+
+</div>
+<section class="about" id="about">
+    <div class="about-img">
+        <img src="assets/FOTO1.png" alt="">
+    </div>
+    <div class="about-text">
+        <h3>Somos Verduléate</h3>
+        <ul>
+            <li>En Verduléate conectamos a productores ecuatorianos con tu mesa, asegurando productos frescos y de
+                calidad.</li>
+            <li>Garantizamos frutas y verduras sin intermediarios, directamente del campo a tu hogar.</li>
+            <li>Compra desde casa de manera fácil y segura, sin necesidad de salir.</li>
+            <li>Apoya a pequeños agricultores, fortaleciendo la economía local.</li>
+            <li>Contribuye a un consumo más sostenible, promoviendo prácticas responsables.</li>
+        </ul>
+    </div>
+
+
+</section>
+
+<div class="video-container">
+    <video autoplay loop muted>
+        <source src="../../assets/Video.mp4" type="video/mp4">
+    </video>
+    <section class="offers">
+        <h1 id="offering">¿Qué Ofrecemos?</h1>
+        <div class="offer-content">
+
+            <div class="row">
+                <i class="fa-solid">🌱</i>
+                <h3>Frescura Garantizada</h3>
+                <p>Verduras frescas directamente del campo a tu puerta.</p>
+            </div>
+            <div class="row">
+                <i class="fa-solid fa-truck-fast"></i>
+                <h3>Entrega Rápida y Confiable</h3>
+                <p>Recibe tu pedido en pocas horas.</p>
+            </div>
+            <div class="row">
+                <i class="fa-solid">📦</i>
+                <h3>Gran Variedad de Productos</h3>
+                <p>Desde productos locales hasta opciones exóticas.</p>
+            </div>
+
+            <div class="row">
+                <i class="fa-solid">🔒</i>
+                <h3>Pagos Seguros y Convenientes</h3>
+                <p>Múltiples opciones de pago, incluyendo efectivo y online.</p>
+            </div>
+            <div class="row">
+                <i class="fa-solid">⌛</i>
+                <h3>Seguimiento de Pedido en Tiempo Real</h3>
+                <p>Conoce exactamente cuándo llegará tu pedido.</p>
+            </div>
+            <div class="row">
+                <i class="fa-solid">🤝</i>
+                <h3> Apoyo a Agricultores Locales</h3>
+                <p>Cada compra beneficia directamente a los agricultores ecuatorianos.</p>
+            </div>
+        </div>
+    </section>
+</div>
+
+<section class="review" id="review">
+    <div class="main-txt">
+        <h3>Opiniones del Público</h3>
+    </div>
+
+    <div class="review-content">
+        <p-carousel [value]="comments" [numVisible]="3" [numScroll]="3">
+            <ng-template pTemplate="item" let-comment>
+                <div class="comment-card">
+                    <img [src]="comment.image" alt="{{ comment.author }}" class="comment-image">
+                    <p class="comment-text">"{{ comment.text }}"</p>
+                    <h4 class="comment-author">{{ comment.author }}</h4>
+                    <p-rating [cancel]="false" [ngModel]="comment.rating" [readonly]="true"></p-rating>
+                </div>
+            </ng-template>
+        </p-carousel>
+    </div>
+
+</section>
+
+<section class="contact" id="contact" #targetSection>
+    <div class="content-text">
+        <h2>¿Tiene algún problema?</h2>
+        <p>Nosotros nos encargamos, deje sus datos y requerimientos para que podamos asistirle.</p>
+
+    </div>
+
+    <div class="contact-form">
+        <form action="https://formsubmit.co/adriangbustos8@gmail.com" method="POST">
+            <input type="text" name="name" placeholder="Nombre" required>
+            <input name="phone" placeholder="Celular" required>
+            <input type="email" name="email" placeholder="Correo" required>
+            <p-dropdown name="account_type" [options]="accounts" [(ngModel)]="selectedAccount" optionLabel="name"
+                placeholder="Tipo de Cuenta"></p-dropdown>
+            <textarea name="message" cols="35" rows="10" placeholder="Mensaje" required></textarea>
+            <input type="submit" value="Enviar" class="submit">
+        </form>
+
+    </div>
+
+</section>
+
+
+<footer class="pie-pagina">
+    <div class="grupo-1">
+        <div class="box2">
+            <figure>
+                <a href="index.html">
+                    <img src="https://github.com/ElAdripan/Verduleate/blob/main/Logo%20V.png?raw=true">
+                </a>
+            </figure>
+        </div>
+        <div class="box2">
+            <h2>NUESTROS SISTEMAS</h2>
+            <a (click)="goToAgricultores()">- Agricultor</a> <br>
+            <a (click)="goToCompradores()">- Comprador</a>
+        </div>
+        <div class="box2">
+            <h2>SÍGANOS</h2>
+            <div class="red-social">
+                <a href="https://www.instagram.com/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://twitter.com/" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+                <a href="https://www.youtube.com/" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="grupo-2">
+        <small>Verduléate - Todos los Derechos Reservados &copy; 2025 </small>
+    </div>
+</footer>
