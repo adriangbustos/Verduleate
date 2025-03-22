@@ -6,6 +6,7 @@ import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { ToastModule } from 'primeng/toast';
+import { Firestore, collection, deleteDoc, getDocs, query, where } from '@angular/fire/firestore'; // ✅ Corrección aquí
 
 @Component({
   selector: 'app-settings',
@@ -18,47 +19,67 @@ import { ToastModule } from 'primeng/toast';
 export class SettingsComponent {
 
   visible: boolean = false;
-
-  showDialog() {
-    this.visible = true;
-  }
+  error: any;
 
   constructor(
     private router: Router,
     private authService: AuthService,
     private messageService: MessageService,
+    private firestore: Firestore, // ✅ Corrección aquí (inyectando correctamente Firestore)
   ) { }
 
-  async goToProfile() {
-    this.router.navigate(['/profile-agricultor']); // Redirige solo si el logout fue exitoso
+  showDialog() {
+    this.visible = true;
   }
+
+  async goToProfile() {
+    this.router.navigate(['/profile-agricultor']);
+  }
+
   async goHacienda() {
-    this.router.navigate(['/hacienda']); // Redirige solo si el logout fue exitoso
+    this.router.navigate(['/hacienda']);
   }
 
   async onLogout() {
     try {
-      const result: any = await this.authService.logout(); // Cierra la sesión y obtiene el resultado
-      if (result) { // Verifica si el resultado indica éxito
-        this.router.navigate(['/login-comprador']); // Redirige solo si el logout fue exitoso
+      const result: any = await this.authService.logout();
+      if (result) {
+        this.router.navigate(['/login-comprador']);
       } else {
-        // Si el resultado no indica éxito, muestra un mensaje de error
         this.messageService.add({ severity: 'error', summary: 'Error', detail: 'No se pudo cerrar la sesión.' });
       }
     } catch (error: any) {
-      const cleanMessage = error.toString().replace(/^Error:\s*/, ''); // Elimina "Error: " al inicio
+      const cleanMessage = error.toString().replace(/^Error:\s*/, '');
       this.messageService.add({ severity: 'error', summary: 'Error', detail: cleanMessage });
     }
   }
 
-
   async deleteAccount() {
     try {
       const user = this.authService.getCurrentUser();
-      await this.authService.deleteUserAccount();
-      this.router.navigate(['/landing']); // Redirige después de eliminar la cuenta
-    } catch (error: any) {
-      const cleanMessage = error.toString().replace(/^Error:\s*/, ''); // Elimina "Error: " al inicio
+      if (!user) {
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Usuario no autenticado' });
+        return;
+      }
+
+      // Intentar eliminar la cuenta del usuario en Firebase Authentication primero
+      const deleted = await this.authService.deleteUserAccount();
+      if (!deleted) {
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'No se pudo eliminar la cuenta en Firebase Authentication. Asegúrate de haber iniciado sesión recientemente.' });
+        return;
+      }
+
+      // Si la cuenta en Authentication se eliminó con éxito, proceder con Firestore
+      const productosRef = collection(this.firestore, 'productos');
+      const q = query(productosRef, where('agricultorId', '==', user.uid));
+      const querySnapshot = await getDocs(q);
+
+      const deletePromises = querySnapshot.docs.map(doc => deleteDoc(doc.ref));
+      await Promise.all(deletePromises);
+
+      this.router.navigate(['/landing']);
+    } catch (error) {
+      const cleanMessage = this.error.toString().replace(/^Error:\s*/, '');
       this.messageService.add({ severity: 'error', summary: 'Error', detail: cleanMessage });
     }
   }

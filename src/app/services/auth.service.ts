@@ -27,40 +27,38 @@ export class AuthService {
     this.auth = getAuth(app); // Obtiene la instancia de autenticación
   }
 
-  async deleteUserAccount(): Promise<void> {
+  async deleteUserAccount(): Promise<boolean> {
     try {
       const user = this.auth.currentUser;
-      
       if (!user) {
         throw new Error("No hay un usuario autenticado.");
       }
-  
-      // Determinar si el usuario está en "users" o "agricultores"
+
+      // Intentar eliminar la cuenta del usuario en Firebase Authentication
+      await deleteUser(user);
+      console.log("Cuenta de usuario eliminada de Firebase Authentication.");
+
+      // Si se eliminó correctamente, proceder con Firestore
       const userRef = doc(this.firestore, 'users', user.uid);
       const agricultorRef = doc(this.firestore, 'agricultores', user.uid);
-  
+
       const userSnapshot = await getDoc(userRef);
       const agricultorSnapshot = await getDoc(agricultorRef);
-  
+
       if (userSnapshot.exists()) {
         await deleteDoc(userRef);
         console.log("Usuario eliminado de la colección 'users'.");
       }
-  
+
       if (agricultorSnapshot.exists()) {
         await deleteDoc(agricultorRef);
         console.log("Usuario eliminado de la colección 'agricultores'.");
       }
-  
-      // Eliminar la cuenta del usuario en Firebase Authentication
-      await deleteUser(user);
-      console.log("Cuenta de usuario eliminada de Firebase Authentication.");
-  
-      // Redirigir después de la eliminación
-      this.router.navigate(['/landing']);
+
+      return true;
     } catch (error) {
       console.error("Error al eliminar la cuenta:", error);
-      throw error;
+      return false;
     }
   }
 

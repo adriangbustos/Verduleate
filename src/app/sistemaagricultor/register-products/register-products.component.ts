@@ -67,11 +67,12 @@ export class RegisterProductsComponent implements OnInit {
     this.registerProductForm = this.fb.group({
       vegetal: ['', [Validators.required, Validators.minLength(4)]],
       provincia: ['', Validators.required],
-      cantidadDisponible: [0, [Validators.required, Validators.min(0)]],
+      cantidadDisponible: [0, [Validators.required, Validators.min(1)]],
       descripcionCultivo: ['', [Validators.required, Validators.minLength(50)]],
+      fechaCultivado: ['', Validators.required],
       categoria: ['', Validators.required],
       medida: ['', Validators.required],
-      precio: [0, [Validators.required, Validators.min(0)]],
+      precio: [0, [Validators.required, Validators.min(0.01)]],
     });
   }
 
@@ -124,6 +125,11 @@ export class RegisterProductsComponent implements OnInit {
       { peso: 'g' },
       { peso: 'oz' },
     ];
+
+    setTimeout(() => {
+      this.messageService.add({ severity: 'info', summary: 'Registre su producto', detail: 'Llene todos los campos necesarios' });
+    }, 100);
+
   }
 
 
@@ -164,10 +170,12 @@ export class RegisterProductsComponent implements OnInit {
       };
 
       await addDoc(collection(this.firestore, 'productos'), productData);
-      this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Producto registrado correctamente' });
       this.registerProductForm.reset();
+      this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Su producto ha sido registrado' });
 
-      this.router.navigate(['main-agricultor/productos'])
+      setTimeout(() => {
+        this.router.navigate(['main-agricultor/productos'])
+      }, 2000);
     } catch (error) {
       console.error('Error al registrar producto:', error);
       this.messageService.add({ severity: 'error', summary: 'Error', detail: 'No se pudo registrar el producto' });
