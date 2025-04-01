@@ -48,25 +48,25 @@ export class SignupComponent2 implements OnInit {
   async submit() {
     if (this.signUpForm.valid) {
       this.isLoading = true;
-  
+
       try {
         // Crear el usuario y obtener el objeto completo
         const userCredential = await this.authService.signUp(
           this.signUpForm.value.email,
           this.signUpForm.value.password
         );
-  
+
         if (!userCredential || !userCredential.user) {
           throw new Error('Error en la autenticación: No se obtuvo el usuario');
         }
-  
+
         const user = userCredential.user;
-  
+
         // Enviar el correo de verificación
         await sendEmailVerification(user);
         console.log('Correo de verificación enviado.');
         this.messageService.add({ severity: 'info', summary: 'Revise su correo', detail: 'Allí hallará un mail para verificar su mail' });
-  
+
         // Hacer polling para verificar si el correo ha sido verificado
         let emailVerified = false;
         while (!emailVerified) {
@@ -76,7 +76,7 @@ export class SignupComponent2 implements OnInit {
           emailVerified = user.emailVerified; // Verifica si el correo está verificado
           console.log(`Estado de verificación: ${emailVerified}`);
         }
-  
+
         // Ahora que el email está verificado, crear el documento
         await this.authService.createDocument('agricultores', user.uid, {
           email: user.email,
@@ -84,10 +84,10 @@ export class SignupComponent2 implements OnInit {
           onboarding: false,
           emailverificado: true,
         });
-  
+
         this.router.navigate(['/onboarding-agricultor']);
         this.isLoading = false;
-  
+
       } catch (error: any) {
         this.isLoading = false;
         console.error(error.message);
@@ -97,16 +97,23 @@ export class SignupComponent2 implements OnInit {
       console.log('Formulario inválido');
     }
   }
-  
+
   async loginWithGoogle() {
     this.isLoading = true;
-    const user = await this.authService.loginWithGoogleAgricultores();
-    if (user) {
+
+    const result = await this.authService.loginWithGoogleAgricultores();
+
+    if (result.success) {
       console.log('Inicio de sesión exitoso');
     } else {
-      console.error('Error al iniciar sesión con Google');
-      this.isLoading = false;
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Error de inicio de sesión',
+        detail: result.message
+      });
     }
+
+    this.isLoading = false;
   }
 
   private handleAuthError(errorCode: string) {

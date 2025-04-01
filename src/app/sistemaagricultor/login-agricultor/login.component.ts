@@ -69,7 +69,7 @@ export class LoginComponent2 {
     try {
       console.log(this.correo)
       await this.authService.sendRecoveryEmailAgricultores(this.correo);
-      this.messageService.add({ severity: 'success', summary: 'Enviado', detail: 'Revise su bandeja de entrada o spam '});
+      this.messageService.add({ severity: 'success', summary: 'Enviado', detail: 'Revise su bandeja de entrada o spam ' });
 
     } catch (error) {
       this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Ingrese correctamente el correo' });
@@ -108,21 +108,27 @@ export class LoginComponent2 {
       this.isLoading = false;
     }
   }
+
   async loginWithGoogle() {
     this.isLoading = true;
-    
-    const user = await this.authService.loginWithGoogleAgricultores();
 
-    if (user) {
+    const result = await this.authService.loginWithGoogleAgricultores();
+
+    if (result.success) {
       console.log('Inicio de sesión exitoso');
     } else {
-      console.error('Error al iniciar sesión con Google');
-      this.isLoading = false;
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Error de inicio de sesión',
+        detail: result.message
+      });
     }
+
+    this.isLoading = false;
   }
 
 
-  touchedFields = { email: false};  // Para controlar si un campo ha sido tocado
+  touchedFields = { email: false };  // Para controlar si un campo ha sido tocado
 
   showError(field: 'email') {
     const emailControl = this.loginForm.get('email');

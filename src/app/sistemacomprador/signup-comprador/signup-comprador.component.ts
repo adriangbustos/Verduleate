@@ -48,13 +48,20 @@ export class SignUpComponent implements OnInit {
 
   async loginWithGoogle() {
     this.isLoading = true;
-    const user = await this.authService.loginWithGoogleCompradores();
-    if (user) {
+  
+    const result = await this.authService.loginWithGoogleCompradores();
+  
+    if (result.success) {
       console.log('Inicio de sesión exitoso');
     } else {
-      console.error('Error al iniciar sesión con Google');
-      this.isLoading = false;
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Error de inicio de sesión',
+        detail: result.message
+      });
     }
+  
+    this.isLoading = false;
   }
 
   async submit() {

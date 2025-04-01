@@ -6,17 +6,24 @@ import { ToastModule } from 'primeng/toast';
 import { CommonModule } from '@angular/common';
 import { Firestore, collection, query, where, collectionData } from '@angular/fire/firestore';
 import { CardModule } from 'primeng/card';
+import { DialogModule } from 'primeng/dialog';
 
 @Component({
   selector: 'app-products-agricultor',
   standalone: true,
-  imports: [ToastModule, CommonModule, CardModule],
+  imports: [ToastModule, DialogModule, CommonModule, CardModule],
   providers: [MessageService],
   templateUrl: './products-agricultor.component.html',
   styleUrl: './products-agricultor.component.css'
 })
 export class ProductsAgricultorComponent implements OnInit {
+  displayModal = false;
+  selectedProduct: any;
 
+  openModal(product: any) {
+    this.selectedProduct = product;
+    this.displayModal = true;
+  }
   datauser: any;
   products = signal<any[]>([]);
   loading = signal(true);

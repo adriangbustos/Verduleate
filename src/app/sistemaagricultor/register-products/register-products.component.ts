@@ -7,7 +7,7 @@ import { RatingModule } from 'primeng/rating';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
-import { Timestamp } from 'firebase/firestore';
+import { Timestamp, updateDoc } from 'firebase/firestore';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -169,7 +169,12 @@ export class RegisterProductsComponent implements OnInit {
         fincaName: agricultorData?.['fincaname'] || ''
       };
 
-      await addDoc(collection(this.firestore, 'productos'), productData);
+      // Agregar producto a Firestore y obtener la referencia con el ID generado
+      const docRef = await addDoc(collection(this.firestore, 'productos'), productData);
+
+      // Actualizar el documento con su propio ID
+      await updateDoc(docRef, { id: docRef.id });
+
       this.registerProductForm.reset();
       this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Su producto ha sido registrado' });
 

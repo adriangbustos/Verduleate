@@ -1,4 +1,16 @@
 <p-toast></p-toast>
+
+<p-dialog [(visible)]="displayModal" [modal]="true" [header]="selectedProduct?.vegetal" [style]="'width: 25rem'" >
+    <div *ngIf="selectedProduct">
+        <img class="product-image" [src]="'../../../assets/vegetales/' + selectedProduct.formattedVegetal + '.png'" style="width: 100%;">
+        <div style="padding: 10px;">
+            <h4>{{ selectedProduct.vegetal }}</h4>
+            <p><strong>Provincia:</strong> {{ selectedProduct.provincia.state }}</p>
+            <p><strong>Precio:</strong> ${{ selectedProduct.precio }}/{{selectedProduct.medida.peso}}</p>
+        </div>
+    </div>
+</p-dialog>
+
 <header style="border-bottom: 1px solid rgba(0, 128, 0, 0.531); padding-bottom: 17.5px;">
     <button id="productsButton" (click)="registerProduct()"> <i class='bx bx-plus'></i> Nuevo Producto</button>
     <h4 id="productsPublishedText">Bienvenido, {{datauser.fullname}} </h4>
@@ -12,10 +24,15 @@
     </div>
 
     <section *ngIf="products().length > 0" class="product-grid">
-        <p-card *ngFor="let product of products()" class="product-card">
+        <p-card *ngFor="let product of products()" class="product-card" (click)="openModal(product)">
             <img class="product-image" [src]="'../../../assets/vegetales/' + product.formattedVegetal + '.png'">
-            {{ product.vegetal }}
-            <p>${{ product.precio }}</p>
+            <div style="padding: 5px;">
+                <div style="display: flex; justify-content: space-between;">
+                    <h4>{{ product.vegetal }}</h4>
+                    <h4> {{product.provincia.state}} </h4>
+                </div>
+                <p style="margin-top: 2px;">${{ product.precio }}/{{product.medida.peso}} </p>
+            </div>
         </p-card>
     </section>
 </body>

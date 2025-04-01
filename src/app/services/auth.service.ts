@@ -123,41 +123,46 @@ export class AuthService {
       const result = await signInWithPopup(this.auth, provider);
       const user = result.user;
       const additionalInfo = getAdditionalUserInfo(result);
-
-      // Verificar si es un nuevo usuario
+  
+      // Verificar si la cuenta ya existe en "agricultores"
+      const agricultoresRef = doc(this.firestore, 'agricultores', user.uid);
+      const agricultoresSnapshot = await getDoc(agricultoresRef);
+  
+      if (agricultoresSnapshot.exists()) {
+        return { success: false, message: 'Esta cuenta de Google ya está registrada en el sistema de agricultores.' };
+      }
+  
+      // Si el usuario no está en "agricultores", continuar con el flujo normal
       if (additionalInfo?.isNewUser) {
-        console.log('Nuevo usuario registrado con Google:', user);
         await this.createDocument('users', user.uid, {
           email: user.email,
           uid: user.uid,
-          onboarding: false, // Se asume que es un nuevo usuario, por lo que onboarding es false
+          onboarding: false,
           emailverificado: true,
         });
-      } else {
-        console.log('Usuario existente inició sesión con Google:', user);
       }
-
-      // Consultar el estado del onboarding en Firestore
+  
+      // Verificar el estado del onboarding
       const userRef = doc(this.firestore, 'users', user.uid);
       const userSnapshot = await getDoc(userRef);
-
+  
       if (userSnapshot.exists()) {
         const userData = userSnapshot.data();
         const onboarding = userData?.['onboarding'];
-
+  
         if (onboarding === false) {
-          this.router.navigate(['/onboarding-comprador']); // Redirigir a onboarding si onboarding es false
+          this.router.navigate(['/onboarding-comprador']);
         } else {
-          this.router.navigate(['/main-comprador']); // Redirigir a main si onboarding es true
+          this.router.navigate(['/main-comprador']);
         }
       } else {
         console.error('No se encontraron datos del usuario en Firestore');
       }
-
-      return user;
+  
+      return { success: true, user };
     } catch (error) {
       console.error('Error al iniciar sesión con Google:', error);
-      return null;
+      return { success: false, message: 'Ocurrió un error al iniciar sesión con Google.' };
     }
   }
 
@@ -167,43 +172,50 @@ export class AuthService {
       const result = await signInWithPopup(this.auth, provider);
       const user2 = result.user;
       const additionalInfo = getAdditionalUserInfo(result);
-
-      // Verificar si es un nuevo usuario
+  
+      // Verificar si la cuenta ya existe en "compradores"
+      const compradoresRef = doc(this.firestore, 'users', user2.uid);
+      const compradoresSnapshot = await getDoc(compradoresRef);
+  
+      if (compradoresSnapshot.exists()) {
+        return { success: false, message: 'Esta cuenta de Google ya está registrada en el sistema de compradores.' };
+      }
+  
+      // Si el usuario no está en "compradores", continuar con el flujo normal
       if (additionalInfo?.isNewUser) {
         console.log('Nuevo usuario registrado con Google:', user2);
         await this.createDocument('agricultores', user2.uid, {
           email: user2.email,
           uid: user2.uid,
-          onboarding: false, // Se asume que es un nuevo usuario, por lo que onboarding es false
+          onboarding: false,
           emailverificado: true,
         });
-      } else {
-        console.log('Usuario existente inició sesión con Google:', user2);
       }
-
-      // Consultar el estado del onboarding en Firestore
+  
+      // Verificar el estado del onboarding
       const userRef = doc(this.firestore, 'agricultores', user2.uid);
       const userSnapshot = await getDoc(userRef);
-
+  
       if (userSnapshot.exists()) {
         const userData = userSnapshot.data();
         const onboarding = userData?.['onboarding'];
-
+  
         if (onboarding === false) {
-          this.router.navigate(['/onboarding-agricultor']); // Redirigir a onboarding si onboarding es false
+          this.router.navigate(['/onboarding-agricultor']);
         } else {
-          this.router.navigate(['/main-agricultor']); // Redirigir a main si onboarding es true
+          this.router.navigate(['/main-agricultor']);
         }
       } else {
         console.error('No se encontraron datos del usuario en Firestore');
       }
-
-      return user2;
+  
+      return { success: true, user: user2 };
     } catch (error) {
       console.error('Error al iniciar sesión con Google:', error);
-      return null;
+      return { success: false, message: 'Ocurrió un error al iniciar sesión con Google.' };
     }
   }
+  
 
 
   async signInAgricultores(email: string, password: string): Promise<User> {
