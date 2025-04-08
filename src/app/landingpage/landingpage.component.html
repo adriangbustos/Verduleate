@@ -3,8 +3,8 @@
         <img src="assets/LogoCompleto.png">
     </div>
     <div>
-        <button class="boton-elegante" [routerLink]="'/comprador'">Compradores</button>
-        <button class="boton-elegante" [routerLink]="'/agricultor'">Agricultores</button>
+        <button class="boton-elegante" (click)="goToCompradores()">Compradores</button>
+        <button class="boton-elegante" (click)="goToAgricultores()">Agricultores</button>
         <button class="btn" (click)="scrollToSection()"><i class="fa-solid fa-phone fa-xs"></i></button>
     </div>
 </header>
@@ -162,12 +162,12 @@
 
     <div class="contact-form">
         <form action="https://formsubmit.co/adriangbustos8@gmail.com" method="POST">
-            <input type="text" name="name" placeholder="Nombre" required>
-            <input name="phone" placeholder="Celular" required>
-            <input type="email" name="email" placeholder="Correo" required>
-            <p-dropdown name="account_type" [options]="accounts" [(ngModel)]="selectedAccount" optionLabel="name"
+            <input id="here" type="text" name="name" placeholder="Nombre" required>
+            <input id="here" type="number" name="phone" placeholder="Celular" required>
+            <input id="here" type="email" name="email" placeholder="Correo" required>
+            <p-dropdown name="account_type" [options]="accounts" optionLabel="name"
                 placeholder="Tipo de Cuenta"></p-dropdown>
-            <textarea name="message" cols="35" rows="10" placeholder="Mensaje" required></textarea>
+            <textarea id="here" name="message" cols="35" rows="10" placeholder="Mensaje" required></textarea>
             <input type="submit" value="Enviar" class="submit">
         </form>
 

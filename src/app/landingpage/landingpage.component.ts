@@ -29,10 +29,10 @@ export class LandingpageComponent implements OnInit {
   constructor(private router: Router) {}
   
   goToCompradores() {
-    this.router.navigate(['/login-comprador']); // Navigates to the AboutComponent
+    this.router.navigate(['comprador/login-comprador']); // Navigates to the AboutComponent
   }
   goToAgricultores() {
-    this.router.navigate(['/login-agricultor']); // Navigates to the AboutComponent
+    this.router.navigate(['agricultor/login-agricultor']); // Navigates to the AboutComponent
   }
 
   @ViewChild('targetSection') targetSection!: ElementRef;
@@ -44,7 +44,6 @@ export class LandingpageComponent implements OnInit {
   }
   accounts: Account[] | undefined;
 
-  selectedAccount: Account | undefined;
 
   ngOnInit() {
     this.accounts = [

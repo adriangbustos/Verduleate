@@ -399,11 +399,16 @@ form select option {
     margin-bottom: 10px;
 }
 
+#here{
+    color: #4b5563;
+}
+
 :host ::ng-deep .p-dropdown{
     width: 100%;
     margin-bottom: 10px;
     font-size: 5px;
     border: none;
+
 }
 :host ::ng-deep .p-inputtext{
     font-size: 15px;
