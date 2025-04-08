@@ -3,8 +3,8 @@
         <img src="assets/LogoCompleto.png">
     </div>
     <div>
-        <button class="boton-elegante" (click)="goToCompradores()">Compradores</button>
-        <button class="boton-elegante" (click)="goToAgricultores()">Agricultores</button>
+        <button class="boton-elegante" [routerLink]="'/comprador'">Compradores</button>
+        <button class="boton-elegante" [routerLink]="'/agricultor'">Agricultores</button>
         <button class="btn" (click)="scrollToSection()"><i class="fa-solid fa-phone fa-xs"></i></button>
     </div>
 </header>
@@ -92,7 +92,7 @@
 
 <div class="video-container">
     <video autoplay loop muted>
-        <source src="../../assets/Video.mp4" type="video/mp4">
+        <source src="../../assets/video.mp4" type="video/mp4">
     </video>
     <section class="offers">
         <h1 id="offering">¿Qué Ofrecemos?</h1>

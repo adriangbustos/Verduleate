@@ -2,6 +2,7 @@ import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
 import { ImageModule } from 'primeng/image';
 import { ButtonModule } from 'primeng/button';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';  // Asegúrate de importar RouterModule
 import { DropdownModule } from 'primeng/dropdown';
 import { RatingModule } from 'primeng/rating';
 import { RippleModule } from 'primeng/ripple';
@@ -18,7 +19,7 @@ interface Account {
 
 @Component({
   selector: 'app-landingpage',
-  imports: [ImageModule, ButtonModule, FormsModule, RatingModule, DropdownModule, CarouselModule, RippleModule, DividerModule, InputTextModule, SplitterModule],
+  imports: [ImageModule, RouterModule, ButtonModule, FormsModule, RatingModule, DropdownModule, CarouselModule, RippleModule, DividerModule, InputTextModule, SplitterModule],
   templateUrl: './landingpage.component.html',
   styleUrl: './landingpage.component.css',
   standalone: true,
