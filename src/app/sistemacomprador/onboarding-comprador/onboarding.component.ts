@@ -271,7 +271,7 @@ export class OnboardingComponent implements AfterViewChecked, OnInit {
 
       await this.authService.updateDocument('users', this.user.uid, datosActualizados);
       this.onboardingForm.reset();
-      this.router.navigate(['/main-comprador']);
+      this.router.navigate(['comprador/main-comprador']);
     } catch (error: any) {
       this.isLoading = false;
       console.log(error.message);

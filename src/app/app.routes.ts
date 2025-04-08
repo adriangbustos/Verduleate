@@ -9,9 +9,8 @@ export const routes: Routes = [
       import('./sistemacomprador/sistemacomprador.routes').then(m => m.compradorRoutes)
   },
   {
-    path: 'agricultor',  // Ruta para el sistema agricultor
-    loadChildren: () =>
-      import('./sistemaagricultor/sistemaagricultor.routes').then(m => m.agricultorRoutes)
+    path: 'agricultor',  // Prefijo para las rutas del agricultor
+    loadChildren: () => import('./sistemaagricultor/sistemaagricultor.routes').then(m => m.agricultorRoutes)
   },
   { path: '', redirectTo: '/landing', pathMatch: 'full' }  // Redirige al landing por defecto
 ];

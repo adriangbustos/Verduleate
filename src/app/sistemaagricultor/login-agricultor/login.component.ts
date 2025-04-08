@@ -92,9 +92,9 @@ export class LoginComponent2 {
           console.log('Datos obtenidos de Firestore:', userDoc);
 
           if (userDoc?.['onboarding'] === false) {
-            this.router.navigate(['/onboarding-agricultor']);
+            this.router.navigate(['agricultor/onboarding-agricultor']);
           } else {
-            this.router.navigate(['/main-agricultor']);
+            this.router.navigate(['agricultor/main-agricultor']);
           }
         }
       } catch (error: any) {

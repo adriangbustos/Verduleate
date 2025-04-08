@@ -16,7 +16,7 @@ import { MessageService } from 'primeng/api';
 export class MainpageComponent {
 
   goToHome() {
-    this.router.navigate(['/main-comprador']); // Navigates to the AboutComponent
+    this.router.navigate(['comprador/main-comprador']); // Navigates to the AboutComponent
   }
 
   constructor(private router: Router, private authService: AuthService) {

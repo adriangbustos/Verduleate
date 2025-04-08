@@ -90,9 +90,9 @@ export class LoginComponent {
           console.log('Datos obtenidos de Firestore:', userDoc);
 
           if (userDoc?.['onboarding'] === false) {
-            this.router.navigate(['/onboarding-comprador']);
+            this.router.navigate(['comprador/onboarding-comprador']);
           } else {
-            this.router.navigate(['/main-comprador']);
+            this.router.navigate(['comprador/main-comprador']);
           }
         }
       } catch (error: any) {

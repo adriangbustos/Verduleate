@@ -33,18 +33,18 @@ export class SettingsComponent {
   }
 
   async goToProfile() {
-    this.router.navigate(['/profile-agricultor']);
+    this.router.navigate(['agricultor/profile-agricultor']);
   }
 
   async goHacienda() {
-    this.router.navigate(['/hacienda']);
+    this.router.navigate(['agricultor/hacienda']);
   }
 
   async onLogout() {
     try {
       const result: any = await this.authService.logout();
       if (result) {
-        this.router.navigate(['/login-comprador']);
+        this.router.navigate(['agricultor/login-comprador']);
       } else {
         this.messageService.add({ severity: 'error', summary: 'Error', detail: 'No se pudo cerrar la sesión.' });
       }

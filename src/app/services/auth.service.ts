@@ -151,9 +151,9 @@ export class AuthService {
         const onboarding = userData?.['onboarding'];
   
         if (onboarding === false) {
-          this.router.navigate(['/onboarding-comprador']);
+          this.router.navigate(['comprador/onboarding-comprador']);
         } else {
-          this.router.navigate(['/main-comprador']);
+          this.router.navigate(['comprador/main-comprador']);
         }
       } else {
         console.error('No se encontraron datos del usuario en Firestore');
@@ -201,9 +201,9 @@ export class AuthService {
         const onboarding = userData?.['onboarding'];
   
         if (onboarding === false) {
-          this.router.navigate(['/onboarding-agricultor']);
+          this.router.navigate(['agricultor/onboarding-agricultor']);
         } else {
-          this.router.navigate(['/main-agricultor']);
+          this.router.navigate(['agricultor/main-agricultor']);
         }
       } else {
         console.error('No se encontraron datos del usuario en Firestore');

@@ -91,6 +91,6 @@ export class ProductsAgricultorComponent implements OnInit {
   }
 
   registerProduct() {
-    this.router.navigate(['/main-agricultor/register-product']);
+    this.router.navigate(['agricultor/main-agricultor/register-product']);
   }
 }

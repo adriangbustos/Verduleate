@@ -104,7 +104,7 @@ export class SignUpComponent implements OnInit {
           emailverificado: true,
         });
 
-        this.router.navigate(['/onboarding-comprador']);
+        this.router.navigate(['comprador/onboarding-comprador']);
         this.isLoading = false;
 
       } catch (error: any) {

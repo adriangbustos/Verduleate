@@ -21,11 +21,11 @@ import { ToastModule } from 'primeng/toast';
 export class SidebarComponent {
 
   goToProductos() {
-    this.router.navigate(['/main-agricultor/productos']); // Navigates to the AboutComponent
+    this.router.navigate(['agricultor/main-agricultor/productos']); // Navigates to the AboutComponent
   }
 
   goToSettings() {
-    this.router.navigate(['/main-agricultor/settings']); // Navigates to the AboutComponent
+    this.router.navigate(['agricultor/main-agricultor/settings']); // Navigates to the AboutComponent
   }
 
 

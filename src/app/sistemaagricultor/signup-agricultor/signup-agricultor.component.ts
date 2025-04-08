@@ -85,7 +85,7 @@ export class SignupComponent2 implements OnInit {
           emailverificado: true,
         });
 
-        this.router.navigate(['/onboarding-agricultor']);
+        this.router.navigate(['agricultor/onboarding-agricultor']);
         this.isLoading = false;
 
       } catch (error: any) {

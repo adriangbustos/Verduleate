@@ -139,7 +139,7 @@ export class RegisterProductsComponent implements OnInit {
   loading: boolean = false;
 
   abort() {
-    this.router.navigate(['main-agricultor/productos'])
+    this.router.navigate(['agricultor/main-agricultor/productos'])
   }
 
   async load() {
@@ -179,7 +179,7 @@ export class RegisterProductsComponent implements OnInit {
       this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Su producto ha sido registrado' });
 
       setTimeout(() => {
-        this.router.navigate(['main-agricultor/productos'])
+        this.router.navigate(['agricultor/main-agricultor/productos'])
       }, 2000);
     } catch (error) {
       console.error('Error al registrar producto:', error);
