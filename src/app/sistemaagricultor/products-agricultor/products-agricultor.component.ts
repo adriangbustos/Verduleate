@@ -65,7 +65,6 @@ export class ProductsAgricultorComponent implements OnInit {
             ...product,
             formattedVegetal: this.formatVegetal(product.vegetal)
           }));
-  
           this.products.set(updatedProducts);
           this.loading.set(false);
         },

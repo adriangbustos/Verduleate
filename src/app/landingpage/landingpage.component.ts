@@ -57,55 +57,55 @@ export class LandingpageComponent implements OnInit {
       text: "¡Este producto es increíble! Muy recomendado.",
       author: "Sophia Bennett",
       rating: 5,
-      image: "https://github.com/ElAdripan/Verduleate/blob/main/Review%20PFP/2.png?raw=true"
+      image: "https://github.com/ElAdripan/VerduleatePictures/blob/main/Review%20PFP/2.png?raw=true"
     },
     {
       text: "Excelente servicio y entrega rápida. ¡5 estrellas!",
       author: "James Carter",
       rating: 4,
-      image: "https://github.com/ElAdripan/Verduleate/blob/main/Review%20PFP/1.png?raw=true"
+      image: "https://github.com/ElAdripan/VerduleatePictures/blob/main/Review%20PFP/1.png?raw=true"
     },
     {
       text: "Buena calidad, pero el envío tardó un poco más de lo esperado.",
       author: "Olivia Richardson",
       rating: 3,
-      image: "https://github.com/ElAdripan/Verduleate/blob/main/Review%20PFP/3.png?raw=true"
+      image: "https://github.com/ElAdripan/VerduleatePictures/blob/main/Review%20PFP/3.png?raw=true"
     },
     {
       text: "Muy satisfecho con mi compra. ¡Volvería a comprar!",
       author: "Daniel Foster",
       rating: 5,
-      image: "https://github.com/ElAdripan/Verduleate/blob/main/Review%20PFP/4.png?raw=true"
+      image: "https://github.com/ElAdripan/VerduleatePictures/blob/main/Review%20PFP/4.png?raw=true"
     },
     {
       text: "¡Este producto es increíble! Muy recomendado.",
       author: "Ethan Hayes",
       rating: 5,
-      image: "https://github.com/ElAdripan/Verduleate/blob/main/Review%20PFP/5.png?raw=true"
+      image: "https://github.com/ElAdripan/VerduleatePictures/blob/main/Review%20PFP/5.png?raw=true"
     },
     {
       text: "Excelente servicio y entrega rápida. ¡5 estrellas!",
       author: "Emma Sullivan",
       rating: 4,
-      image: "https://github.com/ElAdripan/Verduleate/blob/main/Review%20PFP/6.png?raw=true"
+      image: "https://github.com/ElAdripan/VerduleatePictures/blob/main/Review%20PFP/6.png?raw=true"
     },
     {
       text: "Buena calidad, pero el envío tardó un poco más de lo esperado.",
       author: "Charlotte Reynolds",
       rating: 3,
-      image: "https://github.com/ElAdripan/Verduleate/blob/main/Review%20PFP/7.png?raw=true"
+      image: "https://github.com/ElAdripan/VerduleatePictures/blob/main/Review%20PFP/7.png?raw=true"
     },
     {
       text: "Muy satisfecho con mi compra. ¡Volvería a comprar!",
       author: "Lucas Mitchell",
       rating: 5,
-      image: "https://github.com/ElAdripan/Verduleate/blob/main/Review%20PFP/8.png?raw=true"
+      image: "https://github.com/ElAdripan/VerduleatePictures/blob/main/Review%20PFP/8.png?raw=true"
     },
     {
       text: "Muy satisfecha con mi compra. ¡Volvería a comprar!",
       author: "Amelia Scott",
       rating: 5,
-      image: "https://github.com/ElAdripan/Verduleate/blob/main/Review%20PFP/9.png?raw=true"
+      image: "https://github.com/ElAdripan/VerduleatePictures/blob/main/Review%20PFP/9.png?raw=true"
     }
 ];
 
