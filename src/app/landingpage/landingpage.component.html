@@ -162,16 +162,32 @@
 
     <div class="contact-form">
         <form action="https://formsubmit.co/adriangbustos8@gmail.com" method="POST">
-            <input id="here" type="text" name="name" placeholder="Nombre" required>
-            <input id="here" type="number" name="phone" placeholder="Celular" required>
-            <input id="here" type="email" name="email" placeholder="Correo" required>
-            <p-dropdown name="account_type" [options]="accounts" optionLabel="name"
-                placeholder="Tipo de Cuenta"></p-dropdown>
-            <textarea id="here" name="message" cols="35" rows="10" placeholder="Mensaje" required></textarea>
-            <input type="submit" value="Enviar" class="submit">
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col">
+                        <input type="text" name="Nombre" class="form-control" placeholder="Nombre Completo" required>
+                    </div>
+                    <div class="col">
+                        <input type="email" name="Correo" class="form-control" placeholder="Correo Electrónico" required>
+                    </div>
+                    <div class="col">
+                        <input type="number" name="Celular" class="form-control" placeholder="Celular" required>
+                    </div>
+                    <div class="col">
+                        <input type="text" name="Cuenta" class="form-control" placeholder="Agricultor o Comprador" required>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="form-group">
+                <textarea name="message" class="form-control" placeholder="Mensaje" rows="10" required></textarea>
+            </div>
+    
+            <button type="submit" class="submit">Enviar Formulario</button>
         </form>
-
     </div>
+    
+
 
 </section>
 

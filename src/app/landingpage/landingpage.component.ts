@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';  // Asegúrate de importar Route
 import { DropdownModule } from 'primeng/dropdown';
 import { RatingModule } from 'primeng/rating';
 import { RippleModule } from 'primeng/ripple';
-import { SplitterModule } from 'primeng/splitter';   
+import { SplitterModule } from 'primeng/splitter';
 import { CarouselModule } from 'primeng/carousel';
 import { InputTextModule } from 'primeng/inputtext';
 import { DividerModule } from 'primeng/divider';
@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
 
 interface Account {
   name: string;
-  code: string;
+  value: string;
 }
 
 @Component({
@@ -25,9 +25,9 @@ interface Account {
   standalone: true,
 })
 export class LandingpageComponent implements OnInit {
-  
-  constructor(private router: Router) {}
-  
+
+  constructor(private router: Router) { }
+
   goToCompradores() {
     this.router.navigate(['comprador/login-comprador']); // Navigates to the AboutComponent
   }
@@ -47,9 +47,21 @@ export class LandingpageComponent implements OnInit {
 
   ngOnInit() {
     this.accounts = [
-      { name: 'Agricultor', code: 'AGR' },
-      { name: 'Comprador', code: 'COM' },
+      { name: 'Agricultor', value: 'agricultor' },
+      { name: 'Comprador', value: 'comprador' },
     ];
+  }
+
+  selectedAccount: any = null;
+
+  updateAccountHiddenInput() {
+    // Este método se dispara con onChange para asegurar que el valor hidden esté actualizado
+    console.log('Tipo de cuenta:', this.selectedAccount?.name);
+  }
+  
+  onSubmit() {
+    // Esto es opcional: puedes hacer validaciones, etc.
+    console.log('Enviando formulario');
   }
 
   comments = [
@@ -107,6 +119,6 @@ export class LandingpageComponent implements OnInit {
       rating: 5,
       image: "https://github.com/ElAdripan/VerduleatePictures/blob/main/Review%20PFP/9.png?raw=true"
     }
-];
+  ];
 
 }
