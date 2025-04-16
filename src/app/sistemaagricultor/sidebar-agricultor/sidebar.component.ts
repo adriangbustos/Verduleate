@@ -28,6 +28,10 @@ export class SidebarComponent {
     this.router.navigate(['agricultor/main-agricultor/settings']); // Navigates to the AboutComponent
   }
 
+  goToSupport() {
+    this.router.navigate(['agricultor/main-agricultor/support']); // Navigates to the AboutComponent
+  }
+
 
   constructor(private authService: AuthService, private router: Router, private messageService: MessageService) { }
 

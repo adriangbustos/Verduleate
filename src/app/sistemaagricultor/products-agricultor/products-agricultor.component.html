@@ -1,13 +1,52 @@
 <p-toast></p-toast>
 
-<p-dialog [(visible)]="displayModal" [modal]="true" [header]="selectedProduct?.vegetal" [style]="'width: 25rem'" >
+<p-dialog [draggable]="false" [(visible)]="displayModal" [modal]="true" [header]="selectedProduct?.Vegetal"
+    [style]="{ width: '50rem', height: 'auto' }">
     <div *ngIf="selectedProduct">
-        <img class="product-image" [src]="'../../../assets/vegetales/' + selectedProduct.formattedVegetal + '.png'" style="width: 100%;">
-        <div style="padding: 10px;">
-            <h4>{{ selectedProduct.vegetal }}</h4>
-            <p><strong>Provincia:</strong> {{ selectedProduct.provincia.state }}</p>
-            <p><strong>Precio:</strong> ${{ selectedProduct.precio }}/{{selectedProduct.medida.peso}}</p>
+        <div style="display: flex;">
+            <div class="divImage" style="width: 40%; height: 100%;">
+                <img class="product-image"
+                    [src]="'../../../assets/vegetales/' + selectedProduct.formattedVegetal + '.png'"
+                    style="width: 100%; height: 40vh; object-fit: contain;">
+            </div>
+            <aside class="divBoxes" style="height: 40vh;">
+                <!--Provincia, Precio, Fecha Cultivado, Descripción Cultivo-->
+                <div class="div1">
+                    <h4>Provincia</h4>
+                    <p>{{ selectedProduct.provincia.state }}</p>
+                </div>
+                <div class="div2">
+                    <h4>Precio</h4>
+                    <p>${{ selectedProduct.precio }}/{{ selectedProduct.medida.peso }}</p>
+                </div>
+                <div class="div3">
+                    <h4>Fecha Cultivado</h4>
+                    <p>{{ selectedProduct.fechaCultivado.toDate() | date: 'dd/MM/yyyy' }}</p>
+                </div>
+                <div class="div4">
+                    <h4>Descripción</h4>
+                    <p-scrollPanel [style]="{ width: '100%', height: '80%' }">
+                        <p>{{ selectedProduct.descripcionCultivo }}</p>
+                    </p-scrollPanel>
+                </div>
+            </aside>
         </div>
+        <footer class="divFooter">
+            <div class="left">
+                <h4>{{ agricultorData.fincaname }}</h4>
+                <p>{{ agricultorData.descripcionFinca }}</p>
+            </div>
+            <aside class="right">
+                <div class="subRight">
+                    <h4>{{ agricultorData.fullname }}</h4>
+                    <ul style="font-size: 15px;">
+                        <li>- {{ agricultorData.cellphone }}</li>
+                        <li>- {{ agricultorData.email }}</li>
+                    </ul>
+                </div>
+            </aside>
+        </footer>
+
     </div>
 </p-dialog>
 
@@ -19,17 +58,21 @@
 <body>
     <div *ngIf="!loading() && products().length === 0"
         style="display: flex; justify-content: center; align-items: center; width: 100%; height: 88vh; flex-direction: column;">
-        <img src="../../../assets/emptyBox.svg" width="150px" style="margin-bottom: 20px;">
+        <img src="../../../assets/Sistemas/emptyBox.svg" width="150px" style="margin-bottom: 20px;">
         <p style="opacity: 0.7;">Vaya... Parece que está vacío, ¿Por qué no publica algún producto?</p>
     </div>
 
     <section *ngIf="products().length > 0" class="product-grid">
         <p-card *ngFor="let product of products()" class="product-card" (click)="openModal(product)">
-            <img class="product-image" [src]="'../../../assets/vegetales/' + product.formattedVegetal + '.png'">
+            <img class="product-image" [src]="'../../../assets/vegetales/' + product.formattedVegetal + '.png'"
+                style="object-fit: contain;">
             <div style="padding: 5px;">
-                <div style="display: flex; justify-content: space-between;">
-                    <h4>{{ product.vegetal }}</h4>
-                    <h4> {{product.provincia.state}} </h4>
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <h4>{{ product.Vegetal }}</h4>
+                    <div style="display: flex; align-items: center; gap: 5px; font-size: 15px; height: 100%;">
+                        <p>4.85</p>
+                        <i class="fa-solid fa-star"></i>
+                    </div>
                 </div>
                 <p style="margin-top: 2px;">${{ product.precio }}/{{product.medida.peso}} </p>
             </div>

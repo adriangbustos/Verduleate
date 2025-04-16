@@ -1,33 +1,69 @@
 <body>
     <section>
         <p-toast></p-toast>
-        <button class="perfil" (click)="goToProfile()">
+        <button id="selector" class="perfil" (click)="goToProfile()">
             <i class='bx bx-home'></i>
             <h1>Mi Perfil</h1>
             <p>Sus datos personales y donde sabemos cómo podemos contactarle.</p>
         </button>
-        <button class="hacienda" (click)="goHacienda()">
+        <button id="selector" class="hacienda" (click)="goHacienda()">
             <i class='bx bx-user'></i>
             <h1>Mi Hacienda</h1>
             <p>Toda la información sobre la ubicación de donde obtiene sus cultivos</p>
         </button>
-        <button class="intercambio" (click)="onLogout()">
+        <button id="selector" class="intercambio" (click)="onLogout()">
             <i class='bx bx-exit'></i>
-            <h1>Cambiar de Sistema</h1>
-            <p>Seleccione un sistema diferente si desea modificar su entorno de trabajo.</p>
+            <h1>Cerrar Sesión</h1>
+            <p>Cierre la sesión actual de su cuenta.</p>
         </button>
-        <button class="borrarcuenta" (click)="showDialog()">
+        <button id="selector" class="borrarcuenta" (click)="showDialog()">
             <i class='bx bx-message-alt-x'></i>
             <h1>Borrar Cuenta</h1>
             <p>Si desea eliminar su cuenta, tenga en cuenta que esta acción es irreversible.</p>
         </button>
     </section>
-    <p-dialog [draggable]="false" header="¿Seguro que desea eliminar su cuenta?" [modal]="true" [(visible)]="visible"
-        [style]="{ width: '30rem' }">
-        <p style="margin-bottom: 20px;">Está acción es IRREVERSIBLE</p>
-        <div>
-            <p-button severity="danger" (click)="deleteAccount()"><i class='bx bx-error-alt'></i>Eliminar
-                Cuenta</p-button>
-        </div>
+    <p-dialog [draggable]="false" header="¿Eliminar cuenta?" [modal]="true" [(visible)]="visible">
+        <ng-template pTemplate="headless">
+            <div class="card">
+                <div class="header">
+                    <div class="image">
+                        <svg aria-hidden="true" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"
+                            fill="none">
+                            <path
+                                d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"
+                                stroke-linejoin="round" stroke-linecap="round">
+                            </path>
+                        </svg>
+                    </div>
+                    <div class="content">
+                        <span class="title">Borrar cuenta</span>
+                        <p class="message">
+                            ¿Estás seguro de que deseas borrar tu cuenta? Todos tus datos se eliminarán permanentemente.
+                            Esta acción no se puede deshacer.
+                        </p>
+                    </div>
+                    <div class="actions">
+                        <button class="desactivate" type="button" (click)="deleteAccount()">Borrar</button>
+                        <button class="cancel" type="button" (click)="closeDialog()">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
     </p-dialog>
 </body>
+
+<div *ngIf="isLoading" class="popup">
+    <div class="loading-container">
+        <div class="spinner"></div>
+        <p>Eliminando tu cuenta</p>
+    </div>
+
+</div>
+
+<div *ngIf="isLoading2" class="popup">
+    <div class="loading-container">
+        <div class="spinner"></div>
+        <p>Cerrando Sesión</p>
+    </div>
+
+</div>

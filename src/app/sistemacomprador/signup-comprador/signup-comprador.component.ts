@@ -155,7 +155,7 @@ export class SignUpComponent implements OnInit {
 
     // Si hay un mensaje, se muestra con MessageService
     if (mensaje) {
-      this.messageService.add({ severity: 'error', summary: 'Error', detail: mensaje });
+      this.messageService.add({ severity: 'warn', summary: 'Error', detail: mensaje });
     }
   }
 

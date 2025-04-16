@@ -1,3 +1,4 @@
+<p-toast></p-toast>
 <header class="header">
     <div class="logo">
         <img src="assets/LogoCompleto.png">
@@ -24,45 +25,45 @@
                 <div id="posicion2">
                     <h2 id="welcome2">Bienvenido,</h2>
                     <h1 id="text2">¿Desea vender<br><span>sin intermediarios?</span></h1>
-
+                    <div style="display: flex; justify-content: center; height: 100%; width: 100%; margin-top: 20px;">
+                        <button class="animated-button2" (click)="goToAgricultores()">
+                            <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
+                                </path>
+                            </svg>
+                            <span class="text">Regístrese o Inicie Sesión</span>
+                            <span class="circle"></span>
+                            <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
+                                </path>
+                            </svg>
+                        </button>
+                    </div>
                 </div>
-                <button class="animated-button2" (click)="goToAgricultores()">
-                    <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
-                        </path>
-                    </svg>
-                    <span class="text">Regístrese o Inicie Sesión</span>
-                    <span class="circle"></span>
-                    <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
-                        </path>
-                    </svg>
-                </button>
             </div>
             <div class="secondslide">
                 <div id="posicion">
                     <h2 id="welcome">Bienvenido,</h2>
                     <h1 id="text">¿Quiere verduras a <br><span>precios bajos?</span></h1>
+                    <div style="display: flex; justify-content: center; height: 100%; width: 100%; margin-top: 20px;">
+                        <button class="animated-button" (click)="goToCompradores()">
+                            <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
+                                </path>
+                            </svg>
+                            <span class="text">Regístrese o Inicie Sesión</span>
+                            <span class="circle"></span>
+                            <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
+                                </path>
+                            </svg>
+                        </button>
+                    </div>
                 </div>
-
-                <button class="animated-button" (click)="goToCompradores()">
-                    <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
-                        </path>
-                    </svg>
-                    <span class="text">Regístrese o Inicie Sesión</span>
-                    <span class="circle"></span>
-                    <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
-                        </path>
-                    </svg>
-                </button>
-
-
             </div>
         </div>
 
@@ -73,7 +74,7 @@
 </div>
 <section class="about" id="about">
     <div class="about-img">
-        <img src="../../assets/ImagenAnalytics.png" alt="">
+        <img src="../../assets/LandingPage/ImagenAnalytics.png" alt="">
     </div>
     <div class="about-text">
         <h3>Somos Verduléate</h3>
@@ -92,7 +93,7 @@
 
 <div class="video-container">
     <video autoplay loop muted>
-        <source src="../../assets/video.mp4" type="video/mp4">
+        <source src="../../assets/LandingPage/video.mp4" type="video/mp4">
     </video>
     <section class="offers">
         <h1 id="offering">¿Qué Ofrecemos?</h1>
@@ -161,32 +162,28 @@
     </div>
 
     <div class="contact-form">
-        <form action="https://formsubmit.co/adriangbustos8@gmail.com" method="POST">
-            <div class="form-group">
-                <div class="form-row">
-                    <div class="col">
-                        <input type="text" name="Nombre" class="form-control" placeholder="Nombre Completo" required>
-                    </div>
-                    <div class="col">
-                        <input type="email" name="Correo" class="form-control" placeholder="Correo Electrónico" required>
-                    </div>
-                    <div class="col">
-                        <input type="number" name="Celular" class="form-control" placeholder="Celular" required>
-                    </div>
-                    <div class="col">
-                        <input type="text" name="Cuenta" class="form-control" placeholder="Agricultor o Comprador" required>
-                    </div>
-                </div>
-            </div>
-    
-            <div class="form-group">
-                <textarea name="message" class="form-control" placeholder="Mensaje" rows="10" required></textarea>
-            </div>
-    
-            <button type="submit" class="submit">Enviar Formulario</button>
+        <form (ngSubmit)="sendEmail()" #contactForm="ngForm">
+            <input class="color" type="text" name="title" [(ngModel)]="formData.title" placeholder="Asunto" required>
+
+            <input class="color" type="text" name="user_name" [(ngModel)]="formData.user_name" placeholder="Nombre"
+                required>
+
+            <input class="color" name="phone" [(ngModel)]="formData.phone" placeholder="Celular" required>
+
+            <input class="color" type="email" name="user_email" [(ngModel)]="formData.user_email" placeholder="Correo"
+                required>
+
+            <p-dropdown name="tipo_cuenta" [options]="accounts" [(ngModel)]="formData.tipo_cuenta" optionLabel="name"
+                placeholder="Tipo de Cuenta" required>
+            </p-dropdown>
+
+            <textarea class="color" name="message" [(ngModel)]="formData.message" cols="35" rows="10"
+                placeholder="Mensaje" required></textarea>
+
+            <button type="submit" class="submit">Enviar</button>
         </form>
     </div>
-    
+
 
 
 </section>
@@ -197,7 +194,7 @@
         <div class="box2">
             <figure>
                 <a href="index.html">
-                    <img src="https://github.com/ElAdripan/VerduleatePictures/blob/main/Logo%20V.png?raw=true">
+                    <img src="../../assets/LogoV.png">
                 </a>
             </figure>
         </div>

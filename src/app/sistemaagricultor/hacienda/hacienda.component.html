@@ -66,21 +66,21 @@
                 <div>
                     <h4>Descripción de la Hacienda</h4>
                     <div style="display: flex; justify-content: space-between;">
-                        <p style="margin-right: 30px; text-align: justify;">{{ datauser.valueTextArea }}</p>
-                        <a id="modify" (click)="openEditDialog('valueTextArea')">Modificar</a>
+                        <p style="margin-right: 30px; text-align: justify;">{{ datauser.descripcionFinca }}</p>
+                        <a id="modify" (click)="openEditDialog('descripcionFinca')">Modificar</a>
                     </div>
                 </div>
             </div>
             <aside style="width: 35%; padding-top: 35px;  padding-bottom: 35px;">
                 <div style="width: 85%;">
-                    <img src="../../../assets/Candado.svg" width="60px">
+                    <img src="../../../assets/Sistemas/Candado.svg" width="60px">
                     <h1>¿Qué datos se pueden editar?</h1>
                     <p style="font-size: 13px; text-align: justify;">Se puede editar tanto el nombre la hacienda como la
                         descripción de la misma. La dirección es bajo solicitud por seguridad <p>
                 </div>
                 <hr style="width: 85%;">
                 <div style="width: 85%; ">
-                    <img src="../../../assets/Compartir.png" width="60px">
+                    <img src="../../../assets/Sistemas/Compartir.png" width="60px">
                     <h1>¿Qué información se comparte con los demás?</h1>
                     <p style="font-size: 13px; text-align: justify;">Verduléate proporciona el nombre de la hacienda como su descripción. La ubicación exacta no es compartida. </p>
                 </div>
@@ -95,7 +95,7 @@
         <div class="box2">
             <figure>
                 <a href="index.html">
-                    <img src="https://github.com/ElAdripan/VerduleatePictures/blob/main/Logo%20V.png?raw=true">
+                    <img src="../../../assets/LogoV.png">
                 </a>
             </figure>
         </div>
@@ -121,16 +121,28 @@
 <p-dialog [(visible)]="displayDialog" header="Actualice sus Datos" [draggable]="false" [modal]="true"
     [style]="{width: '25rem'}">
     <div *ngIf="editingField">
-        <label for="editField">Nuevo valor:</label> <br>
-
-        <input *ngIf="editingField !== 'valueTextArea'" type="text" [(ngModel)]="editableData[editingField]"
+        <input *ngIf="editingField !== 'descripcionFinca'" type="text" [(ngModel)]="editableData[editingField]"
             class="p-inputtext p-component">
 
-        <textarea rows="5" cols="25" *ngIf="editingField === 'valueTextArea'"
-            [(ngModel)]="editableData.valueTextArea"></textarea>
+        <textarea rows="5" cols="25" *ngIf="editingField === 'descripcionFinca'"
+            [(ngModel)]="editableData.descripcionFinca"></textarea>
 
         <div style="margin-top: 15px;">
-            <button (click)="updateUserData()" class="buttonSave"><i class='bx bx-save'></i></button>
+            <button (click)="updateUserData()" class="buttonSave"><i class='bx bx-save'></i>Guardar</button>
         </div>
     </div>
 </p-dialog>
+
+<div *ngIf="isLoading" class="popupLoader">
+    <div class="loading-container">
+        <div class="spinner"></div>
+        <p style="color: white;">Modificando Información</p>
+    </div>
+</div>
+
+<div *ngIf="isLoading2" class="popupLoader">
+    <div class="loading-container">
+        <div class="spinner"></div>
+        <p style="color: white;">Cerrando Sesión</p>
+    </div>
+</div>

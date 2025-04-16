@@ -43,6 +43,8 @@ export class HaciendaComponent implements OnInit {
   editableData: any = {};
   displayDialog: boolean = false;
   editingField: string = '';
+  isLoading: boolean = false;
+  isLoading2: boolean = false;
 
   async getData() {
     let data = this.authService.getCurrentUser();
@@ -53,21 +55,27 @@ export class HaciendaComponent implements OnInit {
 
   async onLogout() {
     try {
-      const result: any = await this.authService.logout();
-      console.log(result);
+      this.isLoading2 = true;
 
-      if (result) {
-        this.router.navigate(['/landing']);
-      } else {
-        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'No se pudo cerrar la sesión.' });
-        this.cdRef.detectChanges();
-      }
-    } catch (error) {
-      console.error("Error en logout:", error);
-      this.messageService.add({ severity: 'error', summary: 'Error', detail: 'No se pudo cerrar la sesión.' });
-      this.cdRef.detectChanges();
+      await this.authService.logout();
+
+      // Espera 1 segundo
+      await new Promise(resolve => setTimeout(resolve, 1000));
+
+      this.isLoading2 = false;
+      this.router.navigate(['agricultor/login-agricultor']);
+
+    } catch (error: any) {
+      this.isLoading2 = false;
+      const cleanMessage = error.toString().replace(/^Error:\s*/, '');
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Error',
+        detail: cleanMessage
+      });
     }
   }
+  
   openEditDialog(field: string) {
     this.displayDialog = true;
     this.editingField = field;
@@ -77,10 +85,11 @@ export class HaciendaComponent implements OnInit {
 
   async updateUserData() {
     this.displayDialog = false;
+      this.isLoading = true
     if (!this.editingField) return;
 
-    if (this.editingField === 'valueTextArea') {
-      const wordCount = this.editableData.valueTextArea.trim().split(/\s+/).length;
+    if (this.editingField === 'descripcionFinca') {
+      const wordCount = this.editableData.descripcionFinca.trim().split(/\s+/).length;
       if (wordCount < 20) {
         this.messageService.add({ severity: 'error', summary: 'Error', detail: 'La descripción debe tener al menos 20 palabras.' });
         return;
@@ -95,6 +104,7 @@ export class HaciendaComponent implements OnInit {
       await updateDoc(userRef, { [this.editingField]: this.editableData[this.editingField] });
 
       this.datauser[this.editingField] = this.editableData[this.editingField];
+      this.isLoading = false;
       this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Información actualizada correctamente' });
     } catch (error) {
       console.error('Error al actualizar datos:', error);

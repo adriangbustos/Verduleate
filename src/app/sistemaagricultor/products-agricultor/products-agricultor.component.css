@@ -7,6 +7,144 @@
     padding: 0;
 }
 
+:host ::ng-deep button:focus {
+    box-shadow: transparent;
+    border: transparent;
+}
+
+:host ::ng-deep .p-button:focus {
+    box-shadow: none;
+    border: none;
+}
+
+:host ::ng-deep .p-scrollpanel .p-scrollpanel-bar:focus-visible {
+    outline: 0 none;
+    outline-offset: 0;
+    box-shadow: none;
+}
+
+:host ::ng-deep .p-scrollpanel .p-scrollpanel-bar {
+    right: -140px !important;
+}
+
+.div1>.div2>.div3>.div4 h4 {
+    margin-bottom: 5px;
+}
+
+.div1:hover,
+.div2:hover,
+.div3:hover,
+.div4:hover {
+    transform: scale(1.02);
+}
+
+:host ::ng-deep .p-card {
+    box-shadow: none;
+}
+
+.div1,
+.div2,
+.div3,
+.div4 {
+    padding: 20px;
+    color: white;
+    background: linear-gradient(135deg, #49ae4e, #35933a);
+    /* degradado verde */
+    border-radius: 16px;
+    transition: transform 0.2s ease;
+}
+
+.divBoxes {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    width: 60%;
+}
+
+.div1 {
+    grid-area: 1 / 1 / 2 / 2;
+    border: 1px solid green;
+    padding-left: 20px;
+    padding-right: 20px;
+    align-content: center;
+    color: white;
+    background-color: green;
+    border-radius: 16px;
+    overflow: visible;
+}
+
+.div2 {
+    grid-area: 1 / 2 / 2 / 3;
+    padding-left: 20px;
+    padding-right: 20px;
+    align-content: center;
+    color: white;
+    background-color: green;
+    border-radius: 16px;
+}
+
+.div3 {
+    grid-area: 2 / 1 / 3 / 2;
+    padding-left: 20px;
+    padding-right: 20px;
+    align-content: center;
+    color: white;
+    background-color: green;
+    border-radius: 16px;
+}
+
+.div4 {
+    grid-area: 2 / 2 / 3 / 3;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+    overflow-y: hidden;
+    padding-left: 20px;
+    padding-right: 20px;
+    align-content: center;
+    color: white;
+    background-color: green;
+    border-radius: 16px;
+}
+
+.divFooter {
+    background-color: white;
+    border: 2px dashed rgba(0, 128, 0, 0.6);
+    margin-top: 20px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    border-radius: 16px;
+}
+
+.left {
+    width: 60%;
+    padding: 20px;
+
+}
+
+.right {
+    width: 40%;
+    padding: 15px;
+}
+
+.subRight {
+    background: linear-gradient(135deg, #49ae4e, #35933a);
+    border-radius: 10px;
+    height: 100%;
+    width: 100%;
+    padding: 10px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 header {
     width: 100%;
     display: flex;
@@ -18,7 +156,7 @@ header {
 #productsButton {
     background-color: rgb(41, 180, 41);
     border: 1px solid rgb(41, 180, 41);
-    border-radius: 16px;
+    border-radius: 12px;
     padding: 10px;
     display: flex;
     align-items: center;
@@ -29,23 +167,23 @@ header {
     transition: all ease-in-out 0.2s;
 }
 
-#productsButton:hover{
+#productsButton:hover {
     background-color: white;
     color: green;
 }
 
-#productsButton:focus{
+#productsButton:focus {
     outline: none;
     box-shadow: none;
 }
 
-#productsPublishedText{
+#productsPublishedText {
     color: rgb(57, 57, 57);
     font-size: 15px;
     font-weight: 200;
 }
 
-body{
+body {
     width: 100%;
 }
 
@@ -63,19 +201,23 @@ body{
 .product-image {
     width: 100%;
     height: 200px;
-    border: 1px solid green;
+    border: 2px solid rgba(0, 128, 0, 0.442);
     object-fit: cover;
-    border-radius: 8px;
+    border-radius: 16px;
 }
 
-:host ::ng-deep .p-card .p-card-body{
+:host ::ng-deep .p-card .p-card-body {
     padding-left: 1.25rem;
     padding-right: 1.25rem;
     padding-top: 0.5rem;
     padding-bottom: 0.25rem;
 }
 
-:host ::ng-deep .p-card .p-card-content{
+:host ::ng-deep .p-card .p-card-content {
     padding-top: 0.25rem;
     padding-bottom: 0.25rem;
+}
+
+i {
+    overflow: visible !important;
 }

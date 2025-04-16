@@ -8,6 +8,7 @@ import { SignupComponent2 } from './signup-agricultor/signup-agricultor.componen
 import { OnboardingAgricultorComponent } from './onboarding-agricultor/onboarding-agricultor.component';
 import { ProfileAgricultorComponent } from './profile-agricultor/profile-agricultor.component';
 import { HaciendaComponent } from './hacienda/hacienda.component';
+import { SupportComponent } from './support/support.component';
 
 export const agricultorRoutes: Routes = [
   { path: 'login-agricultor', component: LoginComponent2 },
@@ -22,7 +23,8 @@ export const agricultorRoutes: Routes = [
       { path: '', redirectTo: 'productos', pathMatch: 'full' },
       { path: 'productos', component: ProductsAgricultorComponent },
       { path: 'register-product', component: RegisterProductsComponent },
-      { path: 'settings', component: SettingsComponent }
+      { path: 'settings', component: SettingsComponent },
+      { path: 'support', component: SupportComponent },
     ]
   }
 ];

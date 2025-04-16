@@ -7,6 +7,16 @@
     font-family: 'Poppins';
 }
 
+:host ::ng-deep button:focus {
+    box-shadow: none;
+    border: none;
+}
+
+:host ::ng-deep .p-button:focus {
+    box-shadow: none;
+    border: none;
+}
+
 body {
     padding-top: 100px;
     display: flex;
@@ -35,9 +45,9 @@ header {
 /* Imagen */
 #foto img {
     margin-top: 15px;
-    width: 200px;
+    width: 170px;
     margin-left: 1cm;
-    height: 100%;
+    object-fit: cover;
 }
 
 
@@ -414,13 +424,21 @@ aside {
 }
 
 .buttonSave {
-    width: 80px;
+    width: 120px;
     height: 50px;
     background-color: rgb(4, 188, 4);
     border-radius: 10px;
     border: 1px solid rgb(4, 188, 4);
     cursor: pointer;
     transition: all ease-in-out 0.2s;
+    display: flex;
+    color: white;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    font-size: 15px;
+    font-weight: 400;
+    margin-top: 25px;
 }
 
 i {
@@ -442,4 +460,47 @@ i {
 
 :host ::ng-deep .p-inputtext:hover {
     border-color: green;
+}
+
+.popupLoader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Fondo oscuro translúcido */
+    z-index: 1000;
+}
+
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 18px;
+}
+
+.spinner {
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top: 4px solid white;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin-bottom: 5px;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }

@@ -45,7 +45,9 @@ export class LoginComponent2 {
   goToHome() {
     this.router.navigate(['/landing']); // Navigates to the AboutComponent
   }
-
+  goToSignUp() {
+    this.router.navigate(['agricultor/signup-agricultor']); // Navigates to the AboutComponent
+  }
   loginForm: FormGroup
 
   errorDialogVisible: boolean = false;
@@ -141,7 +143,7 @@ export class LoginComponent2 {
 
     // Si hay un mensaje, se muestra con MessageService
     if (mensaje) {
-      this.messageService.add({ severity: 'error', summary: 'Error', detail: mensaje });
+      this.messageService.add({ severity: 'warn', summary: 'Precaución', detail: mensaje });
     }
   }
 

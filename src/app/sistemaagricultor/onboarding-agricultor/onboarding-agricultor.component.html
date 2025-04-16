@@ -62,7 +62,7 @@
                                 <div id="inputAreas">
                                     <div class="input-group">
                                         <label for="cellphone">Celular</label><br>
-                                        <p-inputMask mask="(999) 99999-9999" id="cellphone" formControlName="cellphone"
+                                        <p-inputMask mask="(999) 99-999-9999" id="cellphone" formControlName="cellphone"
                                             placeholder="(999) 999-9999" />
                                     </div>
                                     <div class="input-group">
@@ -100,7 +100,7 @@
                                             optionLabel="advertisements" />
                                     </div>
                                 </div>
-                                <textarea rows="5" cols="30" formControlName="valueTextArea"
+                                <textarea rows="5" cols="30" formControlName="descripcionFinca"
                                     placeholder="Escriba una breve descripción de su hacienda (20 palabras mínimo)" class="w-full mb-3"></textarea>
                             </div>
                         </div>
@@ -118,7 +118,7 @@
     </div>
     <div class="video">
         <video autoplay loop muted>
-            <source src="../../assets/video.mp4" type="video/mp4">
+            <source src="../../assets/LandingPage/video.mp4" type="video/mp4">
         </video>
     </div>
     <div *ngIf="isLoading" class="popup">

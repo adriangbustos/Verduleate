@@ -1,0 +1,10 @@
+<button (click)="startChat()" *ngIf="!chatId">Iniciar Chat</button>
+
+<div *ngIf="chatId">
+    <div *ngFor="let msg of messages">
+        <b>{{ msg.sender }}:</b> {{ msg.text }}
+    </div>
+
+    <input [(ngModel)]="message" placeholder="Escribe un mensaje" />
+    <button (click)="createChat()" [disabled]="!userData">Iniciar chat</button>
+</div>

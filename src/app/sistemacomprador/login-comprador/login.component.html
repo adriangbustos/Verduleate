@@ -34,7 +34,7 @@
         <div class="container2">
             <button (click)="goToHome()"><i class='bx bx-home'></i></button>
             <h2>''del campo a tu mesa''</h2>
-            <a href="signup-comprador">¿No tienes cuenta?</a>
+            <a (click)="goToSignUp()">¿No tienes cuenta?</a>
         </div>
     </section>
     <div *ngIf="isLoading" class="popup">

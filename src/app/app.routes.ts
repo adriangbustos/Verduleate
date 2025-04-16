@@ -3,6 +3,7 @@ import { LandingpageComponent } from './landingpage/landingpage.component';
 
 export const routes: Routes = [
   { path: 'landing', component: LandingpageComponent },
+  { path: '', redirectTo: '/landing', pathMatch: 'full' },  // Redirige al landing por defecto
   {
     path: 'comprador',  // Ruta para el sistema comprador
     loadChildren: () =>
@@ -12,5 +13,8 @@ export const routes: Routes = [
     path: 'agricultor',  // Prefijo para las rutas del agricultor
     loadChildren: () => import('./sistemaagricultor/sistemaagricultor.routes').then(m => m.agricultorRoutes)
   },
-  { path: '', redirectTo: '/landing', pathMatch: 'full' }  // Redirige al landing por defecto
+  {
+    path: 'admin',  // Prefijo para las rutas del agricultor
+    loadChildren: () => import('./sistemaadmin/sistemaadmin.routes').then(m => m.adminRoutes)
+  },
 ];

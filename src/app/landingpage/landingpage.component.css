@@ -42,9 +42,11 @@
     justify-content: center;
     align-items: center;
     display: inline-flex;
-    background: #218828; /* Verde base */
+    background: #218828;
+    /* Verde base */
     padding: 10px;
-    border: 2px solid #34b23a; /* Verde más claro */
+    border: 2px solid #34b23a;
+    /* Verde más claro */
     border-radius: 100%;
     cursor: pointer;
     transition: all 0.3s ease 0s;
@@ -59,11 +61,9 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(
-        circle,
-        rgba(255, 255, 255, 0.25) 0%,
-        rgba(255, 255, 255, 0) 70%
-    );
+    background: radial-gradient(circle,
+            rgba(255, 255, 255, 0.25) 0%,
+            rgba(255, 255, 255, 0) 70%);
     transform: scale(0);
     transition: transform 0.5s ease;
 }
@@ -74,8 +74,10 @@
 
 .boton-elegante {
     padding: 10px;
-    border: 2px solid #34b23a; /* Verde oscuro */
-    background-color: #218828; /* Verde fuerte */
+    border: 2px solid #34b23a;
+    /* Verde oscuro */
+    background-color: #218828;
+    /* Verde fuerte */
     color: #ffffff;
     font-size: 15px;
     cursor: pointer;
@@ -95,11 +97,9 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(
-      circle,
-      rgba(255, 255, 255, 0.25) 0%,
-      rgba(255, 255, 255, 0) 70%
-    );
+    background: radial-gradient(circle,
+            rgba(255, 255, 255, 0.25) 0%,
+            rgba(255, 255, 255, 0) 70%);
     transform: scale(0);
     transition: transform 0.5s ease;
 }
@@ -109,8 +109,10 @@
 }
 
 .boton-elegante:hover {
-    border-color: #66bb6a; /* Verde más suave */
-    background: #2e7d32; /* Verde oscuro */
+    border-color: #66bb6a;
+    /* Verde más suave */
+    background: #2e7d32;
+    /* Verde oscuro */
 }
 
 
@@ -180,12 +182,12 @@
 }
 
 .firstslide {
-    background-image: url('https://github.com/ElAdripan/VerduleatePictures/blob/main/FotoAgricultor.png?raw=true');
+    background-image: url('../../assets/LandingPage/FotoAgricultor.png');
     background-size: cover;
 }
 
 .secondslide {
-    background-image: url('https://github.com/ElAdripan/VerduleatePictures/blob/main/FotoPersona.png?raw=true');
+    background-image: url('../../assets/LandingPage/FotoPersona.png');
     background-size: cover;
 }
 
@@ -201,11 +203,13 @@
 .slider input:nth-child(3):checked~.content {
     left: -200vw;
 }
+
 video {
-    opacity: 0.92; /* Ajusta el nivel de opacidad (0 es transparente, 1 es completamente visible) */
+    opacity: 0.92;
+    /* Ajusta el nivel de opacidad (0 es transparente, 1 es completamente visible) */
 }
 
-#offering{
+#offering {
     position: relative;
     font-size: 50px;
     margin-top: 20px;
@@ -216,7 +220,8 @@ video {
 
 .offer-content {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, auto)); /* Ajustado para mejor adaptación */
+    grid-template-columns: repeat(auto-fit, minmax(400px, auto));
+    /* Ajustado para mejor adaptación */
     align-items: start;
     padding: 30px;
     justify-content: center;
@@ -233,7 +238,8 @@ video {
     align-items: start;
     flex-direction: column;
     justify-content: center;
-    padding: 15px; /* Añadido para mejorar separación */
+    padding: 15px;
+    /* Añadido para mejorar separación */
 }
 
 .offer-content .row i {
@@ -245,24 +251,29 @@ video {
     align-items: center;
     background-color: white;
     padding: 20px;
-    border-radius: 10%; /* Ajustado para mejor estética */
+    border-radius: 10%;
+    /* Ajustado para mejor estética */
     width: 75px;
     height: 75px;
 }
 
 .offer-content .row h3 {
-    margin-left: 0; /* Ajustado para mejor alineación */
+    margin-left: 0;
+    /* Ajustado para mejor alineación */
     color: white;
     text-align: justify;
-    font-size: 1.2rem; /* Ajuste de tamaño */
+    font-size: 1.2rem;
+    /* Ajuste de tamaño */
     width: 100%;
 }
 
 .offer-content .row p {
-    margin-left: 0; /* Ajustado para mejor alineación */
+    margin-left: 0;
+    /* Ajustado para mejor alineación */
     color: white;
     text-align: justify;
-    font-size: 1rem; /* Ajuste de tamaño */
+    font-size: 1rem;
+    /* Ajuste de tamaño */
     width: 100%;
 }
 
@@ -387,7 +398,7 @@ video {
 }
 
 .contact-form form input,
-form textarea{
+form textarea {
     width: 100%;
     padding: 10px;
     border: none;
@@ -397,11 +408,11 @@ form textarea{
     margin-bottom: 10px;
 }
 
-#class{
+.color {
     color: #4b5563;
 }
 
-form select{
+form select {
     width: 100%;
     color: #333333c2;
     padding: 10px;
@@ -428,29 +439,34 @@ form select option:hover {
     color: white;
 }
 
-:host ::ng-deep .p-dropdown{
+:host ::ng-deep .p-dropdown {
     width: 100%;
     margin-bottom: 10px;
     font-size: 5px;
     border: none;
 
 }
-:host ::ng-deep .p-inputtext{
+
+:host ::ng-deep .p-inputtext {
     font-size: 15px;
     font-family: 'Poppins';
     opacity: 1;
 }
-:host ::ng-deep .p-dropdown-items-wrapper{
+
+:host ::ng-deep .p-dropdown-items-wrapper {
     margin-top: 5px;
     font-family: 'Poppins';
     font-size: 15px;
 }
+
 :host ::ng-deep .p-dropdown-item.p-highlight {
-    color: white !important; /* Adjust text color if needed */
+    color: white !important;
+    /* Adjust text color if needed */
 }
 
 :host ::ng-deep .p-dropdown-item.p-highlight.p-focus {
-    background-color: rgb(25, 139, 25, 0.7) !important; /* Slightly darker green for focus */
+    background-color: rgb(25, 139, 25, 0.7) !important;
+    /* Slightly darker green for focus */
 }
 
 .contact-form textarea {
@@ -474,7 +490,8 @@ form select option:hover {
     border-radius: 5px;
     margin-bottom: 10px;
 }
-.submit:hover{
+
+.submit:hover {
     background-color: green;
 }
 
@@ -506,8 +523,6 @@ h1 {
     cursor: pointer;
     overflow: hidden;
     color: white;
-    right: 25%;
-    bottom: 40%;
     position: absolute;
     border-radius: 20px;
     padding-left: 15px;
@@ -601,8 +616,6 @@ h1 {
     align-items: center;
     gap: 4px;
     cursor: pointer;
-    left: 17%;
-    bottom: 40%;
     border-radius: 20px;
     padding-left: 15px;
     padding-right: 15px;
@@ -947,34 +960,40 @@ span {
     text-decoration: none;
 }
 
-.box2 a:hover{
+.box2 a:hover {
     color: black;
 }
 
 .comment-card {
     padding: 20px;
     text-align: center;
-    background: white; /* Match background color */
+    background: white;
+    /* Match background color */
     border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    /* Soft shadow */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border: 1px solid #e0e0e0; /* Light border */
+    border: 1px solid #e0e0e0;
+    /* Light border */
     transition: transform 0.3s ease-in-out;
-    width: 90%; /* Adjust width for spacing */
-    margin: auto; /* Center items */
+    width: 90%;
+    /* Adjust width for spacing */
+    margin: auto;
+    /* Center items */
     height: 20rem;
 }
 
 .comment-card:hover {
-    transform: translateY(-5px); /* Slight lift on hover */
+    transform: translateY(-5px);
+    /* Slight lift on hover */
 }
 
 .comment-image {
     width: 100px;
-    height:100px;
+    height: 100px;
     border-radius: 50%;
     margin-bottom: 20px;
     border: 2px solid green;
@@ -996,10 +1015,11 @@ span {
 
 :host ::ng-deep .p-rating .p-rating-icon {
     margin-top: 10px;
-    color: green !important; /* Change to gold or any other color */
+    color: green !important;
+    /* Change to gold or any other color */
 }
 
-:host ::ng-deep .p-carousel-item{
+:host ::ng-deep .p-carousel-item {
     height: 22rem;
     margin-top: 10px;
 }
@@ -1045,3 +1065,4 @@ span {
     box-shadow: none;
     outline: none;
 }
+

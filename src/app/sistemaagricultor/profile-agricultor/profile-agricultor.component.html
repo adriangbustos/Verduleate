@@ -81,14 +81,14 @@
             </div>
             <aside style="width: 35%; padding-top: 35px;  padding-bottom: 35px;">
                 <div style="width: 85%;">
-                    <img src="../../../assets/Candado.svg" width="60px">
+                    <img src="../../../assets/Sistemas/Candado.svg" width="60px">
                     <h1>¿Qué datos se pueden editar?</h1>
                     <p style="font-size: 13px; text-align: justify;">Los datos personales y de contacto pueden editarse.
                         El cambio de dirección y correo es bajo solicitud por medidas de seguridad.</p>
                 </div>
                 <hr style="width: 85%;">
                 <div style="width: 85%; ">
-                    <img src="../../../assets/Compartir.png" width="60px">
+                    <img src="../../../assets/Sistemas/Compartir.png" width="60px">
                     <h1>¿Qué información se comparte con los demás?</h1>
                     <p style="font-size: 13px; text-align: justify;">Verduléate solo proporciona los datos de contacto
                     </p>
@@ -104,7 +104,7 @@
         <div class="box2">
             <figure>
                 <a href="index.html">
-                    <img src="https://github.com/ElAdripan/VerduleatePictures/blob/main/Logo%20V.png?raw=true">
+                    <img src="../../../assets/LogoV.png">
                 </a>
             </figure>
         </div>
@@ -127,10 +127,9 @@
     </div>
 </footer>
 
-<p-dialog [(visible)]="displayDialog" header="Actualice sus Datos" [modal]="true">
+<p-dialog [(visible)]="displayDialog" header="Actualice sus Datos" [draggable]="false" [modal]="true"
+    [style]="{ width: '25rem' }">
     <div *ngIf="editingField">
-        <label for="editField">Nuevo valor:</label> <br>
-
         <input *ngIf="editingField !== 'cellphone'" type="text" [(ngModel)]="editableData[editingField]"
             class="p-inputtext p-component">
 
@@ -138,7 +137,21 @@
             [(ngModel)]="editableData.cellphone"></p-inputMask>
 
         <div style="margin-top: 15px;">
-            <button (click)="updateUserData()" class="buttonSave"><i class='bx bx-save'></i></button>
+            <button (click)="updateUserData()" class="buttonSave"><i class='bx bx-save'></i>Guardar</button>
         </div>
     </div>
 </p-dialog>
+
+<div *ngIf="isLoading" class="popupLoader">
+    <div class="loading-container">
+        <div class="spinner"></div>
+        <p style="color: white;">Modificando Información</p>
+    </div>
+</div>
+
+<div *ngIf="isLoading2" class="popupLoader">
+    <div class="loading-container">
+        <div class="spinner"></div>
+        <p style="color: white;">Cerrando Sesión</p>
+    </div>
+</div>

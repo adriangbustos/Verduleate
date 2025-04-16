@@ -65,10 +65,10 @@ export class RegisterProductsComponent implements OnInit {
     private authService: AuthService,
   ) {
     this.registerProductForm = this.fb.group({
-      vegetal: ['', [Validators.required, Validators.minLength(4)]],
+      Vegetal: ['', [Validators.required, Validators.minLength(4)]],
       provincia: ['', Validators.required],
       cantidadDisponible: [0, [Validators.required, Validators.min(1)]],
-      descripcionCultivo: ['', [Validators.required, Validators.minLength(50)]],
+      descripcionCultivo: ['', [Validators.required, Validators.maxLength(100), Validators.minLength(50)]],
       fechaCultivado: ['', Validators.required],
       categoria: ['', Validators.required],
       medida: ['', Validators.required],
@@ -152,28 +152,18 @@ export class RegisterProductsComponent implements OnInit {
         return;
       }
 
-      const agricultorRef = doc(this.firestore, `agricultores/${user.uid}`);
-      const agricultorSnap = await getDoc(agricultorRef);
-
-      if (!agricultorSnap.exists()) {
-        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'No se encontró información del agricultor' });
-        this.loading = false;
-        return;
-      }
-
-      const agricultorData = agricultorSnap.data();
+      const fechaCreacion = Timestamp.fromDate(new Date()); // Get the current date and time as a timestamp
       const productData = {
         ...this.registerProductForm.value,
         agricultorId: user.uid,
-        ValueTextArea: agricultorData?.['valueTextArea'] || '',
-        fincaName: agricultorData?.['fincaname'] || ''
+        creationDate: fechaCreacion
       };
 
       // Agregar producto a Firestore y obtener la referencia con el ID generado
       const docRef = await addDoc(collection(this.firestore, 'productos'), productData);
 
       // Actualizar el documento con su propio ID
-      await updateDoc(docRef, { id: docRef.id });
+      await updateDoc(docRef, { productId: docRef.id });
 
       this.registerProductForm.reset();
       this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Su producto ha sido registrado' });

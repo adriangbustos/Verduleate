@@ -11,22 +11,22 @@ import { CarouselModule } from 'primeng/carousel';
 import { InputTextModule } from 'primeng/inputtext';
 import { DividerModule } from 'primeng/divider';
 import { Router } from '@angular/router';
+import { ToastModule } from 'primeng/toast';
+import { Message, MessageService } from 'primeng/api';
+import emailjs from '@emailjs/browser';
 
-interface Account {
-  name: string;
-  value: string;
-}
 
 @Component({
   selector: 'app-landingpage',
-  imports: [ImageModule, RouterModule, ButtonModule, FormsModule, RatingModule, DropdownModule, CarouselModule, RippleModule, DividerModule, InputTextModule, SplitterModule],
+  imports: [ImageModule, ToastModule, RouterModule, ButtonModule, FormsModule, RatingModule, DropdownModule, CarouselModule, RippleModule, DividerModule, InputTextModule, SplitterModule],
   templateUrl: './landingpage.component.html',
   styleUrl: './landingpage.component.css',
   standalone: true,
+  providers: [MessageService]
 })
-export class LandingpageComponent implements OnInit {
+export class LandingpageComponent {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private messageService: MessageService) { }
 
   goToCompradores() {
     this.router.navigate(['comprador/login-comprador']); // Navigates to the AboutComponent
@@ -42,83 +42,127 @@ export class LandingpageComponent implements OnInit {
       this.targetSection.nativeElement.scrollIntoView({ behavior: 'smooth' });
     }
   }
-  accounts: Account[] | undefined;
-
-
-  ngOnInit() {
-    this.accounts = [
-      { name: 'Agricultor', value: 'agricultor' },
-      { name: 'Comprador', value: 'comprador' },
-    ];
-  }
-
-  selectedAccount: any = null;
-
-  updateAccountHiddenInput() {
-    // Este método se dispara con onChange para asegurar que el valor hidden esté actualizado
-    console.log('Tipo de cuenta:', this.selectedAccount?.name);
-  }
-  
-  onSubmit() {
-    // Esto es opcional: puedes hacer validaciones, etc.
-    console.log('Enviando formulario');
-  }
 
   comments = [
     {
       text: "¡Este producto es increíble! Muy recomendado.",
       author: "Sophia Bennett",
       rating: 5,
-      image: "https://github.com/ElAdripan/VerduleatePictures/blob/main/Review%20PFP/2.png?raw=true"
+      image: "../../assets/LandingPage/ReviewsPFP/2.png"
     },
     {
       text: "Excelente servicio y entrega rápida. ¡5 estrellas!",
       author: "James Carter",
       rating: 4,
-      image: "https://github.com/ElAdripan/VerduleatePictures/blob/main/Review%20PFP/1.png?raw=true"
+      image: "../../assets/LandingPage/ReviewsPFP/1.png"
     },
     {
       text: "Buena calidad, pero el envío tardó un poco más de lo esperado.",
       author: "Olivia Richardson",
       rating: 3,
-      image: "https://github.com/ElAdripan/VerduleatePictures/blob/main/Review%20PFP/3.png?raw=true"
+      image: "../../assets/LandingPage/ReviewsPFP/3.png"
     },
     {
       text: "Muy satisfecho con mi compra. ¡Volvería a comprar!",
       author: "Daniel Foster",
       rating: 5,
-      image: "https://github.com/ElAdripan/VerduleatePictures/blob/main/Review%20PFP/4.png?raw=true"
+      image: "../../assets/LandingPage/ReviewsPFP/4.png"
     },
     {
       text: "¡Este producto es increíble! Muy recomendado.",
       author: "Ethan Hayes",
       rating: 5,
-      image: "https://github.com/ElAdripan/VerduleatePictures/blob/main/Review%20PFP/5.png?raw=true"
+      image: "../../assets/LandingPage/ReviewsPFP/5.png"
     },
     {
       text: "Excelente servicio y entrega rápida. ¡5 estrellas!",
       author: "Emma Sullivan",
       rating: 4,
-      image: "https://github.com/ElAdripan/VerduleatePictures/blob/main/Review%20PFP/6.png?raw=true"
+      image: "../../assets/LandingPage/ReviewsPFP/6.png"
     },
     {
       text: "Buena calidad, pero el envío tardó un poco más de lo esperado.",
       author: "Charlotte Reynolds",
       rating: 3,
-      image: "https://github.com/ElAdripan/VerduleatePictures/blob/main/Review%20PFP/7.png?raw=true"
+      image: "../../assets/LandingPage/ReviewsPFP/7.png"
     },
     {
       text: "Muy satisfecho con mi compra. ¡Volvería a comprar!",
       author: "Lucas Mitchell",
       rating: 5,
-      image: "https://github.com/ElAdripan/VerduleatePictures/blob/main/Review%20PFP/8.png?raw=true"
+      image: "../../assets/LandingPage/ReviewsPFP/8.png"
     },
     {
       text: "Muy satisfecha con mi compra. ¡Volvería a comprar!",
       author: "Amelia Scott",
       rating: 5,
-      image: "https://github.com/ElAdripan/VerduleatePictures/blob/main/Review%20PFP/9.png?raw=true"
+      image: "../../assets/LandingPage/ReviewsPFP/9.png"
     }
   ];
+
+  accounts = [
+    { name: 'Comprador' },
+    { name: 'Agricultor' }
+  ];
+
+  formData = {
+    user_name: '',
+    user_email: '',
+    phone: '',
+    tipo_cuenta: null as { name: string } | null,
+    message: '',
+    title: ''
+  };
+
+  sendEmail() {
+    const serviceID = 'service_k9nwi8u';
+    const templateID = 'template_6b35tk8';
+    const publicKey = 'YQXyAyAu66MaWYCl1';
+  
+    // Asegúrate de que tipo_cuenta sea un objeto antes de intentar acceder a 'name'
+    const tipoCuentaName = this.formData.tipo_cuenta && this.formData.tipo_cuenta.name ? this.formData.tipo_cuenta.name : '';
+  
+    // Validar que todos los campos estén llenos
+    if (
+      !this.formData.title ||
+      !this.formData.user_name ||
+      !this.formData.user_email ||
+      !this.formData.phone ||
+      !tipoCuentaName ||
+      !this.formData.message
+    ) {
+      this.messageService.add({ severity: 'warn', summary: 'Campos requeridos', detail: 'Por favor, completa todos los campos antes de enviar el correo.' });
+      return;
+    }
+  
+    // Crear un objeto con solo los valores que necesitas
+    const emailData = {
+      title: this.formData.title,
+      user_name: this.formData.user_name,
+      user_email: this.formData.user_email,
+      phone: this.formData.phone,
+      tipo_cuenta: tipoCuentaName,  // Solo el nombre
+      message: this.formData.message
+    };
+  
+    // Enviar el correo con emailjs
+    emailjs.send(serviceID, templateID, emailData, publicKey)
+      .then(() => {
+        this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Correo enviado correctamente' });
+        this.formData = {
+          title: '',
+          user_name: '',
+          user_email: '',
+          phone: '',
+          tipo_cuenta: null,
+          message: ''
+        };
+      })
+      .catch((error) => {
+        console.error(error);
+        this.messageService.add({ severity: 'error', summary: 'Hubo un problema', detail: 'Error al enviar el correo' });
+      });
+  }
+  
 
 }

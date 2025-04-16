@@ -92,7 +92,7 @@ export class OnboardingAgricultorComponent implements AfterViewChecked, OnInit {
       gender: ['', Validators.required],
       cellphone: ['', Validators.required],
       address: ['', Validators.required],
-      valueTextArea: ['', Validators.required],
+      descripcionFinca: ['', Validators.required],
       ads: ['', Validators.required],
       fincaname: ['', Validators.required]
     });
@@ -234,7 +234,7 @@ export class OnboardingAgricultorComponent implements AfterViewChecked, OnInit {
   
       case 4:
         return (this.onboardingForm.get('ads')?.valid ?? false) &&
-               this.hasMinWords('valueTextArea', 20) &&
+               this.hasMinWords('descripcionFinca', 20) &&
                this.hasMinWords('fincaname', 1);
   
       default:
@@ -279,7 +279,7 @@ export class OnboardingAgricultorComponent implements AfterViewChecked, OnInit {
 
       await this.authService.updateDocument('agricultores', this.user.uid, datosActualizados);
       this.onboardingForm.reset();
-      this.router.navigate(['/main-agricultor']);
+      this.router.navigate(['agricultor/main-agricultor']);
     } catch (error: any) {
       this.isLoading = false;
       console.log(error.message);
