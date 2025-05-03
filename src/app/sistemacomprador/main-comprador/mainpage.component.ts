@@ -2,14 +2,12 @@ import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
-
-
-
+import { ScrollPanelModule } from 'primeng/scrollpanel';
 
 @Component({
   selector: 'app-mainpage',
   standalone: true,
-  imports: [],
+  imports: [ScrollPanelModule, ],
   templateUrl: './mainpage.component.html',
   styleUrl: './mainpage.component.css'
 })

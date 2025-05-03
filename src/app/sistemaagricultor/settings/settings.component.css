@@ -194,8 +194,13 @@ i {
     border-width: 1px;
     border-color: transparent;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    transition: all 0.2s ease-in-out
   }
   
+  .desactivate:hover {
+    background-color: #b51f1f;
+  }
+
   .cancel {
     display: inline-flex;
     margin-top: 0.75rem;
@@ -210,6 +215,10 @@ i {
     border-radius: 0.375rem;
     border: 1px solid #d1d5db;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  }
+
+  .cancel:hover {
+    color: black;
   }
   
   button {

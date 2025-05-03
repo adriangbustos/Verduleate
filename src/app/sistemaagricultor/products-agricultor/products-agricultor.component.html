@@ -1,7 +1,23 @@
 <p-toast></p-toast>
 
-<p-dialog [draggable]="false" [(visible)]="displayModal" [modal]="true" [header]="selectedProduct?.Vegetal"
-    [style]="{ width: '50rem', height: 'auto' }">
+<p-dialog [draggable]="false" [(visible)]="displayModal" [modal]="true" [style]="{ width: '50rem', height: 'auto' }">
+    <ng-template pTemplate="header">
+        <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+            <h3 style="margin: 0;">{{ selectedProduct?.Vegetal }}</h3>
+            <div style="display: flex; margin-right: 20px; gap: 10px;">
+                <!-- Botón Editar -->
+                <button class="changeName" (click)="openEditNameModal(selectedProduct)">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                </button>
+
+                <!-- Botón Eliminar -->
+                <button class="deleteProduct" (click)="openConfirmDeleteModal(selectedProduct)">
+                    <i class='bx bx-trash'></i>
+                </button>
+
+            </div>
+        </div>
+    </ng-template>
     <div *ngIf="selectedProduct">
         <div style="display: flex;">
             <div class="divImage" style="width: 40%; height: 100%;">
@@ -46,13 +62,16 @@
                 </div>
             </aside>
         </footer>
-
     </div>
 </p-dialog>
 
-<header style="border-bottom: 1px solid rgba(0, 128, 0, 0.531); padding-bottom: 17.5px;">
+<header style="border-bottom: 1px solid rgba(0, 128, 0, 0.531);">
     <button id="productsButton" (click)="registerProduct()"> <i class='bx bx-plus'></i> Nuevo Producto</button>
-    <h4 id="productsPublishedText">Bienvenido, {{datauser.fullname}} </h4>
+    <input class="searchBar" type="text" [(ngModel)]="searchTerm" placeholder="Buscar vegetal..."
+        (ngModelChange)="onSearchChange()" />
+    <p-paginator [rows]="rows" [totalRecords]="allProducts.length" [first]="first" [showPageLinks]="false"
+        (onPageChange)="onPageChange($event)">
+    </p-paginator>
 </header>
 
 <body>
@@ -79,3 +98,24 @@
         </p-card>
     </section>
 </body>
+
+<!-- ✏️ Cambiar nombre -->
+<p-dialog header="Cambiar nombre del producto" [(visible)]="editNameModal" [modal]="true" [draggable]="false" [style]="{ width: '30rem' }">
+    <div style="display: flex; flex-direction: column; gap: 1rem;">
+      <input id="newName" type="text" [(ngModel)]="nameToEdit" class="p-inputtext p-component">
+      <div style="display: flex; justify-content: flex-end; gap: 10px;">
+        <button class="cancelar" (click)="editNameModal = false">Cancelar</button>
+        <button class="confirmarcambiar" (click)="saveNewName()">Guardar</button>
+      </div>
+    </div>
+  </p-dialog>
+  
+  <!-- 🗑️ Confirmar eliminación -->
+  <p-dialog header="Confirmar eliminación" [(visible)]="confirmDeleteModal" [modal]="true" [draggable]="false" [style]="{ width: '25rem' }">
+    <p>¿Está seguro de que desea eliminar el producto <b>{{ productToEditOrDelete?.Vegetal }}</b>?</p>
+    <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px;">
+      <button class="cancelar" (click)="confirmDeleteModal = false">Cancelar</button>
+      <button class="confirmarborrar" (click)="confirmDeleteProduct()">Borrar</button>
+    </div>
+  </p-dialog>
+  

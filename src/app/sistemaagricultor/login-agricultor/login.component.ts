@@ -119,14 +119,13 @@ export class LoginComponent2 {
     if (result.success) {
       console.log('Inicio de sesión exitoso');
     } else {
+      this.isLoading = false;
       this.messageService.add({
         severity: 'error',
         summary: 'Error de inicio de sesión',
         detail: result.message
       });
     }
-
-    this.isLoading = false;
   }
 
 

@@ -10,7 +10,6 @@
 body {
     display: flex;
     padding-top: 100px;
-    /* Evita que el contenido se oculte detrás del header fijo */
 }
 
 header {
@@ -18,23 +17,46 @@ header {
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    padding-block: 20px;
+    border-bottom: 1px solid rgb(5, 162, 5);
+    background-color: white;
 }
 
+#menu button {
+    background-color: transparent;
+    color: green;
+    border: none;
+    font-size: 20px;
+    padding: 10px;
+    border-radius: 100%;
+    transition: all 0.3s ease-in-out;
+    display: flex;
+}
+
+#menu button:hover {
+    background-color: rgba(41, 240, 41, 0.186);
+    cursor: pointer;
+}
 
 #foto,
 #busqueda,
 #menu {
-    flex: 0.24;
     display: flex;
     align-items: center;
     justify-content: center;
+    flex: 0.30;
+}
+
+#busqueda {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 10%;
 }
 
 /* Imagen */
 #foto img {
-    margin-top: 15px;
-    width: 200px;
-    margin-left: 1cm;
+    width: 155px;
     height: 100%;
 }
 
@@ -42,34 +64,35 @@ header {
 .searchBox {
     display: flex;
     align-items: center;
-    margin-top: 25px;
     box-shadow: 0px 4px 30px -25px rgba(0, 0, 0, 0.67);
     justify-content: space-between;
-    gap: 8px;
     background: #ffffff;
-    height: 60px;
+    height: 50px;
     border-radius: 50px;
-    width: 500px;
+    width: 375px;
     position: relative;
     border: 1px solid green;
 }
 
 .searchButton {
     color: white;
-    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     right: 8px;
     font-size: 20px;
     cursor: pointer;
-    width: 45px;
-    height: 45px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     background: green;
     border: 0;
+    margin-right: 5px;
     transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
 }
 
 /*hover effect*/
-button:hover {
+.searchButton:hover {
     color: #fff;
     background-color: rgb(0, 207, 0);
 }
@@ -84,201 +107,103 @@ button:hover {
     padding: 20px;
 }
 
-
-/* The design is inspired from Galahhad*/
-
-.popup {
-    margin-top: 20px;
-    margin-left: 1cm;
-    --burger-bg: #00bf63;
-    --burger-color: #333;
-    --burger-line-border-radius: 0.1875em;
-    --burger-diameter: 2.5em;
-    --burger-btn-border-radius: calc(var(--burger-diameter) / 2);
-    --burger-line-transition: 0.3s;
-    --burger-transition: all 0.1s ease-in-out;
-    --burger-enable-outline-color: var(--burger-bg);
-    --burger-enable-outline-width: 0.125em;
-    --burger-enable-outline-offset: var(--burger-enable-outline-width);
-    /* nav */
-    --nav-padding-x: 0.25em;
-    --nav-padding-y: 0.625em;
-    --nav-border-radius: 0.375em;
-    --nav-border-color: #ccc;
-    --nav-border-width: 0.0625em;
-    --nav-shadow-color: rgba(0, 0, 0, 0.1);
-    --nav-shadow-width: 0 1px 5px;
-    --nav-bg: #ffffff;
-    --nav-font-family: "Poppins", sans-serif;
-    --nav-default-scale: 0.8;
-    --nav-active-scale: 1;
-    --nav-position-left: 0;
-    --nav-position-right: unset;
-    /* if you want to change sides just switch one property */
-    /* from properties to "unset" and the other to 0 */
-    /* title */
-    --nav-title-size: 0.625em;
-    --nav-title-color: #777;
-    --nav-title-padding-x: 1rem;
-    --nav-title-padding-y: 0.25em;
-    /* nav button */
-    --nav-button-padding-x: 1rem;
-    --nav-button-padding-y: 0.375em;
-    --nav-button-border-radius: 0.375em;
-    --nav-button-font-size: 17px;
-    --nav-button-hover-bg: rgb(5, 120, 20);
-    --nav-button-hover-text-color: #fff;
-    --nav-button-distance: 0.875em;
-    /* underline */
-    --underline-border-width: 0.0625em;
-    --underline-border-color: #ccc;
-    --underline-margin-y: 0.3125em;
-}
-
-/* popup settings 👆 */
-
-.popup {
-    display: flex;
-    justify-content: center;
-}
-
-.popup input {
-    display: none;
-}
-
-.burger {
-    display: flex;
-    position: relative;
-    align-items: center;
-    justify-content: center;
-    color: black;
-    background: white;
-    width: 80px;
-    height: 50px;
-    border-radius: 30px;
-    border: 1px solid green;
-    cursor: pointer;
-    overflow: hidden;
-    transition: var(--burger-transition);
-    outline: var(--burger-enable-outline-width) solid transparent;
-    outline-offset: 0;
-}
-
-.popup-window {
-    transform: scale(var(--nav-default-scale));
-    visibility: hidden;
-    opacity: 0;
-    position: absolute;
-    padding: var(--nav-padding-y) var(--nav-padding-x);
-    background: var(--nav-bg);
-    font-family: var(--nav-font-family);
-    color: var(--nav-text-color);
-    border-radius: var(--nav-border-radius);
-    box-shadow: var(--nav-shadow-width) var(--nav-shadow-color);
-    border: var(--nav-border-width) solid var(--nav-border-color);
-    top: 55%;
-    left: unset;
-    right: 8%;
-    z-index: 10000;
-    transition: var(--burger-transition);
-    margin-top: 30px;
-}
-
-.popup-window legend {
-    padding: var(--nav-title-padding-y) var(--nav-title-padding-x);
-    margin: 0;
-    color: var(--nav-title-color);
-    font-size: var(--nav-title-size);
-    text-transform: uppercase;
-}
-
-.popup-window ul {
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-}
-
-.popup-window ul button {
-    outline: none;
-    width: 100%;
-    border: none;
-    background: none;
-    display: flex;
-    align-items: center;
-    color: var(--burger-color);
-    font-size: var(--nav-button-font-size);
-    padding: var(--nav-button-padding-y) var(--nav-button-padding-x);
-    white-space: nowrap;
-    border-radius: var(--nav-button-border-radius);
-    cursor: pointer;
-    column-gap: var(--nav-button-distance);
-}
-
-.popup-window ul li:nth-child(1) svg,
-.popup-window ul li:nth-child(2) svg {
-    color: #00bf63;
-}
-
-.popup-window ul li:nth-child(4) svg,
-.popup-window ul li:nth-child(5) svg {
-    color: rgb(153, 153, 153);
-}
-
-.popup-window ul li:nth-child(7) svg {
-    color: red;
-}
-
-.popup-window hr {
-    margin: var(--underline-margin-y) 0;
-    border: none;
-    border-bottom: var(--underline-border-width) solid var(--underline-border-color);
-}
-
-/* actions */
-
-.popup-window ul button:hover,
-.popup-window ul button:focus-visible,
-.popup-window ul button:hover svg,
-.popup-window ul button:focus-visible svg {
-    color: var(--nav-button-hover-text-color);
-    background: var(--nav-button-hover-bg);
-}
-
-.burger:hover {
-    box-shadow: 3px 5px 10px rgba(0, 0, 0, 0.1);
-}
-
-.burger:active {
-    transform: scale(var(--burger-active-scale));
-}
-
-.popup input:checked~nav {
-    transform: scale(var(--nav-active-scale));
-    visibility: visible;
-    opacity: 1;
-}
-
-.space {
-    height: 20px;
-    width: 100%;
-    background-color: white;
-    border-bottom: 1px solid green;
-}
-
 .main {
     position: fixed;
-    /* Keep the header fixed */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-direction: column;
-    top: 0;
-    left: 0;
     width: 100%;
     z-index: 1000;
-    /* Ensure it stays above other elements */
-    background: white;
-    /* Ensure the background is solid */
     overflow: visible;
-    /* Allow overflow for the pseudo-element */
 }
+
+.categorySelection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 30px;
+}
+
+.selection {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.selection button {
+    width: 100px;
+    height: 60px;
+    background-color: white;
+    border: none;
+}
+
+.filters {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 50px;
+    gap: 20px;
+}
+
+/* From Uiverse.io by gharsh11032000 */ 
+/* The switch - the box around the slider */
+.switch {
+    font-size: 17px;
+    position: relative;
+    display: inline-block;
+    width: 3.5em;
+    padding: 0;
+    margin: 0;
+    height: 2em;
+  }
+  
+  /* Hide default HTML checkbox */
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  /* The slider */
+  .slider {
+    scale: 0.7;
+    position: absolute;
+    cursor: pointer;
+    inset: 0;
+    border: 2px solid #414141;
+    border-radius: 50px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 1.4em;
+    width: 1.4em;
+    left: 0.2em;
+    bottom: 0.2em;
+    background-color: rgb(12, 182, 17);
+    border-radius: inherit;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+  }
+  
+  .switch input:checked + .slider {
+    border: 2px solid #2bb90e;
+  }
+  
+  .switch input:checked + .slider:before {
+    transform: translateX(1.5em);
+  }
+
+  .filtersButton{
+    width: 90px;
+    height: 40px;
+    background-color: white;
+    border: 1px solid green;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: center;
+  }
+
+  .selection button i, p {
+    color: green;
+  }

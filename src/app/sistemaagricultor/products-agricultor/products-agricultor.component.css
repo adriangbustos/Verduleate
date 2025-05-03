@@ -1,10 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap');
 
 * {
     font-family: 'Poppins';
     margin: 0;
     overflow: hidden;
     padding: 0;
+}
+
+button:focus {
+    box-shadow: none !important;
 }
 
 :host ::ng-deep button:focus {
@@ -150,7 +154,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 17.5px 30px 10px 30px;
+    padding: 13.75px 30px 13.75px 30px;
 }
 
 #productsButton {
@@ -220,4 +224,141 @@ body {
 
 i {
     overflow: visible !important;
+}
+
+.searchBar {
+    width: 30%;
+    height: 40px;
+    padding: 10px;
+    border-radius: 16px;
+    transition: 0.3s ease;
+    border: 1px solid grey;
+}
+
+.searchBar:focus {
+    border-color: green;
+    scale: 1.02;
+}
+
+.searchBar:hover {
+    border-color: green;
+}
+
+:host ::ng-deep .p-paginator {
+    padding: 0;
+}
+
+:host ::ng-deep .p-dialog .p-dialog-header {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+}
+
+:host ::ng-deep .p-dialog .p-dialog-header h3 {
+    font-family: 'Poppins';
+    font-weight: 600;
+}
+
+.changeName {
+    background-color: rgb(49, 195, 49);
+    color: white;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    font-size: 15px;
+    transition: all ease-in-out 0.2s;
+}
+
+.deleteProduct {
+    background-color: rgb(255, 35, 35);
+    color: white;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    font-size: 17px;
+    transition: all ease-in-out 0.2s;
+}
+
+.changeName:hover {
+    background-color: rgb(43, 173, 43);
+    color: white;
+    cursor: pointer;
+}
+
+.deleteProduct:hover {
+    background-color: rgb(225, 7, 7);
+    color: white;
+    cursor: pointer;
+}
+
+:host ::ng-deep .p-paginator .p-paginator-next:focus,
+:host ::ng-deep .p-paginator .p-paginator-first:focus,
+:host ::ng-deep .p-paginator .p-paginator-prev:focus,
+:host ::ng-deep .p-paginator .p-paginator-last:focus {
+    box-shadow: none;
+}
+
+.confirmarborrar {
+    height: 40px;
+    width: 100px;
+    background-color: rgb(255, 35, 35);
+    color: white;
+    border: none;
+    font-weight: 600;
+    border-radius: 5px;
+    transition: all 0.2s ease-in-out;
+}
+
+.confirmarborrar:hover {
+    background-color: rgb(191, 0, 0);
+    cursor: pointer;
+}
+
+.cancelar {
+    height: 40px;
+    width: 100px;
+    color: rgb(53, 53, 53);
+    border: none;
+    background-color: white;
+    transition: all 0.2s ease-in-out;
+}
+
+.cancelar:hover {
+    cursor: pointer;
+    color: black;
+}
+
+.confirmarcambiar {
+    height: 40px;
+    width: 100px;
+    background-color: rgb(17, 164, 15);
+    color: white;
+    border: none;
+    font-weight: 600;
+    border-radius: 5px;
+    transition: all 0.2s ease-in-out;
+}
+
+.confirmarcambiar:hover {
+    background-color: rgb(17, 143, 14);
+    cursor: pointer;
+}
+
+:host ::ng-deep .p-inputtext:focus {
+    outline: none;
+    border-color: green;
+    box-shadow: none;
+}
+
+:host ::ng-deep .p-inputtext {
+    height: 40px;
+    padding: 10px;
+    width: 100%;
+}
+
+:host ::ng-deep .p-inputtext:hover {
+    border-color: green;
 }

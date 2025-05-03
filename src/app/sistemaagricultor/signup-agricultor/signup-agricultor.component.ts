@@ -106,14 +106,13 @@ export class SignupComponent2 implements OnInit {
     if (result.success) {
       console.log('Inicio de sesión exitoso');
     } else {
+      this.isLoading = false;
       this.messageService.add({
         severity: 'error',
         summary: 'Error de inicio de sesión',
         detail: result.message
       });
     }
-
-    this.isLoading = false;
   }
 
   private handleAuthError(errorCode: string) {
