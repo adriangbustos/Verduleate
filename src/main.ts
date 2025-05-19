@@ -9,7 +9,6 @@ import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { getDatabase, provideDatabase } from '@angular/fire/database';
 import { firebaseConfig } from './environments/environment';
 
-// ✅ Solo una vez, todos juntos
 const firebaseProviders = [
   provideFirebaseApp(() => initializeApp(firebaseConfig)),
   provideAuth(() => getAuth()),

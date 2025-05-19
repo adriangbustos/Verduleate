@@ -9,7 +9,6 @@ import { Firestore, collection, query, where, collectionData, getDoc, doc } from
 import { CardModule } from 'primeng/card';
 import { DialogModule } from 'primeng/dialog';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
-import { SplitButtonModule } from 'primeng/splitbutton';
 import { ButtonModule } from 'primeng/button';
 import { RatingModule } from 'primeng/rating';
 import { FormsModule } from '@angular/forms';
@@ -18,7 +17,7 @@ import { PaginatorModule } from 'primeng/paginator';
 @Component({
   selector: 'app-products-agricultor',
   standalone: true,
-  imports: [ToastModule, SplitButtonModule, ButtonModule, PaginatorModule, FormsModule, RatingModule, DialogModule, ScrollPanelModule, CommonModule, CardModule],
+  imports: [ToastModule, ButtonModule, PaginatorModule, FormsModule, RatingModule, DialogModule, ScrollPanelModule, CommonModule, CardModule],
   providers: [MessageService],
   templateUrl: './products-agricultor.component.html',
   styleUrl: './products-agricultor.component.css'

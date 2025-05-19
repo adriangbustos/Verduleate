@@ -12,7 +12,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { DividerModule } from 'primeng/divider';
 import { Router } from '@angular/router';
 import { ToastModule } from 'primeng/toast';
-import { Message, MessageService } from 'primeng/api';
+import { MessageService } from 'primeng/api';
 import emailjs from '@emailjs/browser';
 
 

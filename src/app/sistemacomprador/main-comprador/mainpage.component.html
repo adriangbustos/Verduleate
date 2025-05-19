@@ -1,63 +1,68 @@
-<div class="main">
-    <header>
-        <a id="foto" href="comprador/main-comprador">
-            <img src="../../../assets/LogoCompleto.png" />
-        </a>
-        <div id="busqueda">
-            <div class="searchBox">
-                <input class="searchInput" type="text" name="" placeholder="¿Qué desea comprar hoy?">
-                <button class="searchButton">
-                    <i class='bx bx-search-alt-2'></i>
-                </button>
-            </div>
-        </div>
-        <div id="menu">
-            <button><i class="fa-solid fa-gear"></i></button>
-        </div>
-    </header>
-    <div class="categorySelection">
-        <div class="selection">
-            <button>
-                <i class="fas fa-leaf"></i>
-                <p>Hojas</p>
-            </button>
-            <button>
-                <i class="fas fa-carrot"></i>
-                <p>Hortalizas</p>
-            </button>
-            <button>
-                <i class="fas fa-seedling"></i>
-                <p>Tallos</p>
-            </button>
-            <button>
-                <i class="fa-solid fa-tree"></i>
-                <p>Raíces</p>
-            </button>
-            <button>
-                <i class="fa-solid fa-pepper-hot"></i>
-                <p>Tubérculos</p>
-            </button>
-            <button>
-                <i class="fa-solid fa-lemon"></i>
-                <p>Bulbos</p>
-            </button>
-            <button>
-                <i class="fas fa-apple-alt"></i>
-                <p>Frutos</p>
-            </button>
-            <button>
-                <i class="fas fa-seedling"></i>
-                <p>Semillas</p>
+<header>
+    <a id="foto" href="comprador/main-comprador">
+        <img src="../../../assets/LogoCompleto.png" />
+    </a>
+    <div id="busqueda">
+        <div class="searchBox">
+            <input class="searchInput" type="text" name="" placeholder="¿Qué desea comprar hoy?">
+            <button class="searchButton">
+                <i class='bx bx-search-alt-2'></i>
             </button>
         </div>
-        <div class="filters">
-            <button class="filtersButton"><i class="fa-solid fa-sliders"></i>Filtros</button>
-        </div>
+    </div>
+    <div id="menu">
+        <p-menu #profileMenu [model]="menuItems" popup></p-menu>
+        <button type="button" pButton (click)="profileMenu.toggle($event)">
+            <i class="pi pi-user"></i>
+            <i class="pi pi-bars"></i>
+        </button>
+    </div>
+</header>
+<div class="categorySelection">
+    <div class="selection">
+        <button class="botoncito">
+            <i class="fas fa-leaf"></i>
+            <p>Hojas</p>
+        </button>
+        <button class="botoncito">
+            <i class="fas fa-carrot"></i>
+            <p>Hortalizas</p>
+        </button>
+        <button class="botoncito">
+            <i class="fas fa-seedling"></i>
+            <p>Tallos</p>
+        </button>
+        <button class="botoncito">
+            <i class="fa-solid fa-tree"></i>
+            <p>Raíces</p>
+        </button>
+        <button class="botoncito">
+            <i class="fa-solid fa-pepper-hot"></i>
+            <p>Tubérculos</p>
+        </button>
+        <button class="botoncito">
+            <i class="fa-solid fa-lemon"></i>
+            <p>Bulbos</p>
+        </button>
+        <button class="botoncito">
+            <i class="fas fa-apple-alt"></i>
+            <p>Frutos</p>
+        </button>
+        <button class="botoncito">
+            <i class="fas fa-seedling"></i>
+            <p>Semillas</p>
+        </button>
+    </div>
+    <div class="filters">
+        <button class="filtersButton"><i class="fa-solid fa-sliders"></i>Filtros</button>
     </div>
 </div>
 
 <body>
     <section>
-
+        <div class="provincia">
+            <p>hola</p>
+        </div>
     </section>
 </body>
+<p-scrollTop />

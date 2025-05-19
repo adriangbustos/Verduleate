@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap');
+@import "primeicons/primeicons.css";
 
 * {
     margin: 0;
@@ -8,8 +9,12 @@
 }
 
 body {
-    display: flex;
-    padding-top: 100px;
+    margin: 0;
+}
+
+:host ::ng-deep button {
+    outline: none;
+    box-shadow: none;
 }
 
 header {
@@ -18,7 +23,7 @@ header {
     align-items: center;
     width: 100%;
     padding-block: 20px;
-    border-bottom: 1px solid rgb(5, 162, 5);
+    border-bottom: 1px solid rgba(89, 89, 89, 0.267);
     background-color: white;
 }
 
@@ -27,19 +32,25 @@ header {
     color: green;
     border: none;
     font-size: 20px;
-    padding: 10px;
-    border-radius: 100%;
+    margin-right: -17%;
+    border-radius: 12px;
     transition: all 0.3s ease-in-out;
     display: flex;
+    text-align: center;
+    padding: 12px;
+    gap: 8px;
+    border: 1px solid green;
 }
 
 #menu button:hover {
-    background-color: rgba(41, 240, 41, 0.186);
     cursor: pointer;
 }
 
+:host ::ng-deep .p-menu {
+    width: 150px;
+}
+
 #foto,
-#busqueda,
 #menu {
     display: flex;
     align-items: center;
@@ -51,7 +62,7 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 10%;
+    width: 23%;
 }
 
 /* Imagen */
@@ -60,6 +71,16 @@ header {
     height: 100%;
 }
 
+::ng-deep .menu-align-right {
+    left: auto !important;
+    right: 0 !important;
+    transform-origin: top right !important;
+}
+
+::ng-deep .menu-align-right .p-menu {
+    text-align: left;
+    /* Los items mantienen su alineación normal */
+}
 
 .searchBox {
     display: flex;
@@ -69,9 +90,14 @@ header {
     background: #ffffff;
     height: 50px;
     border-radius: 50px;
-    width: 375px;
+    width: 400px;
     position: relative;
     border: 1px solid green;
+    transition: all 0.3s ease;
+}
+
+.searchBox:focus-within {
+    border-color: rgb(13, 171, 13);
 }
 
 .searchButton {
@@ -94,7 +120,7 @@ header {
 /*hover effect*/
 .searchButton:hover {
     color: #fff;
-    background-color: rgb(0, 207, 0);
+    background-color: rgb(13, 171, 13);
 }
 
 .searchInput {
@@ -107,6 +133,7 @@ header {
     padding: 20px;
 }
 
+
 .main {
     position: fixed;
     width: 100%;
@@ -115,23 +142,42 @@ header {
 }
 
 .categorySelection {
+    padding-top: 7px;
     display: flex;
     justify-content: center;
-    align-items: center;
     width: 100%;
-    gap: 30px;
+    gap: 5%;
+    background-color: white;
 }
 
 .selection {
     display: flex;
     justify-content: space-evenly;
+    gap: 5%;
 }
 
-.selection button {
+.botoncito {
     width: 100px;
     height: 60px;
     background-color: white;
     border: none;
+    margin-top: 5px;
+    transition: all 0.4s ease;
+}
+
+.botoncito::after {
+    content: '';
+    display: block;
+    margin-top: 5px;
+    width: 100%;
+    height: 1px;
+    background-color: rgb(0, 120, 0);
+    transform: scaleX(0);
+    transition: transform 0.2s;
+}
+
+.botoncito:hover::after {
+    transform: scaleX(1);
 }
 
 .filters {
@@ -142,68 +188,60 @@ header {
     gap: 20px;
 }
 
-/* From Uiverse.io by gharsh11032000 */ 
-/* The switch - the box around the slider */
-.switch {
-    font-size: 17px;
-    position: relative;
-    display: inline-block;
-    width: 3.5em;
-    padding: 0;
-    margin: 0;
-    height: 2em;
-  }
-  
-  /* Hide default HTML checkbox */
-  .switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-  }
-  
-  /* The slider */
-  .slider {
-    scale: 0.7;
-    position: absolute;
-    cursor: pointer;
-    inset: 0;
-    border: 2px solid #414141;
-    border-radius: 50px;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  }
-  
-  .slider:before {
-    position: absolute;
-    content: "";
-    height: 1.4em;
-    width: 1.4em;
-    left: 0.2em;
-    bottom: 0.2em;
-    background-color: rgb(12, 182, 17);
-    border-radius: inherit;
-    transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
-  }
-  
-  .switch input:checked + .slider {
-    border: 2px solid #2bb90e;
-  }
-  
-  .switch input:checked + .slider:before {
-    transform: translateX(1.5em);
-  }
-
-  .filtersButton{
+.filtersButton {
     width: 90px;
+    margin-top: -10px;
     height: 40px;
-    background-color: white;
-    border: 1px solid green;
+    background: white;
+    border: 1px solid rgb(0, 120, 0);
     border-radius: 8px;
     display: flex;
     align-items: center;
     gap: 8px;
     justify-content: center;
-  }
+    cursor: pointer;
+}
 
-  .selection button i, p {
-    color: green;
-  }
+.selection button i,
+p {
+    color: rgb(0, 120, 0);
+}
+
+.selection:hover>.botoncito:not(:hover) {
+    filter: grayscale(70%);
+}
+
+
+
+:host ::ng-deep .p-carousel .p-carousel-indicators {
+    padding: 1rem;
+    display: none;
+}
+
+.frescos {
+    background-color: blue;
+}
+
+:host ::ng-deep .p-scrolltop .p-icon {
+    width: 0.8rem;
+    height: 1rem;
+}
+
+:host ::ng-deep .p-scrolltop {
+    background: rgba(7, 192, 7, 0.5);
+box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+backdrop-filter: blur( 2.5px );
+-webkit-backdrop-filter: blur( 2.5px );
+border-radius: 10px;
+border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+
+section {
+    height: 300vh;
+    padding-inline: 8%;
+    padding-block: 2.5%;
+}
+
+.provincia{
+    background-color: red;
+}
