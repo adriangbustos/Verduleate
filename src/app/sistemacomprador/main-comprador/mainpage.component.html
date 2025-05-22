@@ -59,10 +59,40 @@
 </div>
 
 <body>
-    <section>
-        <div class="provincia">
-            <p>hola</p>
+    <div class="carusel-container">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <p class="navText">Más frutas y verduras de Guayas</p>
+            <div class="button-container">
+                <button style="margin-right: 5px;" (click)="myCarousel.step(1)" class="custom-nav-btn"><i
+                        class="fa-solid fa-chevron-left"></i></button>
+                <button (click)="myCarousel.step(-1)" class="custom-nav-btn"><i
+                        class="fa-solid fa-chevron-right"></i></button>
+            </div>
         </div>
-    </section>
+        <p-carousel #myCarousel [value]="productosGuayas" [numVisible]="7" [numScroll]="1" [circular]="true"
+            styleClass="custom-carousel">
+
+            <ng-template pTemplate="item" let-producto>
+                <p-card>
+                    <img class="product-image"
+                        [src]="'../../../assets/vegetales/' + producto.formattedVegetal + '.png'" />
+                    <div style="padding: 5px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <h4>{{ producto.Vegetal }}</h4>
+
+                        </div>
+                        <div
+                            style="display: flex; align-items: center; font-size: 15px; justify-content: space-between;">
+                            <p style="margin-top: 2px;">${{ producto.precio }}/{{ producto.medida.peso }}</p>
+                            <div style="display: flex; align-items: center; gap: 5px;">
+                                <p>4.85</p>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </p-card>
+            </ng-template>
+        </p-carousel>
+    </div>
 </body>
 <p-scrollTop />

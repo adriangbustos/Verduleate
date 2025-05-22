@@ -43,7 +43,11 @@ export class MainpageComponent implements OnInit {
       { label: 'Settings', icon: 'fas fa-cog', command: () => this.openSettings() },
       { label: 'Logout', icon: 'fas fa-sign-out-alt', command: () => this.logout() }
     ];
+
+    this.cargarProductosDeGuayas();
+
   }
+  productosGuayas: any[] = [];
 
   goToProfile() {
     console.log('Profile clicked');
@@ -56,66 +60,39 @@ export class MainpageComponent implements OnInit {
   logout() {
     console.log('Logged out');
   }
-  constructor(private router: Router, private authService: AuthService) {
 
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+    private firestore: Firestore
+  ) { }
+
+
+  async cargarProductosDeGuayas() {
+    const productosRef = collection(this.firestore, 'productos');
+    const q = query(productosRef, where('provincia.state', '==', 'Carchi'));
+
+    collectionData(q, { idField: 'id' }).subscribe((productos) => {
+      this.productosGuayas = productos.map((product: any) => ({
+        ...product,
+        formattedVegetal: this.formatVegetal(product.Vegetal)
+      }));
+
+      console.log('Productos en Guayas:', this.productosGuayas);
+    });
   }
 
-  comments = [
-    {
-      text: "¡Este producto es increíble! Muy recomendado.",
-      author: "Sophia Bennett",
-      rating: 5,
-      image: "../../assets/LandingPage/ReviewsPFP/2.png"
-    },
-    {
-      text: "Excelente servicio y entrega rápida. ¡5 estrellas!",
-      author: "James Carter",
-      rating: 4,
-      image: "../../assets/LandingPage/ReviewsPFP/1.png"
-    },
-    {
-      text: "Buena calidad, pero el envío tardó un poco más de lo esperado.",
-      author: "Olivia Richardson",
-      rating: 3,
-      image: "../../assets/LandingPage/ReviewsPFP/3.png"
-    },
-    {
-      text: "Muy satisfecho con mi compra. ¡Volvería a comprar!",
-      author: "Daniel Foster",
-      rating: 5,
-      image: "../../assets/LandingPage/ReviewsPFP/4.png"
-    },
-    {
-      text: "¡Este producto es increíble! Muy recomendado.",
-      author: "Ethan Hayes",
-      rating: 5,
-      image: "../../assets/LandingPage/ReviewsPFP/5.png"
-    },
-    {
-      text: "Excelente servicio y entrega rápida. ¡5 estrellas!",
-      author: "Emma Sullivan",
-      rating: 4,
-      image: "../../assets/LandingPage/ReviewsPFP/6.png"
-    },
-    {
-      text: "Buena calidad, pero el envío tardó un poco más de lo esperado.",
-      author: "Charlotte Reynolds",
-      rating: 3,
-      image: "../../assets/LandingPage/ReviewsPFP/7.png"
-    },
-    {
-      text: "Muy satisfecho con mi compra. ¡Volvería a comprar!",
-      author: "Lucas Mitchell",
-      rating: 5,
-      image: "../../assets/LandingPage/ReviewsPFP/8.png"
-    },
-    {
-      text: "Muy satisfecha con mi compra. ¡Volvería a comprar!",
-      author: "Amelia Scott",
-      rating: 5,
-      image: "../../assets/LandingPage/ReviewsPFP/9.png"
-    }
-  ];
-
+  formatVegetal(name: string): string {
+    if (!name) return '';
+    return name
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, '')
+      .toLowerCase()
+      .replace(/\s+/g, '');
+  }
 }
+
+
+
+
 
