@@ -242,8 +242,8 @@ p {
 }
 
 :host ::ng-deep .p-card .p-card-body {
-    padding-left: 0rem;
-    padding-right: 0rem;
+    padding-left: 1px;
+    padding-right: 1px;
     padding-top: 0.5rem;
     padding-bottom: 0.25rem;
 }
@@ -262,13 +262,6 @@ p {
     width: 100%;
 }
 
-:host ::ng-deep .custom-carousel .p-carousel-content {
-    display: flex !important;
-    flex-wrap: nowrap !important;
-    justify-content: flex-start;
-    gap: 10px;
-    overflow: hidden;
-}
 
 body {
     margin: 0;
@@ -306,5 +299,24 @@ body {
 }
 
 .button-container{
-    margin-right: 22px;
+    margin-right: 25px;
+}
+
+.province-carousel {
+    margin-bottom: 40px;
+    margin-left: 20px;
+}
+
+.province-carousel:last-child {
+    margin-bottom: 20px;
+}
+
+.insufficient-products {
+    background-color: #fff3cd;
+    border: 1px solid #ffeeba;
+    color: #856404;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 8px;
+    text-align: center;
 }

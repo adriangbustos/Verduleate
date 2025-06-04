@@ -1,0 +1,213 @@
+.main-container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  box-sizing: border-box;
+}
+
+.products-section {
+  flex: 1;
+  overflow-y: auto;
+  padding-block: 10px;
+  background-color: #fff;
+  width: 50%;
+  padding-inline: 50px;
+  height: 100vh;
+}
+
+.products-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  padding: 10px;
+}
+
+.map-section {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: 100vh;
+  width: 50%;
+  background-color: #f8f9fa;
+}
+
+#map {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+}
+
+.product-card {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+  border: 1px solid #e1e8ed;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.product-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.product-card.active {
+  border: 2px solid #4CAF50;
+  background-color: #f1f8e9;
+}
+
+.product-name {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #2c3e50;
+  margin-bottom: 8px;
+}
+
+.product-details {
+  padding: 8px;
+  border-radius: 6px;
+  margin-bottom: 8px;
+  flex-grow: 1;
+}
+
+.price {
+  color: #27ae60;
+  font-weight: bold;
+  font-size: 1em;
+  margin-bottom: 4px;
+}
+
+.quantity {
+  color: #34495e;
+  margin-bottom: 4px;
+  font-size: 0.9em;
+}
+
+.category {
+  color: #7f8c8d;
+  font-size: 0.9em;
+}
+
+.finca-details {
+  padding-top: 8px;
+  border-top: 1px solid #ecf0f1;
+}
+
+.finca-name {
+  font-size: 0.7em;
+  font-weight: 500;
+  color: #2c3e50;
+  margin-bottom: 4px;
+}
+
+.agricultor-name {
+  color: #7f8c8d;
+  font-size: 0.6em;
+}
+
+.section-title {
+  font-size: 1.5em;
+  color: #2c3e50;
+  top: 0;
+  background-color: #fff;
+  z-index: 2;
+}
+
+.no-results {
+  color: #7f8c8d;
+  text-align: center;
+  padding: 20px;
+  font-style: italic;
+  grid-column: 1 / -1;
+}
+
+/* Skeleton Styles */
+.skeleton-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  padding: 10px;
+  margin-top: 20px;
+}
+
+.skeleton-card {
+  background: #fff;
+  padding: 12px;
+  height: 175px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e1e8ed;
+}
+
+.skeleton-title {
+  height: 24px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+  margin-bottom: 15px;
+}
+
+.skeleton-line {
+  height: 16px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  width: 90%;
+}
+
+.skeleton-line:last-child {
+  width: 70%;
+}
+
+.map-skeleton {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  z-index: 2;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 1400px) {
+  .products-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .skeleton-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 1100px) {
+  .products-list {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  
+  .skeleton-container {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

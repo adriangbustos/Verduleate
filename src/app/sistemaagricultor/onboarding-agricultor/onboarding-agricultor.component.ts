@@ -197,6 +197,7 @@ export class OnboardingAgricultorComponent implements AfterViewChecked, OnInit {
         .catch(error => {
           console.error('Error al obtener la dirección:', error);
         });
+
     });
   }
 

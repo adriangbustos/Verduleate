@@ -1,0 +1,49 @@
+<div class="main-container">
+  <!-- Products Section -->
+  <div class="products-section">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <h2 class="section-title">Productos en {{ provincia }}</h2>
+      <button class="btn" (click)="onGoBack()" style="padding: 8px 16px; background-color: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 14px;">Volver</button>
+    </div>
+
+    <!-- Loading Skeleton -->
+    <div *ngIf="isLoading" class="skeleton-container">
+      <div class="skeleton-card" *ngFor="let i of [1,2,3,4,5,6,7,8,9]">
+        <div class="skeleton-title"></div>
+        <div class="skeleton-details">
+          <div class="skeleton-line"></div>
+          <div class="skeleton-line"></div>
+          <div class="skeleton-line"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- No Results Message -->
+    <div *ngIf="!isLoading && productsWithLocation.length === 0" class="no-results">
+      No se encontraron productos en esta provincia.
+    </div>
+
+    <!-- Products List -->
+    <div *ngIf="!isLoading" class="products-list">
+      <div *ngFor="let item of productsWithLocation" class="product-card" [class.active]="selectedProduct === item"
+        (click)="selectProduct(item)">
+        <div class="product-name">{{ item.producto.Vegetal }}</div>
+        <div class="product-details">
+          <div class="price">Precio: ${{ item.producto.precio }}/{{ item.producto.medida.peso }}</div>
+          <div class="quantity">Disponible: {{ item.producto.cantidadDisponible }}</div>
+          <div class="category">Categoría: {{ item.producto.categoria.clase }}</div>
+        </div>
+        <div class="finca-details">
+          <div class="finca-name">{{ item.agricultor.fincaname }}</div>
+          <div class="agricultor-name">{{ item.agricultor.fullname }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Map Section -->
+  <div class="map-section">
+    <div *ngIf="isLoading" class="map-skeleton"></div>
+    <div id="map"></div>
+  </div>
+</div>

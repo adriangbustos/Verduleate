@@ -1,7 +1,7 @@
-import { AdminChatComponent } from "./chat/chat.component";
+import { MainPageAdminComponent } from "./mainpage-admin/mainpage-admin.component";
 import { Routes } from '@angular/router';
 
 export const adminRoutes: Routes = [
-  { path: 'support', component: AdminChatComponent },
+  { path: 'main', component: MainPageAdminComponent },
 
 ];
