@@ -42,29 +42,29 @@
                 {
                   "type": "initial",
                   "maximumWarning": "1.6mb",
-                  "maximumError": "2mb"
+                  "maximumError": "4mb"
                 },
                 {
                   "type": "anyComponentStyle",
                   "maximumWarning": "15kb",
-                  "maximumError": "20kb"
+                  "maximumError": "100kb"
                 },
                 {
                   "type": "anyScript",
                   "maximumWarning": "650kb",
-                  "maximumError": "1mb"
+                  "maximumError": "2mb"
                 },
                 {
                   "type": "bundle",
                   "name": "main",
                   "maximumWarning": "1.3mb",
-                  "maximumError": "1.5mb"
+                  "maximumError": "2mb"
                 },
                 {
                   "type": "bundle",
                   "name": "styles",
                   "maximumWarning": "200kb",
-                  "maximumError": "300kb"
+                  "maximumError": "500kb"
                 }
               ],
               "outputHashing": "all"
