@@ -1,17 +1,21 @@
 <header>
     <a id="foto">
-        <img src="../../../assets/LogoCompleto.png" href="comprador/main-comprador"/>
+        <img src="../../../assets/LogoCompleto.png" href="comprador/main-comprador" />
     </a>
     <div id="busqueda">
         <div class="searchBox">
-            <input class="searchInput" type="text" name="" placeholder="¿Qué desea comprar hoy?">
-            <button class="searchButton">
+            <input class="searchInput" 
+                   type="text" 
+                   name="search" 
+                   [(ngModel)]="searchQuery"
+                   placeholder="¿Qué desea comprar hoy?">
+            <button class="searchButton" (click)="searchProducts()">
                 <i class='bx bx-search-alt-2'></i>
             </button>
         </div>
     </div>
     <div id="menu">
-        <p-menu #profileMenu [model]="menuItems" popup></p-menu>
+        <p-menu styleClass="profileMenu" #profileMenu [model]="menuItems" popup></p-menu>
         <button type="button" pButton (click)="profileMenu.toggle($event)">
             <i class="pi pi-user"></i>
             <i class="pi pi-bars"></i>
@@ -20,61 +24,154 @@
 </header>
 <div class="categorySelection">
     <div class="selection">
-        <button class="botoncito">
-            <i class="fas fa-leaf"></i>
-            <p>Hojas</p>
-        </button>
-        <button class="botoncito">
-            <i class="fas fa-carrot"></i>
-            <p>Hortalizas</p>
-        </button>
-        <button class="botoncito">
-            <i class="fas fa-seedling"></i>
-            <p>Tallos</p>
-        </button>
-        <button class="botoncito">
-            <i class="fa-solid fa-tree"></i>
-            <p>Raíces</p>
-        </button>
-        <button class="botoncito">
-            <i class="fa-solid fa-pepper-hot"></i>
-            <p>Tubérculos</p>
-        </button>
-        <button class="botoncito">
-            <i class="fa-solid fa-lemon"></i>
-            <p>Bulbos</p>
-        </button>
-        <button class="botoncito">
-            <i class="fas fa-apple-alt"></i>
-            <p>Frutos</p>
-        </button>
-        <button class="botoncito">
-            <i class="fas fa-seedling"></i>
-            <p>Semillas</p>
+        <button *ngFor="let cat of categorias" 
+                class="botoncito" 
+                [class.active]="selectedCategory === cat.nombre"
+                (click)="seleccionarCategoria(cat.nombre)">
+            <i [class]="cat.icono"></i>
+            <p>{{cat.nombre}}</p>
         </button>
     </div>
     <div class="filters">
-        <button class="filtersButton"><i class="fa-solid fa-sliders"></i>Filtros</button>
+        <p-menu #filterMenu [model]="sortOptions" [popup]="true"></p-menu>
+        <button class="filtersButton" (click)="filterMenu.toggle($event)">
+            <i class="fa-solid fa-sliders"></i>Filtros
+        </button>
     </div>
 </div>
 
 <body>
     <div class="carusel-container">
-        <div *ngFor="let provincia of provincias" class="province-carousel">
-            <div style="display: flex; justify-content: space-between; align-items: center;">
-                <p class="navText" style="cursor: pointer;" [routerLink]="['/comprador/verduras', formatProvincia(provincia)]">Más frutas y verduras de {{provincia}} ></p>
-                <div class="button-container">
-                    <button style="margin-right: 5px;" (click)="stepCarousel(provincia, 1)" class="custom-nav-btn">
-                        <i class="fa-solid fa-chevron-left"></i>
-                    </button>
-                    <button (click)="stepCarousel(provincia, -1)" class="custom-nav-btn">
-                        <i class="fa-solid fa-chevron-right"></i>
-                    </button>
+        <!-- Vista de Carrusel -->
+        <div *ngIf="vistaCarrusel">
+            <!-- Loading skeletons para carrusel -->
+            <div *ngIf="isLoading" class="province-carousel" style="margin-bottom: 20px;">
+                <div class="skeleton skeleton-province-title"></div>
+                <div class="skeleton-carousel">
+                    <div *ngFor="let item of skeletonArray" class="skeleton-card">
+                        <div class="skeleton skeleton-image"></div>
+                        <div class="skeleton skeleton-title"></div>
+                        <div class="skeleton-price-rating">
+                            <div class="skeleton skeleton-rating"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <p-carousel #provinciaCarousel [value]="productosPorProvincia[provincia]" [numVisible]="7" [numScroll]="1" 
-                [circular]="true" styleClass="custom-carousel">
-                <ng-template pTemplate="item" let-producto>
+
+            <div *ngIf="isLoading" class="province-carousel" style="margin-bottom: 20px;">
+                <div class="skeleton skeleton-province-title"></div>
+                <div class="skeleton-carousel">
+                    <div *ngFor="let item of skeletonArray" class="skeleton-card">
+                        <div class="skeleton skeleton-image"></div>
+                        <div class="skeleton skeleton-title"></div>
+                        <div class="skeleton-price-rating">
+                            <div class="skeleton skeleton-rating"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="isLoading" class="province-carousel" style="margin-bottom: 20px;">
+                <div class="skeleton skeleton-province-title"></div>
+                <div class="skeleton-carousel">
+                    <div *ngFor="let item of skeletonArray" class="skeleton-card">
+                        <div class="skeleton skeleton-image"></div>
+                        <div class="skeleton skeleton-title"></div>
+                        <div class="skeleton-price-rating">
+                            <div class="skeleton skeleton-rating"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contenido del carrusel -->
+            <div *ngIf="!isLoading">
+                <div *ngFor="let provincia of provincias" class="province-carousel">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <p class="navText" style="cursor: pointer;"
+                            [routerLink]="['/comprador/verduras', formatProvincia(provincia)]">
+                            Más frutas y verduras de {{provincia}} >
+                        </p>
+                        <div class="button-container">
+                            <button style="margin-right: 5px;" (click)="stepCarousel(provincia, 1)" class="custom-nav-btn">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </button>
+                            <button (click)="stepCarousel(provincia, -1)" class="custom-nav-btn">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <p-carousel #provinciaCarousel [value]="productosPorProvincia[provincia]" [numVisible]="7"
+                        [numScroll]="1" [circular]="true" styleClass="custom-carousel">
+                        <ng-template pTemplate="item" let-producto>
+                            <p-card styleClass="product-card">
+                                <img class="product-image"
+                                    [src]="'../../../assets/vegetales/' + producto.formattedVegetal + '.png'" />
+                                <div style="padding: 5px;">
+                                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                                        <h4>{{ producto.Vegetal }}</h4>
+                                    </div>
+                                    <div style="display: flex; align-items: center; font-size: 15px; justify-content: space-between;">
+                                        <p style="margin-top: 2px;">${{ producto.precio }}/{{ producto.medida.peso }}</p>
+                                        <div style="display: flex; align-items: center; gap: 5px;">
+                                            <p>4.85</p>
+                                            <i class="fa-solid fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </p-card>
+                        </ng-template>
+                    </p-carousel>
+                </div>
+            </div>
+        </div>
+
+        <!-- Vista de Grid por Categoría -->
+        <div *ngIf="!vistaCarrusel" class="products-grid">            
+            <!-- Loading skeletons para grid -->
+            <div *ngIf="isLoadingCategory" class="grid-container">
+                <div *ngFor="let item of skeletonArray" class="skeleton-card">
+                    <div class="skeleton skeleton-image"></div>
+                    <div class="skeleton skeleton-title"></div>
+                    <div class="skeleton-price-rating">
+                        <div class="skeleton skeleton-rating"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="isLoadingCategory" class="grid-container">
+                <div *ngFor="let item of skeletonArray" class="skeleton-card">
+                    <div class="skeleton skeleton-image"></div>
+                    <div class="skeleton skeleton-title"></div>
+                    <div class="skeleton-price-rating">
+                        <div class="skeleton skeleton-rating"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="isLoadingCategory" class="grid-container">
+                <div *ngFor="let item of skeletonArray" class="skeleton-card">
+                    <div class="skeleton skeleton-image"></div>
+                    <div class="skeleton skeleton-title"></div>
+                    <div class="skeleton-price-rating">
+                        <div class="skeleton skeleton-rating"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="isLoadingCategory" class="grid-container">
+                <div *ngFor="let item of skeletonArray" class="skeleton-card">
+                    <div class="skeleton skeleton-image"></div>
+                    <div class="skeleton skeleton-title"></div>
+                    <div class="skeleton-price-rating">
+                        <div class="skeleton skeleton-rating"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contenido del grid -->
+            <div *ngIf="!isLoadingCategory" class="grid-container">
+                <div *ngFor="let producto of productosFiltrados" class="grid-item">
                     <p-card>
                         <img class="product-image" [src]="'../../../assets/vegetales/' + producto.formattedVegetal + '.png'" />
                         <div style="padding: 5px;">
@@ -90,18 +187,76 @@
                             </div>
                         </div>
                     </p-card>
-                </ng-template>
-            </p-carousel>
-        </div>
+                </div>
+            </div>
 
-        <!-- Mensaje para provincias con pocos productos -->
-        <div *ngFor="let provincia of todasProvinciasEcuador" class="province-message">
-            <div *ngIf="productosPorProvincia[provincia].length > 0 && productosPorProvincia[provincia].length < 7" 
-                 class="insufficient-products">
-                <p>La provincia de {{provincia}} tiene {{productosPorProvincia[provincia].length}} productos. 
-                   Se necesitan al menos 7 productos para mostrar el carrusel.</p>
+            <!-- Mensaje si no hay productos -->
+            <div *ngIf="!isLoadingCategory && productosFiltrados.length === 0" class="no-products">
+                <p>No hay productos disponibles en esta categoría</p>
             </div>
         </div>
     </div>
 </body>
+
 <p-scrollTop />
+
+<footer class="footer">
+    <div class="footer-content">
+        <!-- Sobre Nosotros -->
+        <div class="footer-section">
+            <h3>Sobre Verduleate</h3>
+            <p>Conectamos agricultores locales con consumidores, promoviendo una alimentación saludable y sostenible en Ecuador.</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+
+        <!-- Enlaces Útiles -->
+        <div class="footer-section">
+            <h3>Enlaces Útiles</h3>
+            <ul>
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">Productos</a></li>
+                <li><a href="#">Cómo Funciona</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Preguntas Frecuentes</a></li>
+            </ul>
+        </div>
+
+        <!-- Contacto -->
+        <div class="footer-section">
+            <h3>Contacto</h3>
+            <div class="contact-info">
+                <i class="fas fa-map-marker-alt"></i>
+                <p>Quito, Ecuador</p>
+            </div>
+            <div class="contact-info">
+                <i class="fas fa-phone"></i>
+                <p>+593 99 999 9999</p>
+            </div>
+            <div class="contact-info">
+                <i class="fas fa-envelope"></i>
+                <p>info&#64;verduleate.com</p>
+            </div>
+        </div>
+
+        <!-- Newsletter -->
+        <div class="footer-section">
+            <h3>Newsletter</h3>
+            <p>Suscríbete para recibir noticias sobre productos frescos y ofertas especiales.</p>
+            <div class="newsletter-form">
+                <input type="email" placeholder="Tu correo electrónico">
+                <button>
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2025 Verduleate. Todos los derechos reservados.</p>
+    </div>
+</footer>

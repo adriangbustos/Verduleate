@@ -19,22 +19,22 @@ interface Order {
 export class MainPageAdminComponent implements OnInit {
   orders: Order[] = [
     {
-      productName: 'JavaScript Tutorial',
+      productName: 'Tutorial de JavaScript',
       productNumber: '85743',
-      paymentStatus: 'Due',
-      status: 'Pending'
+      paymentStatus: 'Pendiente',
+      status: 'Pendiente'
     },
     {
-      productName: 'CSS Full Course',
+      productName: 'Curso Completo de CSS',
       productNumber: '97245',
-      paymentStatus: 'Refunded',
-      status: 'Declined'
+      paymentStatus: 'Reembolsado',
+      status: 'Rechazado'
     },
     {
-      productName: 'Flex-Box Tutorial',
+      productName: 'Tutorial de Flex-Box',
       productNumber: '36452',
-      paymentStatus: 'Paid',
-      status: 'Active'
+      paymentStatus: 'Pagado',
+      status: 'Activo'
     }
   ];
 
@@ -75,9 +75,9 @@ export class MainPageAdminComponent implements OnInit {
 
   getStatusClass(status: string): string {
     switch (status) {
-      case 'Declined':
+      case 'Rechazado':
         return 'danger';
-      case 'Pending':
+      case 'Pendiente':
         return 'warning';
       default:
         return 'primary';

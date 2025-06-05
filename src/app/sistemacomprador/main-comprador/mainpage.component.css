@@ -42,7 +42,7 @@ header {
     cursor: pointer;
 }
 
-:host ::ng-deep .p-menu {
+:host ::ng-deep .profileMenu {
     width: 150px;
 }
 
@@ -66,7 +66,6 @@ header {
     width: 155px;
     height: 100%;
 }
-
 
 .searchBox {
     display: flex;
@@ -103,7 +102,6 @@ header {
     transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
 }
 
-/*hover effect*/
 .searchButton:hover {
     color: #fff;
     background-color: rgb(13, 171, 13);
@@ -118,7 +116,6 @@ header {
     font-size: 15px;
     padding: 20px;
 }
-
 
 .main {
     position: fixed;
@@ -149,6 +146,7 @@ header {
     border: none;
     margin-top: 5px;
     transition: all 0.4s ease;
+    cursor: pointer;
 }
 
 .botoncito::after {
@@ -164,6 +162,15 @@ header {
 
 .botoncito:hover::after {
     transform: scaleX(1);
+}
+
+.selection button i,
+.selection button p {
+    color: rgb(0, 120, 0);
+}
+
+.selection:hover>.botoncito:not(:hover) {
+    filter: grayscale(70%);
 }
 
 .filters {
@@ -188,23 +195,8 @@ header {
     cursor: pointer;
 }
 
-.selection button i,
-p {
-    color: rgb(0, 120, 0);
-}
-
-.selection:hover>.botoncito:not(:hover) {
-    filter: grayscale(70%);
-}
-
-
-
 :host ::ng-deep .p-carousel .p-carousel-indicators {
     display: none;
-}
-
-.frescos {
-    background-color: blue;
 }
 
 :host ::ng-deep .p-scrolltop .p-icon {
@@ -220,7 +212,6 @@ p {
     border-radius: 10px;
     border: 1px solid rgba(255, 255, 255, 0.18);
 }
-
 
 :host ::ng-deep .p-card {
     width: 100%;
@@ -257,11 +248,9 @@ p {
     padding-bottom: 0.25rem;
 }
 
-
 :host ::ng-deep .p-carousel {
     width: 100%;
 }
-
 
 body {
     margin: 0;
@@ -270,35 +259,42 @@ body {
     box-sizing: border-box;
 }
 
-
 .carusel-container {
     margin: 20px auto;
     width: 90%;
     box-sizing: border-box;
 }
+
+:host ::ng-deep .product-card:hover {
+    cursor: pointer;
+}
+
 :host ::ng-deep .custom-carousel .p-carousel-prev,
 :host ::ng-deep .custom-carousel .p-carousel-next {
     display: none;
 }
 
 .custom-nav-btn {
-  padding: 5px 10px;
-  background-color: #09871a;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-.custom-nav-btn:hover {
-  background-color: #027902;
+    padding: 5px 10px;
+    background-color: #09871a;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
-.navText{
+.custom-nav-btn:hover {
+    background-color: #027902;
+}
+
+.navText {
     font-size: 18px;
     font-weight: bold;
+    color: #027902;
+    cursor: pointer;
 }
 
-.button-container{
+.button-container {
     margin-right: 25px;
 }
 
@@ -311,12 +307,280 @@ body {
     margin-bottom: 20px;
 }
 
-.insufficient-products {
-    background-color: #fff3cd;
-    border: 1px solid #ffeeba;
-    color: #856404;
-    padding: 15px;
-    margin: 10px 0;
-    border-radius: 8px;
+/* Grid View Styles */
+.products-grid {
+    margin: 0 auto;
+    max-width: 1400px;
+}
+
+.products-grid h2 {
+    color: #027902;
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
+    gap: 20px;
+}
+
+.grid-item {
+    transition: all 0.3s ease;
+}
+
+.grid-item:hover {
+    transform: translateY(-5px);
+    cursor: pointer;
+}
+
+/* Active button styles */
+
+
+.botoncito.active::after {
+    transform: scaleX(1);
+}
+
+.botoncito.active i,
+.botoncito.active p {
+    color: #015901;
+}
+
+/* Responsive Grid */
+@media (max-width: 1200px) {
+    .grid-container {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .grid-container {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 15px;
+    }
+
+    .botoncito {
+        width: 80px;
+        height: 50px;
+    }
+
+    .botoncito p {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .grid-container {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        gap: 10px;
+    }
+}
+
+/* No Products Message */
+.no-products {
     text-align: center;
+    padding: 2rem;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    margin-top: 1rem;
+}
+
+.no-products p {
+    color: #666;
+    font-size: 1.1rem;
+}
+
+/* Grid Loading State */
+.grid-container .skeleton-card {
+    height: 250px;
+    background-color: white;
+    border-radius: 8px;
+}
+
+/* Footer Styles */
+.footer {
+    background-color: #f8f9fa;
+    padding: 60px 0 30px;
+    margin-top: 50px;
+    border-top: 1px solid rgba(0, 128, 0, 0.1);
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    padding: 0 20px;
+}
+
+.footer-section h3 {
+    color: #027902;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.footer-section p {
+    color: #666;
+    line-height: 1.6;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 12px;
+}
+
+.footer-section ul li a {
+    color: #666;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-section ul li a:hover {
+    color: #027902;
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.social-links a {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color: #027902;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+    background-color: #015901;
+    transform: translateY(-3px);
+}
+
+.footer-bottom {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(0, 128, 0, 0.1);
+    text-align: center;
+    color: #666;
+}
+
+.contact-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.contact-info i {
+    color: #027902;
+    margin: 0;
+    padding: 0;
+    align-self: center;
+}
+
+.newsletter-form {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.newsletter-form input {
+    flex: 1;
+    padding: 8px 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    outline: none;
+}
+
+.newsletter-form input:focus {
+    border-color: #027902;
+}
+
+.newsletter-form button {
+    padding: 8px 20px;
+    background-color: #027902;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.newsletter-form button:hover {
+    background-color: #015901;
+}
+
+/* Skeleton Styles */
+.skeleton {
+    animation: skeleton-loading 1s linear infinite alternate;
+}
+
+@keyframes skeleton-loading {
+    0% {
+        background-color: rgba(0, 128, 0, 0.1);
+    }
+
+    100% {
+        background-color: rgba(0, 128, 0, 0.25);
+    }
+}
+
+.skeleton-card {
+    width: 175px;
+    padding: 0.5rem;
+}
+
+.skeleton-image {
+    width: 100%;
+    height: 150px;
+    border-radius: 16px;
+    margin-bottom: 10px;
+}
+
+.skeleton-title {
+    width: 80%;
+    height: 20px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.skeleton-rating {
+    width: 100%;
+    height: 15px;
+    border-radius: 4px;
+}
+
+.skeleton-price-rating {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.skeleton-carousel {
+    display: flex;
+    gap: 1rem;
+    overflow: hidden;
+    padding: 1rem 0;
+}
+
+.skeleton-province-title {
+    width: 200px;
+    height: 24px;
+    border-radius: 4px;
+    margin-bottom: 0.1rem;
+    margin-left: 9px;
 }
