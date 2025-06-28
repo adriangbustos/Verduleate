@@ -18,6 +18,7 @@ import { RatingModule } from 'primeng/rating';
 import { FormsModule } from '@angular/forms';
 import { ScrollTopModule } from 'primeng/scrolltop';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { BadgeModule } from 'primeng/badge';
 
 @Component({
   selector: 'app-mainpage',
@@ -35,7 +36,8 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
     MenuModule, 
     ButtonModule, 
     CommonModule,
-    OverlayPanelModule
+    OverlayPanelModule,
+    BadgeModule
   ],
   templateUrl: './mainpage.component.html',
   styleUrl: './mainpage.component.css',
@@ -113,7 +115,8 @@ export class MainpageComponent implements OnInit {
     this.menuItems = [
       { label: 'Profile', icon: 'fas fa-user', command: () => this.goToProfile() },
       { label: 'Settings', icon: 'fas fa-cog', command: () => this.openSettings() },
-      { label: 'Logout', icon: 'fas fa-sign-out-alt', command: () => this.logout() }
+      { label: 'Cart', icon: 'fas fa-shopping-cart', command: () => this.goToCart() },
+      { label: 'Logout', icon: 'fas fa-sign-out-alt', command: () => this.logout() },
     ];
 
     this.cargarProductosPorProvincia();
@@ -169,6 +172,10 @@ export class MainpageComponent implements OnInit {
 
   logout() {
     console.log('Logged out');
+  }
+
+  goToCart() {
+    console.log('Cart clicked');
   }
 
   constructor(
@@ -309,8 +316,3 @@ export class MainpageComponent implements OnInit {
     }
   }
 }
-
-
-
-
-

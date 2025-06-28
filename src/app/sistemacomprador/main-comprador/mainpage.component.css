@@ -393,7 +393,7 @@ body {
 
 /* Grid Loading State */
 .grid-container .skeleton-card {
-    height: 250px;
+    height: 260px;
     background-color: white;
     border-radius: 8px;
 }

@@ -4,6 +4,10 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## AL HACER BUILD PARA DEPLOY DEL SITIO
 
+ya solo falta el de los productos, guardalo al carrito y proceder al pago con stripe
+
+luego admins chat
+
 USA npm run build
 
 VUELVE A INSTALAR NODE, ANGULAR
