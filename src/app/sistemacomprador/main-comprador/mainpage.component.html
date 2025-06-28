@@ -104,7 +104,7 @@
                     <p-carousel #provinciaCarousel [value]="productosPorProvincia[provincia]" [numVisible]="7"
                         [numScroll]="1" [circular]="true" styleClass="custom-carousel">
                         <ng-template pTemplate="item" let-producto>
-                            <p-card styleClass="product-card">
+                            <p-card styleClass="product-card" [routerLink]="['/comprador/product', producto.productId]">
                                 <img class="product-image"
                                     [src]="'../../../assets/vegetales/' + producto.formattedVegetal + '.png'" />
                                 <div style="padding: 5px;">
@@ -172,7 +172,7 @@
             <!-- Contenido del grid -->
             <div *ngIf="!isLoadingCategory" class="grid-container">
                 <div *ngFor="let producto of productosFiltrados" class="grid-item">
-                    <p-card>
+                    <p-card [routerLink]="['/comprador/product', producto.productId]">
                         <img class="product-image" [src]="'../../../assets/vegetales/' + producto.formattedVegetal + '.png'" />
                         <div style="padding: 5px;">
                             <div style="display: flex; justify-content: space-between; align-items: center;">

@@ -2,8 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import * as L from 'leaflet';
-import { Firestore, collection, query, where, getDocs, doc, getDoc } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
+import { MenuModule } from 'primeng/menu';
+import { ButtonModule } from 'primeng/button';
+import { MenuItem } from 'primeng/api';
+import { deleteDoc, getDocs, updateDoc } from 'firebase/firestore';
+import { Firestore, collection, query, where, collectionData, getDoc, doc } from '@angular/fire/firestore';
+import { FormsModule } from '@angular/forms';
 
 interface Producto {
   Vegetal: string;
@@ -39,7 +44,7 @@ interface ProductWithLocation {
 @Component({
   selector: 'app-mapandproducts',
   standalone: true,
-  imports: [RouterModule, CommonModule],
+  imports: [RouterModule, CommonModule, ButtonModule, FormsModule, MenuModule],
   templateUrl: './mapandproducts.component.html',
   styleUrl: './mapandproducts.component.css'
 })
@@ -97,6 +102,13 @@ export class MapandproductsComponent implements OnInit {
       this.provincia = provinciaParam.charAt(0).toUpperCase() + provinciaParam.slice(1).toLowerCase();
       this.cargarProductosPorProvincia(this.provincia);
     });
+
+    this.menuItems = [
+      { label: 'Profile', icon: 'fas fa-user', command: () => this.goToProfile() },
+      { label: 'Settings', icon: 'fas fa-cog', command: () => this.openSettings() },
+      { label: 'Cart', icon: 'fas fa-shopping-cart', command: () => this.goToCart() },
+      { label: 'Logout', icon: 'fas fa-sign-out-alt', command: () => this.logout() },
+    ];
   }
 
   ngAfterViewInit() {
@@ -230,5 +242,23 @@ export class MapandproductsComponent implements OnInit {
       const group = L.featureGroup(this.markers.getLayers());
       this.map.fitBounds(group.getBounds().pad(0.1));
     }
+  }
+
+  menuItems: MenuItem[] = [];
+  
+  goToProfile() {
+    console.log('Profile clicked');
+  }
+
+  openSettings() {
+    console.log('Settings clicked');
+  }
+
+  logout() {
+    console.log('Logged out');
+  }
+
+  goToCart() {
+    console.log('Cart clicked');
   }
 }
