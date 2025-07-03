@@ -1,3 +1,4 @@
+<p-toast />
 <header>
     <a id="foto">
         <img src="../../../assets/LogoCompleto.png" [routerLink]="['/comprador/main-comprador']"
@@ -24,8 +25,13 @@
             <img [src]="'../../../assets/vegetales/' + formatVegetal(producto.Vegetal) + '.png'"
                 [alt]="producto.Vegetal" />
         </div>
+        <div id="cartButton">
+            <button type="button" pButton (click)="addToCart(producto)">
+                <i class="pi pi-shopping-cart"></i>
+                <span style="writing-mode: vertical-rl; text-orientation: mixed;">Agregar al Carrito</span>
+            </button>
+        </div>
 
-        <!-- Right Section - Info Grid -->
         <aside class="divBoxes">
             <div class="div1">
                 <h4>Provincia</h4>
@@ -99,7 +105,7 @@
             <h3>Contacto</h3>
             <div class="contact-info">
                 <i class="fas fa-map-marker-alt"></i>
-                <p>Quito, Ecuador</p>
+                <p>Guayaquil, Ecuador</p>
             </div>
             <div class="contact-info">
                 <i class="fas fa-phone"></i>

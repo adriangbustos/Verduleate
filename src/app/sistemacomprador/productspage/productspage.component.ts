@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { Firestore, collection, query, where, getDocs, doc, getDoc, docData } from '@angular/fire/firestore';
+import { Firestore, collection, query, where, getDocs, doc, getDoc, docData, addDoc } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { Observable, from, switchMap } from 'rxjs';
 import { MenuModule } from 'primeng/menu';
@@ -11,6 +11,9 @@ import { FormsModule } from '@angular/forms';
 import { CardModule } from 'primeng/card';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { Timestamp } from 'firebase/firestore';
+import { Auth, user } from '@angular/fire/auth';
+import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
 
 interface Producto {
   Vegetal: string;
@@ -50,20 +53,30 @@ interface Agricultor {
     ButtonModule,
     FormsModule,
     CardModule,
-    ScrollPanelModule
+    ScrollPanelModule,
+    ToastModule
   ],
   templateUrl: './productspage.component.html',
-  styleUrl: './productspage.component.css'
+  styleUrl: './productspage.component.css',
+  providers: [MessageService]
 })
 export class ProductspageComponent implements OnInit {
   productId: string = '';
   producto$!: Observable<Producto & { agricultor?: Agricultor }>;
+  userId: string | undefined;
 
   constructor(
     private route: ActivatedRoute,
     private firestore: Firestore,
-    private router: Router
-  ) { }
+    private router: Router,
+    private auth: Auth,
+    private messageService: MessageService
+  ) {
+    // Get current user ID
+    user(this.auth).subscribe(user => {
+      this.userId = user?.uid;
+    });
+  }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -95,27 +108,24 @@ export class ProductspageComponent implements OnInit {
 
     this.menuItems = [
       { label: 'Profile', icon: 'fas fa-user', command: () => this.goToProfile() },
-      { label: 'Settings', icon: 'fas fa-cog', command: () => this.openSettings() },
       { label: 'Cart', icon: 'fas fa-shopping-cart', command: () => this.goToCart() },
       { label: 'Logout', icon: 'fas fa-sign-out-alt', command: () => this.logout() },
     ];
   }
 
-  formatVegetal(vegetal: string): string {
-    return vegetal.toLowerCase()
+  formatVegetal(name: string): string {
+    if (!name) return '';
+    return name
       .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "")
-      .replace(/\s+/g, '-');
+      .replace(/[\u0300-\u036f]/g, '')
+      .toLowerCase()
+      .replace(/\s+/g, '');
   }
 
   menuItems: MenuItem[] = [];
 
   goToProfile() {
-    console.log('Profile clicked');
-  }
-
-  openSettings() {
-    console.log('Settings clicked');
+    this.router.navigate(['/comprador/profile']);
   }
 
   logout() {
@@ -124,5 +134,23 @@ export class ProductspageComponent implements OnInit {
 
   goToCart() {
     console.log('Cart clicked');
+  }
+
+  async addToCart(producto: Producto) {
+    if (!this.userId) {
+      console.error('No user logged in');
+      return;
+    }
+
+    try {
+      const cartCollection = collection(this.firestore, 'carts');
+      await addDoc(cartCollection, {
+        productId: producto.productId,
+        userId: this.userId
+      });
+      this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Producto agregado al carrito' });
+    } catch (error) {
+      console.error('Error adding product to cart:', error);
+    }
   }
 }

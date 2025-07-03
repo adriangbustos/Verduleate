@@ -1,0 +1,174 @@
+<p-toast />
+
+<div class="main">
+    <header>
+        <a id="foto">
+            <img src="../../../assets/LogoCompleto.png" href="comprador/main-comprador" />
+        </a>
+        <div id="busqueda">
+            <div class="searchBox">
+                <input class="searchInput" 
+                       type="text" 
+                       name="search" 
+                       placeholder="¿Qué desea comprar hoy?">
+                <button class="searchButton" >
+                    <i class='bx bx-search-alt-2'></i>
+                </button>
+            </div>
+        </div>
+    </header>
+</div>
+
+<body>
+    <section class="perfil">
+        <div style="display: flex; justify-content: start;">
+            <a href="comprador/main-comprador">Inicio</a>
+            <i class='bx bx-chevron-right' style="font-size: 25px; color: rgb(72, 72, 72); font-weight: lighter;"></i>
+            <a>Perfil</a>
+        </div>
+        <div>
+            <h1 style="font-size: 35px; color: rgb(43, 43, 43);">Perfil</h1>
+        </div>
+        <div style="display: flex; flex-direction: row; margin-top: 20px; width: 100%; gap: 10%;">
+            <div style="width: 60%;">
+                <div>
+                    <h4>Nombre</h4>
+                    <div style="display: flex; justify-content: space-between;">
+                        <p>{{ datauser.fullname }}</p>
+                        <a id="modify" (click)="openEditDialog('fullname')">Modificar</a>
+                    </div>
+                </div>
+                <hr>
+
+                <div>
+                    <h4>Correo</h4>
+                    <div style="display: flex; justify-content: space-between;">
+                        <p>{{ datauser.email }}</p>
+                    </div>
+                </div>
+                <hr>
+                <div>
+                    <h4>Celular</h4>
+                    <div style="display: flex; justify-content: space-between;">
+                        <p>{{ datauser.cellphone }}</p>
+                        <a id="modify" (click)="openEditDialog('cellphone')">Modificar</a>
+                    </div>
+                </div>
+                <hr>
+
+                <div>
+                    <h4>Fecha de Nacimiento</h4>
+                    <div style="display: flex; justify-content: space-between; width: 100%;">
+                        <p>{{ datauser.birthday.toDate() | date:'d \'de\' MMMM \'de\' y' }}</p>
+                    </div>
+                </div>
+            </div>
+            <aside style="width: 35%; padding-top: 35px;  padding-bottom: 35px;">
+                <div style="width: 85%;">
+                    <img src="../../../assets/Sistemas/Candado.svg" width="60px">
+                    <h1>¿Qué datos se pueden editar?</h1>
+                    <p style="font-size: 13px; text-align: justify;">Los datos personales y de contacto pueden editarse.
+                        El cambio de dirección y correo es bajo solicitud por medidas de seguridad.</p>
+                </div>
+                <hr style="width: 85%;">
+                <div style="width: 85%; ">
+                    <img src="../../../assets/Sistemas/Compartir.png" width="60px">
+                    <h1>¿Qué información se comparte con los demás?</h1>
+                    <p style="font-size: 13px; text-align: justify;">Verduléate solo proporciona los datos de contacto
+                    </p>
+                </div>
+            </aside>
+        </div>
+    </section>
+
+</body>
+
+<footer class="footer">
+    <div class="footer-content">
+        <!-- Sobre Nosotros -->
+        <div class="footer-section">
+            <h3>Sobre Verduleate</h3>
+            <p>Conectamos agricultores locales con consumidores, promoviendo una alimentación saludable y sostenible en Ecuador.</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+
+        <!-- Enlaces Útiles -->
+        <div class="footer-section">
+            <h3>Enlaces Útiles</h3>
+            <ul>
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">Productos</a></li>
+                <li><a href="#">Cómo Funciona</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Preguntas Frecuentes</a></li>
+            </ul>
+        </div>
+
+        <!-- Contacto -->
+        <div class="footer-section">
+            <h3>Contacto</h3>
+            <div class="contact-info">
+                <i class="fas fa-map-marker-alt"></i>
+                <p>Guayaquil, Ecuador</p>
+            </div>
+            <div class="contact-info">
+                <i class="fas fa-phone"></i>
+                <p>+593 99 999 9999</p>
+            </div>
+            <div class="contact-info">
+                <i class="fas fa-envelope"></i>
+                <p>info&#64;verduleate.com</p>
+            </div>
+        </div>
+
+        <!-- Newsletter -->
+        <div class="footer-section">
+            <h3>Newsletter</h3>
+            <p>Suscríbete para recibir noticias sobre productos frescos y ofertas especiales.</p>
+            <div class="newsletter-form">
+                <input type="email" placeholder="Tu correo electrónico">
+                <button>
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2025 Verduleate. Todos los derechos reservados.</p>
+    </div>
+</footer>
+
+<p-dialog [(visible)]="displayDialog" header="Actualice sus Datos" [draggable]="false" [modal]="true"
+    [style]="{ width: '25rem' }">
+    <div *ngIf="editingField">
+        <input *ngIf="editingField !== 'cellphone'" type="text" [(ngModel)]="editableData[editingField]"
+            class="p-inputtext p-component">
+
+        <p-inputMask *ngIf="editingField === 'cellphone'" mask="(999) 99-999-9999"
+            [(ngModel)]="editableData.cellphone"></p-inputMask>
+
+        <div style="margin-top: 15px;">
+            <button (click)="updateUserData()" class="buttonSave"><i class='bx bx-save'></i>Guardar</button>
+        </div>
+    </div>
+</p-dialog>
+
+<div *ngIf="isLoading" class="popupLoader">
+    <div class="loading-container">
+        <div class="spinner"></div>
+        <p style="color: white;">Modificando Información</p>
+    </div>
+</div>
+
+<div *ngIf="isLoading2" class="popupLoader">
+    <div class="loading-container">
+        <div class="spinner"></div>
+        <p style="color: white;">Cerrando Sesión</p>
+    </div>
+</div>

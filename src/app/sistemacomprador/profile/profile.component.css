@@ -1,0 +1,371 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+@import "primeicons/primeicons.css";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins';
+}
+
+:host ::ng-deep button:focus {
+    box-shadow: none;
+    border: none;
+}
+
+:host ::ng-deep .p-button:focus {
+    box-shadow: none;
+    border: none;
+}
+
+body {
+    padding-top: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding-block: 20px;
+    border-bottom: 1px solid rgba(89, 89, 89, 0.267);
+    background-color: white;
+}
+
+/* Logo Area */
+#foto, #menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0.20;
+}
+
+#foto img {
+    width: 155px;
+    height: 100%;
+}
+
+/* Search Box */
+#busqueda {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 23%;
+    opacity: 0;
+    user-select: none;
+    pointer-events: none;
+}
+
+.searchBox {
+    display: flex;
+    align-items: center;
+    box-shadow: 0px 4px 30px -25px rgba(0, 0, 0, 0.67);
+    justify-content: space-between;
+    background: #ffffff;
+    height: 50px;
+    border-radius: 50px;
+    width: 400px;
+    position: relative;
+    border: 1px solid green;
+    transition: all 0.3s ease;
+}
+
+.searchBox:focus-within {
+    border-color: rgb(13, 171, 13);
+}
+
+.searchInput {
+    flex: 1;
+    border: none;
+    background: none;
+    outline: none;
+    color: black;
+    font-size: 15px;
+    padding: 20px;
+}
+
+.searchButton {
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    right: 8px;
+    font-size: 20px;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: green;
+    border: 0;
+    margin-right: 5px;
+    transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+}
+
+.searchButton:hover {
+    background-color: rgb(13, 171, 13);
+}
+
+/* PrimeNG Menu Overrides */
+:host ::ng-deep button {
+    outline: none;
+    box-shadow: none;
+}
+
+:host ::ng-deep .profileMenu {
+    width: 150px;
+}
+
+
+.space {
+    height: 20px;
+    width: 100%;
+    background-color: white;
+    border-bottom: 1px solid rgba(0, 128, 0, 0.426);
+}
+
+
+h4 {
+    color: rgb(43, 43, 43);
+    margin-bottom: 5px;
+}
+
+a,
+p {
+    text-decoration: none;
+    color: rgb(72, 72, 72);
+}
+
+hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    opacity: 0.5;
+}
+
+aside {
+    border: 1px solid green;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer {
+    background-color: #f8f9fa;
+    padding: 60px 0 30px;
+    margin-top: 50px;
+    border-top: 1px solid rgba(0, 128, 0, 0.1);
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    padding: 0 20px;
+}
+
+.footer-section h3 {
+    color: #027902;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.footer-section p {
+    color: #666;
+    line-height: 1.6;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 12px;
+}
+
+.footer-section ul li a {
+    color: #666;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-section ul li a:hover {
+    color: #027902;
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.social-links a {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color: #027902;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+    background-color: #015901;
+    transform: translateY(-3px);
+}
+
+.footer-bottom {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(0, 128, 0, 0.1);
+    text-align: center;
+    color: #666;
+}
+
+.contact-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.contact-info i {
+    color: #027902;
+    margin: 0;
+    padding: 0;
+    align-self: center;
+}
+
+.newsletter-form {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.newsletter-form input {
+    flex: 1;
+    padding: 8px 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    outline: none;
+}
+
+.newsletter-form input:focus {
+    border-color: #027902;
+}
+
+.newsletter-form button {
+    padding: 8px 20px;
+    background-color: #027902;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.newsletter-form button:hover {
+    background-color: #015901;
+}
+
+#modify {
+    cursor: pointer;
+    transition: all ease-in-out 0.3s;
+}
+
+#modify:hover {
+    color: green;
+}
+
+.buttonSave {
+    width: 120px;
+    height: 50px;
+    background-color: rgb(4, 188, 4);
+    border-radius: 10px;
+    border: 1px solid rgb(4, 188, 4);
+    cursor: pointer;
+    transition: all ease-in-out 0.2s;
+    display: flex;
+    color: white;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    font-size: 15px;
+    font-weight: 400;
+    margin-top: 25px;
+}
+
+i {
+    font-size: 20px;
+    color: white;
+}
+
+:host ::ng-deep .p-inputtext:focus {
+    outline: none;
+    border-color: green;
+    box-shadow: none;
+}
+
+:host ::ng-deep .p-inputtext {
+    height: 40px;
+    padding: 10px;
+    width: 90%;
+}
+
+:host ::ng-deep .p-inputtext:hover {
+    border-color: green;
+}
+
+.popupLoader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Fondo oscuro translúcido */
+    z-index: 1000;
+}
+
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 18px;
+}
+
+.spinner {
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top: 4px solid white;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin-bottom: 5px;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}

@@ -24,17 +24,17 @@ import { BadgeModule } from 'primeng/badge';
   selector: 'app-mainpage',
   standalone: true,
   imports: [
-    ScrollPanelModule, 
-    RouterModule, 
-    ScrollTopModule, 
-    FormsModule, 
-    CarouselModule, 
-    CardModule, 
-    DialogModule, 
-    RatingModule, 
-    ToastModule, 
-    MenuModule, 
-    ButtonModule, 
+    ScrollPanelModule,
+    RouterModule,
+    ScrollTopModule,
+    FormsModule,
+    CarouselModule,
+    CardModule,
+    DialogModule,
+    RatingModule,
+    ToastModule,
+    MenuModule,
+    ButtonModule,
     CommonModule,
     OverlayPanelModule,
     BadgeModule
@@ -69,7 +69,7 @@ export class MainpageComponent implements OnInit {
     { nombre: 'Frutos', icono: 'fas fa-apple-alt', clase: 'Frutos' },
     { nombre: 'Semillas', icono: 'fas fa-seedling', clase: 'Semillas' }
   ];
-  
+
   // Lista completa de provincias del Ecuador
   todasProvinciasEcuador: string[] = [
     'Azuay', 'Bolívar', 'Cañar', 'Carchi', 'Chimborazo', 'Cotopaxi',
@@ -88,15 +88,15 @@ export class MainpageComponent implements OnInit {
   searchQuery: string = '';
   showFiltersMenu: boolean = false;
   sortOptions: MenuItem[] = [
-    { 
-      label: 'Precio', 
+    {
+      label: 'Precio',
       items: [
         { label: 'Mayor a menor', command: () => this.sortProducts('price', 'desc') },
         { label: 'Menor a mayor', command: () => this.sortProducts('price', 'asc') }
       ]
     },
     {
-      label: 'Fecha', 
+      label: 'Fecha',
       items: [
         { label: 'Más recientes', command: () => this.sortProducts('date', 'desc') },
         { label: 'Más antiguos', command: () => this.sortProducts('date', 'asc') }
@@ -114,7 +114,6 @@ export class MainpageComponent implements OnInit {
   ngOnInit() {
     this.menuItems = [
       { label: 'Profile', icon: 'fas fa-user', command: () => this.goToProfile() },
-      { label: 'Settings', icon: 'fas fa-cog', command: () => this.openSettings() },
       { label: 'Cart', icon: 'fas fa-shopping-cart', command: () => this.goToCart() },
       { label: 'Logout', icon: 'fas fa-sign-out-alt', command: () => this.logout() },
     ];
@@ -145,7 +144,7 @@ export class MainpageComponent implements OnInit {
 
     this.productosFiltrados = [];
     const categoriaSeleccionada = this.categorias.find(cat => cat.nombre === this.selectedCategory);
-    
+
     if (categoriaSeleccionada) {
       Object.values(this.productosPorProvincia).forEach(productos => {
         productos.forEach(producto => {
@@ -163,11 +162,7 @@ export class MainpageComponent implements OnInit {
   }
 
   goToProfile() {
-    console.log('Profile clicked');
-  }
-
-  openSettings() {
-    console.log('Settings clicked');
+    this.router.navigate(['/comprador/profile']);
   }
 
   logout() {
@@ -188,19 +183,19 @@ export class MainpageComponent implements OnInit {
     this.isLoading = true;
     const productosRef = collection(this.firestore, 'productos');
     const MINIMUM_PRODUCTS = 7;
-    
+
     this.todasProvinciasEcuador.forEach(provincia => {
       this.productosPorProvincia[provincia] = [];
     });
-    
+
     collectionData(productosRef, { idField: 'id' }).subscribe((productos) => {
       this.todasProvinciasEcuador.forEach(provincia => {
         this.productosPorProvincia[provincia] = [];
       });
-      
+
       productos.forEach((product: any) => {
         const provincia = product.provincia?.state;
-        
+
         if (provincia && this.todasProvinciasEcuador.includes(provincia)) {
           this.productosPorProvincia[provincia].push({
             ...product,
@@ -208,11 +203,11 @@ export class MainpageComponent implements OnInit {
           });
         }
       });
-      
-      this.provincias = this.todasProvinciasEcuador.filter(provincia => 
+
+      this.provincias = this.todasProvinciasEcuador.filter(provincia =>
         this.productosPorProvincia[provincia].length >= MINIMUM_PRODUCTS
       );
-      
+
       this.isLoading = false;
     });
   }
@@ -230,7 +225,7 @@ export class MainpageComponent implements OnInit {
     const carousel = this.carousels.find((item, index) => {
       return this.provincias[index] === provincia;
     });
-    
+
     if (carousel) {
       const event = new MouseEvent('click');
       if (direction === 1) {
@@ -258,10 +253,10 @@ export class MainpageComponent implements OnInit {
     this.vistaCarrusel = false;
     this.isLoadingCategory = true;
     this.selectedCategory = null;
-    
+
     const query = this.searchQuery.toLowerCase().trim();
     this.productosFiltrados = [];
-    
+
     Object.values(this.productosPorProvincia).forEach(productos => {
       productos.forEach(producto => {
         if (producto.Vegetal.toLowerCase().includes(query)) {
@@ -276,22 +271,22 @@ export class MainpageComponent implements OnInit {
   }
 
   sortProducts(criteria: 'price' | 'date' | 'alpha', order: 'asc' | 'desc') {
-    const products = this.vistaCarrusel ? 
-      Object.values(this.productosPorProvincia).flat() : 
+    const products = this.vistaCarrusel ?
+      Object.values(this.productosPorProvincia).flat() :
       this.productosFiltrados;
 
     if (criteria === 'price') {
       products.sort((a, b) => {
-        return order === 'asc' ? 
-          a.precio - b.precio : 
+        return order === 'asc' ?
+          a.precio - b.precio :
           b.precio - a.precio;
       });
     } else if (criteria === 'date') {
       products.sort((a, b) => {
         const dateA = a.creationDate?.seconds || 0;
         const dateB = b.creationDate?.seconds || 0;
-        return order === 'asc' ? 
-          dateA - dateB : 
+        return order === 'asc' ?
+          dateA - dateB :
           dateB - dateA;
       });
     } else if (criteria === 'alpha') {
