@@ -1,39 +1,21 @@
 <p-toast />
 
-<div class="main">
     <header>
-        <a id="foto" href="agricultor/main-agricultor/productos">
-            <img src="../../../assets/LogoCompleto.png" />
+        <a id="foto">
+            <img src="../../../assets/LogoCompleto.png" href="agricultor/main-agricultor" />
         </a>
-        <div id="menu">
-            <label class="popup">
-                <input type="checkbox" />
-                <div tabindex="0" class="burger">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                        style="fill: rgb(5, 120, 20);">
-                        <path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"></path>
-                    </svg>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24"
-                        style="fill: rgb(5, 120, 20); margin-left: 7px;">
-                        <path
-                            d="M12 2C6.579 2 2 6.579 2 12s4.579 10 10 10 10-4.579 10-10S17.421 2 12 2zm0 5c1.727 0 3 1.272 3 3s-1.273 3-3 3c-1.726 0-3-1.272-3-3s1.274-3 3-3zm-5.106 9.772c.897-1.32 2.393-2.2 4.106-2.2h2c1.714 0 3.209.88 4.106 2.2C15.828 18.14 14.015 19 12 19s-3.828-.86-5.106-2.228z">
-                        </path>
-                    </svg>
-                </div>
-                <nav class="popup-window">
-                    <ul>
-                        <li>
-                            <button (click)="onLogout()">
-                                <span>Cerrar Sesión</span>
-                            </button>
-                        </li>
-                    </ul>
-                </nav>
-            </label>
+        <div id="busqueda">
+            <div class="searchBox">
+                <input class="searchInput" 
+                       type="text" 
+                       name="search" 
+                       placeholder="¿Qué desea comprar hoy?">
+                <button class="searchButton" >
+                    <i class='bx bx-search-alt-2'></i>
+                </button>
+            </div>
         </div>
     </header>
-    <div class="space"></div>
-</div>
 
 <body>
     <section class="perfil">
@@ -90,31 +72,64 @@
 </body>
 
 
-<footer class="pie-pagina">
-    <div class="grupo-1">
-        <div class="box2">
-            <figure>
-                <a href="index.html">
-                    <img src="../../../assets/LogoV.png">
-                </a>
-            </figure>
+<footer class="footer">
+    <div class="footer-content">
+        <!-- Sobre Nosotros -->
+        <div class="footer-section">
+            <h3>Sobre Verduleate</h3>
+            <p>Conectamos agricultores locales con consumidores, promoviendo una alimentación saludable y sostenible en Ecuador.</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
         </div>
-        <div class="box2">
-            <h2>NUESTROS SISTEMAS</h2>
-            <a>- Agricultor</a> <br>
-            <a>- Comprador</a>
+
+        <!-- Enlaces Útiles -->
+        <div class="footer-section">
+            <h3>Enlaces Útiles</h3>
+            <ul>
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">Productos</a></li>
+                <li><a href="#">Cómo Funciona</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Preguntas Frecuentes</a></li>
+            </ul>
         </div>
-        <div class="box2">
-            <h2>SÍGANOS</h2>
-            <div class="red-social">
-                <a href="https://www.instagram.com/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-                <a href="https://twitter.com/" target="_blank"><i class="fa-brands fa-twitter"></i></a>
-                <a href="https://www.youtube.com/" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+
+        <!-- Contacto -->
+        <div class="footer-section">
+            <h3>Contacto</h3>
+            <div class="contact-info">
+                <i class="fas fa-map-marker-alt"></i>
+                <p>Guayaquil, Ecuador</p>
+            </div>
+            <div class="contact-info">
+                <i class="fas fa-phone"></i>
+                <p>+593 99 999 9999</p>
+            </div>
+            <div class="contact-info">
+                <i class="fas fa-envelope"></i>
+                <p>info&#64;verduleate.com</p>
+            </div>
+        </div>
+
+        <!-- Newsletter -->
+        <div class="footer-section">
+            <h3>Newsletter</h3>
+            <p>Suscríbete para recibir noticias sobre productos frescos y ofertas especiales.</p>
+            <div class="newsletter-form">
+                <input type="email" placeholder="Tu correo electrónico">
+                <button>
+                    <i class="fas fa-paper-plane"></i>
+                </button>
             </div>
         </div>
     </div>
-    <div class="grupo-2">
-        <small>Verduléate - Todos los Derechos Reservados &copy; 2025 </small>
+
+    <div class="footer-bottom">
+        <p>&copy; 2025 Verduleate. Todos los derechos reservados.</p>
     </div>
 </footer>
 
