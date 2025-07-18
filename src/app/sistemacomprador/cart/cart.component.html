@@ -1,1 +1,75 @@
-<p>cart works!</p>
+<div class="cart-container">
+  <div class="cart-header">
+    <h1>Mi Carrito</h1>
+    <a (click)="goToMainPage()" class="continue-shopping">
+      ← Continuar Comprando
+    </a>
+  </div>
+
+  <div class="cart-content">
+    <!-- Loading State -->
+    <div class="loading-state" *ngIf="isLoading">
+      <p>Cargando tu carrito...</p>
+    </div>
+
+    <!-- Cart Content when not loading -->
+    <ng-container *ngIf="!isLoading">
+      <div class="cart-items">
+        <!-- Cart Items -->
+        <div class="cart-item" *ngFor="let item of cartItems">
+          <div class="item-image">
+            <img [src]="'/assets/vegetales/' + item.productDetails?.formattedVegetal + '.png'" [alt]="item.productDetails?.Vegetal">
+          </div>
+          <div class="item-details">
+            <h3>{{item.productDetails?.Vegetal}}</h3>
+            <p class="seller">{{item.productDetails?.agricultor}}</p>
+            <div class="item-controls">
+              <div class="quantity-controls">
+                <button class="quantity-btn" (click)="updateQuantity(item, -1)">-</button>
+                <span class="quantity">{{item.quantity | number:'1.2-2'}}</span>
+                <button class="quantity-btn" (click)="updateQuantity(item, 1)">+</button>
+              </div>
+              <button class="remove-btn" (click)="removeItem(item.id)">Eliminar</button>
+            </div>
+          </div>
+          <div class="item-price">
+            <p class="price">${{calculateItemTotal(item) | number:'1.2-2'}}</p>
+            <p class="unit-price">${{item.productDetails?.precio | number:'1.2-2'}} / {{item.productDetails?.medida?.peso}}</p>
+          </div>
+        </div>
+
+        <!-- Empty State -->
+        <div class="empty-cart" *ngIf="cartItems.length === 0">
+          <img src="assets/Sistemas/emptyBox.svg" alt="Carrito vacío">
+          <h2>Tu carrito está vacío</h2>
+          <p>¡Explora nuestros productos frescos y llena tu carrito!</p>
+          <a (click)="goToMainPage()" class="start-shopping-btn">
+            Comenzar a Comprar
+          </a>
+        </div>
+      </div>
+
+      <!-- Cart Summary -->
+      <div class="cart-summary" *ngIf="cartItems.length > 0">
+        <h2>Resumen del Pedido</h2>
+        <div class="summary-details">
+          <div class="summary-row">
+            <span>Subtotal</span>
+            <span>${{getTotal() | number:'1.2-2'}}</span>
+          </div>
+          <div class="summary-row">
+            <span>Envío</span>
+            <span>Gratis</span>
+          </div>
+          <div class="summary-row total">
+            <span>Total</span>
+            <span>${{getTotal() | number:'1.2-2'}}</span>
+          </div>
+        </div>
+        <button class="checkout-btn" (click)="proceedToCheckout()">
+          Proceder al Pago
+        </button>
+      </div>
+    </ng-container>
+  </div>
+</div>

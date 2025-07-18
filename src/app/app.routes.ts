@@ -4,6 +4,9 @@ import { LandingpageComponent } from './landingpage/landingpage.component';
 export const routes: Routes = [
   { path: 'landing', component: LandingpageComponent },
   { path: '', redirectTo: '/landing', pathMatch: 'full' },  // Redirige al landing por defecto
+  // Redirect route for Stripe success URL
+  { path: 'payment-success', redirectTo: 'comprador/payment-success', pathMatch: 'full' },
+  { path: 'cart', redirectTo: 'comprador/cart', pathMatch: 'full' },
   {
     path: 'comprador',  // Ruta para el sistema comprador
     loadChildren: () =>

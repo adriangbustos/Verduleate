@@ -45,14 +45,16 @@
         <!-- Vista de Carrusel -->
         <div *ngIf="vistaCarrusel">
             <!-- Loading skeletons para carrusel -->
-            <div *ngIf="isLoading" class="province-carousel" style="margin-bottom: 20px;">
-                <div class="skeleton skeleton-province-title"></div>
-                <div class="skeleton-carousel">
-                    <div *ngFor="let item of skeletonArray" class="skeleton-card">
-                        <div class="skeleton skeleton-image"></div>
-                        <div class="skeleton skeleton-title"></div>
-                        <div class="skeleton-price-rating">
-                            <div class="skeleton skeleton-rating"></div>
+            <div *ngIf="isLoading">
+                <div *ngFor="let i of [1,2,3]" class="province-carousel" style="margin-bottom: 20px;">
+                    <div class="skeleton skeleton-province-title"></div>
+                    <div class="skeleton-carousel">
+                        <div *ngFor="let item of skeletonArray" class="skeleton-card">
+                            <div class="skeleton skeleton-image"></div>
+                            <div class="skeleton skeleton-title"></div>
+                            <div class="skeleton-price-rating">
+                                <div class="skeleton skeleton-rating"></div>
+                            </div>
                         </div>
                     </div>
                 </div>

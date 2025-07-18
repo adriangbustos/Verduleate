@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 interface Order {
   productName: string;
@@ -17,6 +18,15 @@ interface Order {
   encapsulation: ViewEncapsulation.None
 })
 export class MainPageAdminComponent implements OnInit {
+
+  constructor(
+    private router: Router,
+  ) { }
+
+  goToChat(){
+    this.router.navigate(['/admin/chat']);
+  }
+
   orders: Order[] = [
     {
       productName: 'Tutorial de JavaScript',
