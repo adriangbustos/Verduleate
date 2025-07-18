@@ -133,7 +133,7 @@ export class ProductspageComponent implements OnInit {
   }
 
   goToCart() {
-    console.log('Cart clicked');
+    this.router.navigate(['/comprador/cart']);
   }
 
   async addToCart(producto: Producto) {
@@ -146,11 +146,13 @@ export class ProductspageComponent implements OnInit {
       const cartCollection = collection(this.firestore, 'carts');
       await addDoc(cartCollection, {
         productId: producto.productId,
-        userId: this.userId
+        userId: this.userId,
+        quantity: 0
       });
       this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Producto agregado al carrito' });
     } catch (error) {
       console.error('Error adding product to cart:', error);
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: 'No se pudo agregar el producto al carrito' });
     }
   }
 }

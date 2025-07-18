@@ -533,7 +533,6 @@ body {
     0% {
         background-color: rgba(0, 128, 0, 0.1);
     }
-
     100% {
         background-color: rgba(0, 128, 0, 0.25);
     }
@@ -542,6 +541,14 @@ body {
 .skeleton-card {
     width: 175px;
     padding: 0.5rem;
+}
+
+.skeleton-carousel {
+    display: flex;
+    /* Calculate the gap to distribute remaining space evenly between the 7 fixed-width cards */
+    gap: calc((100% - (175px * 7)) / 6);
+    overflow: hidden;
+    padding: 1rem 0;
 }
 
 .skeleton-image {
@@ -568,13 +575,6 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-
-.skeleton-carousel {
-    display: flex;
-    gap: 1rem;
-    overflow: hidden;
-    padding: 1rem 0;
 }
 
 .skeleton-province-title {

@@ -61,7 +61,7 @@ export class ProfileComponent implements OnInit {
   }
 
   goToCart() {
-    console.log('Cart clicked');
+    this.router.navigate(['/comprador/cart']);
   }
   
   datauser: any = {};

@@ -4,7 +4,7 @@ import { Auth, signInWithEmailAndPassword, createUserWithEmailAndPassword, getAu
 import { initializeApp } from 'firebase/app';
 import { firebaseConfig } from '../../environments/environment';
 import { Firestore, collection, addDoc, doc, setDoc, updateDoc, getDoc, getDocs, where, query, onSnapshot, DocumentSnapshot, Timestamp, deleteDoc } from '@angular/fire/firestore';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { Password } from 'primeng/password';
 
@@ -360,6 +360,24 @@ export class AuthService {
   // Método para obtener el usuario actual
   getCurrentUser(): User | null {
     return this.auth.currentUser; // Retorna el usuario actual o null
+  }
+
+  // Nuevo método que retorna un Observable del usuario actual
+  getCurrentUserObservable(): Observable<User | null> {
+    return new Observable<User | null>(observer => {
+      const unsubscribe = onAuthStateChanged(this.auth, 
+        (user) => {
+          observer.next(user);
+        },
+        (error) => {
+          console.error('Auth state error:', error);
+          observer.error(error);
+        }
+      );
+      
+      // Return cleanup function
+      return () => unsubscribe();
+    });
   }
 
   async getUserData(userId: string) {

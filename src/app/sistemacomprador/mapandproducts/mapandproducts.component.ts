@@ -259,6 +259,6 @@ export class MapandproductsComponent implements OnInit {
   }
 
   goToCart() {
-    console.log('Cart clicked');
+    this.router.navigate(['/comprador/cart']);
   }
 }
