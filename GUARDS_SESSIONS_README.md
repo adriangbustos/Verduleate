@@ -2,7 +2,7 @@
 
 ## 📋 Resumen de Implementación
 
-Se han implementado **Guards de seguridad** y **recuperación de sesión** para ambos sistemas (Agricultor y Comprador).
+Se han implementado **Guards de seguridad**, **recuperación de sesión** y **loader global** para ambos sistemas (Agricultor y Comprador).
 
 ## 🛡️ Guards Creados
 
@@ -24,6 +24,24 @@ El componente sidebar ahora implementa `OnInit` para:
 - ✅ Redirigir al onboarding si no está completado
 - ✅ Mostrar mensajes de error apropiados
 - ✅ Limpiar sesión si hay errores
+
+## ⏳ Loader Global
+
+### LoadingService
+Servicio centralizado que controla el estado de carga:
+- Observable `loading$` para suscribirse
+- Métodos `show()` y `hide()` 
+- Usado automáticamente por todos los guards
+
+### GlobalLoaderComponent
+Componente visual que muestra:
+- ✨ Spinner animado con colores del tema
+- 📝 Mensaje "Cargando..."
+- 🎨 Fondo translúcido blanco
+- 📍 Posición fija centrada
+- 🔝 Z-index alto (9999) para estar sobre todo
+
+**Beneficio:** Elimina las pantallas blancas durante la verificación de autenticación
 
 ## 📦 Servicio de Sesión (SessionService)
 
@@ -90,23 +108,31 @@ ngOnInit → restoreUserSession()
 | **Guards** | Seguridad en rutas, previene acceso no autorizado |
 | **ngOnInit en Sidebar** | Carga rápida de sesión, mejor UX |
 | **SessionService** | Estado centralizado, fácil acceso desde cualquier componente |
+| **LoadingService + GlobalLoader** | Elimina pantallas blancas, mejor experiencia visual |
 | **Manejo de errores** | Feedback claro al usuario con toast messages |
 | **Auto-redirección** | Lleva al usuario a la ruta correcta automáticamente |
 
 ## 🧪 Cómo Probar
 
 1. **Cerrar sesión** → Intentar acceder a `/agricultor/main-agricultor`
-   - Debería redirigir a `/agricultor/login-agricultor`
+   - Debería mostrar el loader brevemente
+   - Luego redirigir a `/agricultor/login-agricultor`
 
 2. **Iniciar sesión** → Recargar página
-   - La sesión debería mantenerse
-   - Los datos del usuario se cargan automáticamente
+   - Verás el loader mientras verifica la sesión
+   - La sesión se mantiene y los datos se cargan automáticamente
 
 3. **Usuario sin onboarding** → Iniciar sesión
+   - Loader aparece
    - Debería redirigir a `/agricultor/onboarding-agricultor`
 
 4. **Usuario con onboarding** → Intentar acceder a onboarding
+   - Loader aparece
    - Debería redirigir a `/agricultor/main-agricultor`
+
+5. **Navegación entre rutas protegidas**
+   - El loader aparece brevemente en cada cambio de ruta
+   - No más pantallas blancas ✨
 
 ## 🔧 Uso del SessionService en otros componentes
 
@@ -129,6 +155,41 @@ export class MiComponente {
   }
 }
 ```
+
+## 🎨 Uso del LoadingService en tus componentes
+
+Puedes reutilizar el `LoadingService` en cualquier componente para operaciones asíncronas:
+
+```typescript
+import { LoadingService } from '../../services/loading.service';
+
+export class MiComponente {
+  constructor(private loadingService: LoadingService) {}
+  
+  async cargarDatos() {
+    this.loadingService.show(); // Muestra el loader global
+    
+    try {
+      // Tu lógica aquí
+      const datos = await this.authService.getDocument('coleccion', 'id');
+      // Procesar datos...
+    } catch (error) {
+      console.error('Error:', error);
+    } finally {
+      this.loadingService.hide(); // Siempre ocultar en finally
+    }
+  }
+  
+  // También puedes verificar si está cargando
+  verificarEstado() {
+    if (this.loadingService.isLoading()) {
+      console.log('Ya hay una operación en curso');
+    }
+  }
+}
+```
+
+**Ventaja:** Un solo loader global para toda la aplicación, consistencia visual.
 
 ## 📝 Notas Importantes
 

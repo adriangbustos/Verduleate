@@ -2,17 +2,22 @@ import { inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { CanActivateFn } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import { LoadingService } from '../services/loading.service';
 
 export const authCompradorGuard: CanActivateFn = async (route, state) => {
   const router = inject(Router);
   const authService = inject(AuthService);
+  const loadingService = inject(LoadingService);
 
   try {
+    loadingService.show();
+    
     // Verifica si el usuario está autenticado
     const isAuthenticated = await authService.isAuthenticatedPromise();
     
     if (!isAuthenticated) {
       console.log('Usuario no autenticado, redirigiendo al login de comprador');
+      loadingService.hide();
       router.navigate(['/comprador/login-comprador']);
       return false;
     }
@@ -22,6 +27,7 @@ export const authCompradorGuard: CanActivateFn = async (route, state) => {
     
     if (!currentUser) {
       console.log('No se pudo obtener el usuario actual');
+      loadingService.hide();
       router.navigate(['/comprador/login-comprador']);
       return false;
     }
@@ -31,15 +37,18 @@ export const authCompradorGuard: CanActivateFn = async (route, state) => {
     
     if (!compradorData) {
       console.log('Usuario no encontrado en la colección de compradores');
+      loadingService.hide();
       router.navigate(['/comprador/login-comprador']);
       return false;
     }
 
     console.log('Acceso autorizado para comprador:', currentUser.uid);
+    loadingService.hide();
     return true;
     
   } catch (error) {
     console.error('Error en el guard de autenticación:', error);
+    loadingService.hide();
     router.navigate(['/comprador/login-comprador']);
     return false;
   }
