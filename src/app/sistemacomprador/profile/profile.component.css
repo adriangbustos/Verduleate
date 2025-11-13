@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
-@import "primeicons/primeicons.css";
 
 * {
     margin: 0;
@@ -24,8 +23,36 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    max-width: 100vw;
+    overflow-x: hidden;
 }
 
+:host ::ng-deep .p-inputtext textarea {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+textarea {
+    width: 100%;
+    max-width: 500px;
+    height: 175px;
+    padding: 12px;
+    font-size: 16px;
+    line-height: 1.5;
+    resize: none !important;
+    font-family: Arial, sans-serif;
+    border: 1px solid grey;
+    border-radius: 8px;
+    background-color: #ffffff;
+    color: #4b5563;
+    outline: none;
+    transition: all 0.3s ease-in-out;
+    resize: vertical;
+}
+
+textarea:focus {
+    border-color: green;
+}
 header {
     display: flex;
     justify-content: space-between;
@@ -109,25 +136,6 @@ header {
     background-color: rgb(13, 171, 13);
 }
 
-/* PrimeNG Menu Overrides */
-:host ::ng-deep button {
-    outline: none;
-    box-shadow: none;
-}
-
-:host ::ng-deep .profileMenu {
-    width: 150px;
-}
-
-
-.space {
-    height: 20px;
-    width: 100%;
-    background-color: white;
-    border-bottom: 1px solid rgba(0, 128, 0, 0.426);
-}
-
-
 h4 {
     color: rgb(43, 43, 43);
     margin-bottom: 5px;
@@ -137,6 +145,16 @@ a,
 p {
     text-decoration: none;
     color: rgb(72, 72, 72);
+}
+
+.perfil {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 68%;
+    background-color: white;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 hr {
@@ -152,6 +170,7 @@ aside {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    max-width: 100%;
 }
 
 .footer {
@@ -306,6 +325,7 @@ aside {
     margin-top: 25px;
 }
 
+
 i {
     font-size: 20px;
     color: white;
@@ -368,4 +388,9 @@ i {
     100% {
         transform: rotate(360deg);
     }
+}
+
+.questions {
+    color: rgb(43, 43, 43);
+    font-size: 20px;
 }

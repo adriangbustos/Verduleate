@@ -39,31 +39,13 @@ export class ProfileComponent implements OnInit {
     private cdRef: ChangeDetectorRef // 🔥 Inyecta ChangeDetectorRef
   ) { }
 
-  menuItems: MenuItem[] = [];
   
   
   ngOnInit() {
     this.getData()
-    this.menuItems = [
-      { label: 'Profile', icon: 'fas fa-user', command: () => this.goToProfile() },
-      { label: 'Cart', icon: 'fas fa-shopping-cart', command: () => this.goToCart() },
-      { label: 'Logout', icon: 'fas fa-sign-out-alt', command: () => this.logout() },
-    ];
-  }
 
-
-  goToProfile() {
-    this.router.navigate(['/comprador/profile']);
   }
-
-  logout() {
-    console.log('Logged out');
-  }
-
-  goToCart() {
-    this.router.navigate(['/comprador/cart']);
-  }
-  
+    
   datauser: any = {};
   editableData: any = {};
   displayDialog: boolean = false;

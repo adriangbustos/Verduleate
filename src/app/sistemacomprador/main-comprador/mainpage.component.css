@@ -8,6 +8,11 @@
     font-family: 'Poppins';
 }
 
+:host {
+  display: block;
+  height: 100vh; /* altura total solo en este componente */
+}
+
 :host ::ng-deep button {
     outline: none;
     box-shadow: none;
@@ -43,7 +48,7 @@ header {
 }
 
 :host ::ng-deep .profileMenu {
-    width: 150px;
+    width: 175px;
 }
 
 #foto,
@@ -400,10 +405,12 @@ body {
 
 /* Footer Styles */
 .footer {
-    background-color: #f8f9fa;
-    padding: 60px 0 30px;
-    margin-top: 50px;
-    border-top: 1px solid rgba(0, 128, 0, 0.1);
+  background-color: #f8f9fa;
+  padding: 60px 0 30px;
+  /* quitamos margin-top:50px y usamos auto para 'sticky footer' */
+  margin-top: auto;
+  border-top: 1px solid rgba(0, 128, 0, 0.1);
+  width: 100%;
 }
 
 .footer-content {
@@ -583,4 +590,61 @@ body {
     border-radius: 4px;
     margin-bottom: 0.1rem;
     margin-left: 9px;
+}
+
+
+
+.mainpage-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* toma el 100% del host */
+}
+
+.mainpage-content {
+  flex: 1; /* empuja footer */
+  display: flex;
+  flex-direction: column;
+}
+
+.popupLoader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Fondo oscuro translúcido */
+    z-index: 1000;
+}
+
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 18px;
+}
+
+.spinner {
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top: 4px solid white;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin-bottom: 5px;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }

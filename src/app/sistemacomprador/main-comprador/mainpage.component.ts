@@ -53,6 +53,7 @@ export class MainpageComponent implements OnInit {
   productosPorProvincia: { [key: string]: any[] } = {};
   provincias: string[] = [];
   isLoading: boolean = true;
+  isLoading2: boolean = false;
   isLoadingCategory: boolean = false;
   skeletonArray = new Array(7);
   selectedCategory: string | null = null;
@@ -113,9 +114,9 @@ export class MainpageComponent implements OnInit {
 
   ngOnInit() {
     this.menuItems = [
-      { label: 'Profile', icon: 'fas fa-user', command: () => this.goToProfile() },
-      { label: 'Cart', icon: 'fas fa-shopping-cart', command: () => this.goToCart() },
-      { label: 'Logout', icon: 'fas fa-sign-out-alt', command: () => this.logout() },
+      { label: 'Perfil', icon: 'fas fa-user', command: () => this.goToProfile() },
+      { label: 'Carrito', icon: 'fas fa-shopping-cart', command: () => this.goToCart() },
+      { label: 'Cerrar Sesión', icon: 'fas fa-sign-out-alt', command: () => this.logout() },
     ];
 
     this.cargarProductosPorProvincia();
@@ -165,8 +166,27 @@ export class MainpageComponent implements OnInit {
     this.router.navigate(['/comprador/profile']);
   }
 
-  logout() {
-    console.log('Logged out');
+  async logout() {
+    try {
+      this.isLoading2 = true;
+
+      await this.authService.logout();
+
+      // Espera 1 segundo
+      await new Promise(resolve => setTimeout(resolve, 1000));
+
+      this.isLoading2 = false;
+      this.router.navigate(['comprador/login-comprador']);
+
+    } catch (error: any) {
+      this.isLoading2 = false;
+      const cleanMessage = error.toString().replace(/^Error:\s*/, '');
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Error',
+        detail: cleanMessage
+      });
+    }
   }
 
   goToCart() {
@@ -176,11 +196,13 @@ export class MainpageComponent implements OnInit {
   constructor(
     private router: Router,
     private authService: AuthService,
-    private firestore: Firestore
+    private firestore: Firestore,
+    private messageService: MessageService
   ) { }
 
   async cargarProductosPorProvincia() {
     this.isLoading = true;
+
     const productosRef = collection(this.firestore, 'productos');
     const MINIMUM_PRODUCTS = 7;
 

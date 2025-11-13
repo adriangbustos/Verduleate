@@ -49,3 +49,5 @@ Thumbs.db
 src/environments
 
 src/server/
+
+src/app/app.config.ts
