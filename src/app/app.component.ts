@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { GlobalLoaderComponent } from './components/global-loader/global-loader.component';
+import { GlobalLoaderComponent } from './components/global-loader.component';
 
 @Component({
   selector: 'app-root',
