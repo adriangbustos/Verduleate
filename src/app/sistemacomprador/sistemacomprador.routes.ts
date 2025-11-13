@@ -8,16 +8,46 @@ import { ProductspageComponent } from './productspage/productspage.component';
 import { ProfileComponent } from './profile/profile.component';
 import { CartComponent } from './cart/cart.component';
 import { PaymentSuccessComponent } from './payment-success/payment-success.component';
+import { authCompradorGuard } from '../guards/auth-comprador.guard';
+import { onboardingCompradorGuard } from '../guards/onboarding-comprador.guard';
 
 export const compradorRoutes: Routes = [
   { path: '', redirectTo: 'main-comprador', pathMatch: 'full' },
   { path: 'login-comprador', component: LoginComponent },
   { path: 'signup-comprador', component: SignUpComponent },
-  { path: 'main-comprador', component: MainpageComponent },
-  { path: 'onboarding-comprador', component: OnboardingComponent },
-  { path: 'verduras/:provincia', component: MapandproductsComponent },
-  { path: 'product/:id', component: ProductspageComponent },
-  { path: 'profile', component: ProfileComponent },
-  { path: 'cart', component: CartComponent },
-  { path: 'payment-success', component: PaymentSuccessComponent }
+  { 
+    path: 'main-comprador', 
+    component: MainpageComponent,
+    canActivate: [authCompradorGuard]
+  },
+  { 
+    path: 'onboarding-comprador', 
+    component: OnboardingComponent,
+    canActivate: [onboardingCompradorGuard]
+  },
+  { 
+    path: 'verduras/:provincia', 
+    component: MapandproductsComponent,
+    canActivate: [authCompradorGuard]
+  },
+  { 
+    path: 'product/:id', 
+    component: ProductspageComponent,
+    canActivate: [authCompradorGuard]
+  },
+  { 
+    path: 'profile', 
+    component: ProfileComponent,
+    canActivate: [authCompradorGuard]
+  },
+  { 
+    path: 'cart', 
+    component: CartComponent,
+    canActivate: [authCompradorGuard]
+  },
+  { 
+    path: 'payment-success', 
+    component: PaymentSuccessComponent,
+    canActivate: [authCompradorGuard]
+  }
 ];

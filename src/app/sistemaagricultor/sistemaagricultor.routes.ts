@@ -9,16 +9,31 @@ import { OnboardingAgricultorComponent } from './onboarding-agricultor/onboardin
 import { ProfileAgricultorComponent } from './profile-agricultor/profile-agricultor.component';
 import { HaciendaComponent } from './hacienda/hacienda.component';
 import { SupportComponent } from './support/support.component';
+import { authAgricultorGuard } from '../guards/auth-agricultor.guard';
+import { onboardingAgricultorGuard } from '../guards/onboarding-agricultor.guard';
 
 export const agricultorRoutes: Routes = [
   { path: 'login-agricultor', component: LoginComponent2 },
   { path: 'signup-agricultor', component: SignupComponent2 },
-  { path: 'onboarding-agricultor', component: OnboardingAgricultorComponent },
-  { path: 'profile-agricultor', component: ProfileAgricultorComponent },
-  { path: 'hacienda', component: HaciendaComponent },
+  { 
+    path: 'onboarding-agricultor', 
+    component: OnboardingAgricultorComponent,
+    canActivate: [onboardingAgricultorGuard]
+  },
+  { 
+    path: 'profile-agricultor', 
+    component: ProfileAgricultorComponent,
+    canActivate: [authAgricultorGuard]
+  },
+  { 
+    path: 'hacienda', 
+    component: HaciendaComponent,
+    canActivate: [authAgricultorGuard]
+  },
   {
     path: 'main-agricultor',
     component: SidebarComponent,
+    canActivate: [authAgricultorGuard],
     children: [
       { path: '', redirectTo: 'productos', pathMatch: 'full' },
       { path: 'productos', component: ProductsAgricultorComponent },
