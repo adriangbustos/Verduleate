@@ -10,12 +10,12 @@
         </div>
     </div>
     <div id="menu">
-        <p-menu styleClass="profileMenu" #profileMenu [model]="menuItems" popup></p-menu>
-        <button type="button" pButton (click)="profileMenu.toggle($event)">
-            <i class="pi pi-user"></i>
-            <i class="pi pi-bars"></i>
-        </button>
-    </div>
+            <p-menu styleClass="profileMenu" #profileMenu [model]="menuItems" popup></p-menu>
+            <button type="button" pButton (click)="profileMenu.toggle($event)">
+                <i class="pi pi-user"></i>
+                <i class="pi pi-bars"></i>
+            </button>
+        </div>
 </header>
 
 <body>
@@ -134,3 +134,10 @@
         <p>&copy; 2025 Verduleate. Todos los derechos reservados.</p>
     </div>
 </footer>
+
+<div *ngIf="isLoading2" class="popupLoader">
+    <div class="loading-container">
+        <div class="spinner"></div>
+        <p style="color: white;">Cerrando Sesión</p>
+    </div>
+</div>

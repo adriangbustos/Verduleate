@@ -5,7 +5,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 # Prender el Server (Stripe)
 
 cd server
-index.js
+node index.js
 
 # Prender la Web
 

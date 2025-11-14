@@ -11,7 +11,6 @@
   --color-light: rgba(0, 0, 0, 0.4);
   --color-dark-variant: #a3bdcc;
   --color-background: #181a1e;
-  --box-shadow: 0 2rem 3rem var(--color-light);
 
   --card-border-radius: 2rem;
   --border-radius-1: 0.4rem;
@@ -999,4 +998,8 @@ main .new-users .user-list .user .user-type.agricultor {
   .right-section .nav button i {
     font-size: 2rem;
   }
+}
+
+#signout:hover{
+  cursor: pointer;
 }

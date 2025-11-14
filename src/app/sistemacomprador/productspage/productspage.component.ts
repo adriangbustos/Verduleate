@@ -12,6 +12,7 @@ import { CardModule } from 'primeng/card';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { Timestamp } from 'firebase/firestore';
 import { Auth, user } from '@angular/fire/auth';
+import { AuthService } from '../../services/auth.service';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 
@@ -70,13 +71,16 @@ export class ProductspageComponent implements OnInit {
     private firestore: Firestore,
     private router: Router,
     private auth: Auth,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private authService: AuthService
   ) {
     // Get current user ID
     user(this.auth).subscribe(user => {
       this.userId = user?.uid;
     });
   }
+
+  isLoading2: boolean = false;
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -107,9 +111,9 @@ export class ProductspageComponent implements OnInit {
     );
 
     this.menuItems = [
-      { label: 'Profile', icon: 'fas fa-user', command: () => this.goToProfile() },
-      { label: 'Cart', icon: 'fas fa-shopping-cart', command: () => this.goToCart() },
-      { label: 'Logout', icon: 'fas fa-sign-out-alt', command: () => this.logout() },
+      { label: 'Perfil', icon: 'fas fa-user', command: () => this.goToProfile() },
+      { label: 'Carrito', icon: 'fas fa-shopping-cart', command: () => this.goToCart() },
+      { label: 'Cerrar Sesión', icon: 'fas fa-sign-out-alt', command: () => this.logout() },
     ];
   }
 
@@ -124,12 +128,31 @@ export class ProductspageComponent implements OnInit {
 
   menuItems: MenuItem[] = [];
 
-  goToProfile() {
+    goToProfile() {
     this.router.navigate(['/comprador/profile']);
   }
 
-  logout() {
-    console.log('Logged out');
+  async logout() {
+    try {
+      this.isLoading2 = true;
+
+      await this.authService.logout();
+
+      // Espera 1 segundo
+      await new Promise(resolve => setTimeout(resolve, 1000));
+
+      this.isLoading2 = false;
+      this.router.navigate(['comprador/login-comprador']);
+
+    } catch (error: any) {
+      this.isLoading2 = false;
+      const cleanMessage = error.toString().replace(/^Error:\s*/, '');
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Error',
+        detail: cleanMessage
+      });
+    }
   }
 
   goToCart() {

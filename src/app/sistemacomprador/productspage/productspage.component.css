@@ -116,7 +116,7 @@ header {
 }
 
 :host ::ng-deep .profileMenu {
-    width: 150px;
+    width: 175px;
 }
 
 /* ====== MAIN CONTENT SECTION ====== */
