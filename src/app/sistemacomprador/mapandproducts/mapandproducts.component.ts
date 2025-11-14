@@ -78,14 +78,29 @@ export class MapandproductsComponent implements OnInit {
 
   private provinceCoordinates: { [key: string]: { lat: number; lng: number; zoom: number } } = {
     'Guayas': { lat: -2.1894, lng: -79.8891, zoom: 9 },
-    'Pichincha': { lat: -0.2299, lng: -78.5249, zoom: 9 },
-    'Azuay': { lat: -2.8988, lng: -79.0049, zoom: 9 },
-    'Manabi': { lat: -1.0543, lng: -80.4543, zoom: 9 },
-    'Los Rios': { lat: -1.8012, lng: -79.1365, zoom: 9 },
-    'El Oro': { lat: -3.2662, lng: -79.9611, zoom: 9 },
-    'Esmeraldas': { lat: 0.9592, lng: -79.6500, zoom: 9 },
+    'Pichincha': { lat: -0.1807, lng: -78.4678, zoom: 9 },
+    'Manabi': { lat: -0.9538, lng: -80.7089, zoom: 9 },
+    'Los Rios': { lat: -1.0186, lng: -79.4608, zoom: 9 },
+    'El Oro': { lat: -3.2591, lng: -79.9583, zoom: 9 },
+    'Esmeraldas': { lat: 0.9682, lng: -79.6519, zoom: 9 },
+    'Azuay': { lat: -2.9001, lng: -79.0059, zoom: 9 },
+    'Imbabura': { lat: 0.3499, lng: -78.1263, zoom: 9 },
+    'Carchi': { lat: 0.8118, lng: -77.7174, zoom: 9 },
+    'Cotopaxi': { lat: -0.9333, lng: -78.6167, zoom: 9 },
+    'Chimborazo': { lat: -1.6650, lng: -78.6542, zoom: 9 },
+    'Tungurahua': { lat: -1.2490, lng: -78.6167, zoom: 9 },
+    'Bolivar': { lat: -1.5938, lng: -79.0007, zoom: 9 },
+    'Canar': { lat: -2.5588, lng: -78.9375, zoom: 9 },
+    'Loja': { lat: -3.9939, lng: -79.2042, zoom: 9 },
+    'Santo Domingo de los Tsachilas': { lat: -0.2521, lng: -79.1753, zoom: 9 },
     'Santa Elena': { lat: -2.2267, lng: -80.8583, zoom: 9 },
-    'Carchi': { lat: 0.8053, lng: -77.7199, zoom: 9 }
+    'Morona Santiago': { lat: -2.3049, lng: -78.1167, zoom: 9 },
+    'Napo': { lat: -0.9953, lng: -77.8129, zoom: 9 },
+    'Pastaza': { lat: -1.4884, lng: -78.0031, zoom: 9 },
+    'Zamora Chinchipe': { lat: -4.0669, lng: -78.9509, zoom: 9 },
+    'Sucumbios': { lat: 0.0833, lng: -76.8833, zoom: 9 },
+    'Orellana': { lat: -0.4586, lng: -76.9875, zoom: 9 },
+    'Galapagos': { lat: -0.9538, lng: -90.9656, zoom: 8 }
   };
 
   constructor(
