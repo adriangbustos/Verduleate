@@ -33,6 +33,8 @@ interface Agricultor {
   address: string;
   fincaname: string;
   fullname: string;
+  latitude?: number;
+  longitude?: number;
 }
 
 interface ProductWithLocation {
@@ -124,23 +126,6 @@ export class MapandproductsComponent implements OnInit {
     }
   }
 
-  private async geocodeAddress(address: string): Promise<[number, number] | null> {
-    try {
-      const response = await fetch(
-        `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`
-      );
-      const data = await response.json();
-      
-      if (data && data.length > 0) {
-        return [parseFloat(data[0].lat), parseFloat(data[0].lon)];
-      }
-      return null;
-    } catch (error) {
-      console.error('Geocoding error:', error);
-      return null;
-    }
-  }
-
   private async cargarProductosPorProvincia(provincia: string) {
     try {
       this.isLoading = true;
@@ -152,7 +137,7 @@ export class MapandproductsComponent implements OnInit {
       
       this.productsWithLocation = [];
 
-      const geocodePromises = querySnapshot.docs.map(async (docSnapshot) => {
+      const promises = querySnapshot.docs.map(async (docSnapshot) => {
         const producto = docSnapshot.data() as Producto;
         
         if (producto.agricultorId) {
@@ -161,12 +146,17 @@ export class MapandproductsComponent implements OnInit {
           
           if (agricultorSnapshot.exists()) {
             const agricultor = agricultorSnapshot.data() as Agricultor;
-            const coordinates = await this.geocodeAddress(agricultor.address);
+            
+            // Use stored coordinates directly
+            let coordinates: [number, number] | undefined = undefined;
+            if (agricultor.latitude !== undefined && agricultor.longitude !== undefined) {
+              coordinates = [agricultor.latitude, agricultor.longitude];
+            }
             
             const productWithLocation: ProductWithLocation = {
               producto,
               agricultor,
-              coordinates: coordinates || undefined
+              coordinates
             };
             return productWithLocation;
           }
@@ -174,7 +164,7 @@ export class MapandproductsComponent implements OnInit {
         return null;
       });
 
-      const results = await Promise.all(geocodePromises);
+      const results = await Promise.all(promises);
       this.productsWithLocation = results.filter((item): item is ProductWithLocation => item !== null);
       
       this.updateMapMarkers();

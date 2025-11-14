@@ -45,7 +45,11 @@ export class ProfileComponent implements OnInit {
     this.getData()
 
   }
-    
+  
+  goToMain() {
+    this.router.navigate(['comprador/main-comprador']);
+ }
+
   datauser: any = {};
   editableData: any = {};
   displayDialog: boolean = false;

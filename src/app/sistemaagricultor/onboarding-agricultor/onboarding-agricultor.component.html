@@ -37,7 +37,12 @@
                                     <div class="input-group">
                                         <label for="nombre">Dirección</label><br>
                                         <input id="address" formControlName="address" type="text"
-                                            placeholder="Agrega tu dirección" pInputText class="w-full mb-3">
+                                            placeholder="Agrega tu dirección" pInputText class="w-full mb-3" readonly>
+                                    </div>
+                                    <div class="input-group">
+                                        <label for="coordinates">Coordenadas</label><br>
+                                        <input id="coordinates" type="text" [value]="displayCoordinates"
+                                            placeholder="Lat, Lng" pInputText class="w-full mb-3" readonly>
                                     </div>
                                 </div>
                                 <div id="map"></div>

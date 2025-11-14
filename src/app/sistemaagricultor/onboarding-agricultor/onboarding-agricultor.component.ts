@@ -69,6 +69,7 @@ export class OnboardingAgricultorComponent implements AfterViewChecked, OnInit {
   mapInitialized = false;  // To avoid reinitializing the map
   user: any;
   isLoading: boolean = false;
+  displayCoordinates: string = '';
 
   gender: Gender[] | undefined;
   selectedGender: Gender | undefined;
@@ -92,6 +93,8 @@ export class OnboardingAgricultorComponent implements AfterViewChecked, OnInit {
       gender: ['', Validators.required],
       cellphone: ['', Validators.required],
       address: ['', Validators.required],
+      latitude: ['', Validators.required],
+      longitude: ['', Validators.required],
       descripcionFinca: ['', Validators.required],
       ads: ['', Validators.required],
       fincaname: ['', Validators.required]
@@ -175,6 +178,9 @@ export class OnboardingAgricultorComponent implements AfterViewChecked, OnInit {
       // Remove all previous markers
       markerLayer.clearLayers();
 
+      // Update display coordinates
+      this.displayCoordinates = `${lat.toFixed(6)}, ${lng.toFixed(6)}`;
+
       // Use Nominatim (OpenStreetMap) to get the address from the coordinates
       const geocodeUrl = `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=json`;
 
@@ -185,7 +191,9 @@ export class OnboardingAgricultorComponent implements AfterViewChecked, OnInit {
           console.log('Dirección: ', address); // Print the address to the console
 
           this.onboardingForm.patchValue({
-            address: address
+            address: address,
+            latitude: lat,
+            longitude: lng
           });
 
           // Add the new marker with the address

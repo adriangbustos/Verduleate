@@ -76,6 +76,10 @@ header {
     height: 100%;
 }
 
+#foto:hover{
+    cursor: pointer;
+}
+
 /* Search Box */
 #busqueda {
     display: flex;

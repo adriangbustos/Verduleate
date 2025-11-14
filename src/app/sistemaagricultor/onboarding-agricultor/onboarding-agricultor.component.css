@@ -225,6 +225,12 @@ input {
   width: 500px;
 }
 
+#coordinates{
+  width: 300px;
+  background-color: #f5f5f5;
+  cursor: default;
+}
+
 .popup {
   display: flex;
   justify-content: center;

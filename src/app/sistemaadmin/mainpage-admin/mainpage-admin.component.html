@@ -8,72 +8,50 @@
           <img src="../../../assets/LogoCompleto.png">
         </div>
         <div class="close" id="close-btn">
-          <span class="material-icons-sharp">
-            close
-          </span>
+          <i class="pi pi-times"></i>
         </div>
       </div>
 
       <div class="sidebar">
-        <a href="#">
-          <span class="material-icons-sharp">
-            dashboard
-          </span>
-          <h3>Dashboard</h3>
+        <a href="#" class="active">
+          <i class="pi pi-chart-line"></i>
+          <h3>Panel Principal</h3>
         </a>
         <a href="#">
-          <span class="material-icons-sharp">
-            person_outline
-          </span>
-          <h3>Users</h3>
+          <i class="pi pi-users"></i>
+          <h3>Usuarios</h3>
         </a>
         <a (click)="goToChat()">
-          <span class="material-icons-sharp">
-            chat
-          </span>
+          <i class="pi pi-comments"></i>
           <h3>Chat</h3>
         </a>
-        <a href="#" class="active">
-          <span class="material-icons-sharp">
-            insights
-          </span>
-          <h3>Analytics</h3>
+        <a href="#">
+          <i class="pi pi-chart-bar"></i>
+          <h3>Analíticas</h3>
         </a>
         <a href="#">
-          <span class="material-icons-sharp">
-            mail_outline
-          </span>
+          <i class="pi pi-envelope"></i>
           <h3>Tickets</h3>
         </a>
         <a href="#">
-          <span class="material-icons-sharp">
-            inventory
-          </span>
-          <h3>Sale List</h3>
+          <i class="pi pi-shopping-cart"></i>
+          <h3>Lista de Ventas</h3>
         </a>
         <a href="#">
-          <span class="material-icons-sharp">
-            report_gmailerrorred
-          </span>
-          <h3>Reports</h3>
+          <i class="pi pi-file-pdf"></i>
+          <h3>Reportes</h3>
         </a>
         <a href="#">
-          <span class="material-icons-sharp">
-            settings
-          </span>
-          <h3>Settings</h3>
+          <i class="pi pi-cog"></i>
+          <h3>Configuración</h3>
         </a>
         <a href="#">
-          <span class="material-icons-sharp">
-            add
-          </span>
-          <h3>New Login</h3>
+          <i class="pi pi-plus-circle"></i>
+          <h3>Nuevo Inicio</h3>
         </a>
-        <a href="#">
-          <span class="material-icons-sharp">
-            logout
-          </span>
-          <h3>Logout</h3>
+        <a (click)="logout()">
+          <i class="pi pi-sign-out"></i>
+          <h3>Cerrar Sesión</h3>
         </a>
       </div>
     </aside>
@@ -81,21 +59,21 @@
 
     <!-- Main Content -->
     <main>
-      <h1>Analytics</h1>
+      <h1>Panel Principal</h1>
       <!-- Analyses -->
       <div class="analyse">
         <div class="sales">
           <div class="status">
             <div class="info">
-              <h3>Ventas</h3>
-              <h1>$65,024</h1>
+              <h3>Usuarios</h3>
+              <h1>{{ formatNumber(analytics.users.count) }}</h1>
             </div>
             <div class="progresss">
               <svg>
                 <circle cx="38" cy="38" r="36"></circle>
               </svg>
               <div class="percentage">
-                <p>+81%</p>
+                <p>{{ analytics.users.percentage > 0 ? '+' : '' }}{{ analytics.users.percentage }}%</p>
               </div>
             </div>
           </div>
@@ -104,14 +82,14 @@
           <div class="status">
             <div class="info">
               <h3>Visitas</h3>
-              <h1>24,981</h1>
+              <h1>{{ formatNumber(analytics.visits.count) }}</h1>
             </div>
             <div class="progresss">
               <svg>
                 <circle cx="38" cy="38" r="36"></circle>
               </svg>
               <div class="percentage">
-                <p>-48%</p>
+                <p>{{ analytics.visits.percentage > 0 ? '+' : '' }}{{ analytics.visits.percentage }}%</p>
               </div>
             </div>
           </div>
@@ -120,14 +98,14 @@
           <div class="status">
             <div class="info">
               <h3>Búsquedas</h3>
-              <h1>14,147</h1>
+              <h1>{{ formatNumber(analytics.searches.count) }}</h1>
             </div>
             <div class="progresss">
               <svg>
                 <circle cx="38" cy="38" r="36"></circle>
               </svg>
               <div class="percentage">
-                <p>+21%</p>
+                <p>{{ analytics.searches.percentage > 0 ? '+' : '' }}{{ analytics.searches.percentage }}%</p>
               </div>
             </div>
           </div>
@@ -137,19 +115,15 @@
 
       <!-- New Users Section -->
       <div class="new-users">
-        <h2>New Users</h2>
+        <h2>Nuevos Usuarios</h2>
         <div class="user-list">
-          <div class="user">
-            <h2>Jack</h2>
-            <p>54 Min Ago</p>
+          <div class="user" *ngFor="let user of newUsers" (click)="viewUserDetails(user)">
+            <h2>{{ user.displayName || user.email }}</h2>
+            <p>{{ getTimeAgo(user.createdAt) }}</p>
+            <span class="user-type" [class.comprador]="user.type === 'Comprador'" [class.agricultor]="user.type === 'Agricultor'">{{ user.type }}</span>
           </div>
-          <div class="user">
-            <h2>Amir</h2>
-            <p>3 Hours Ago</p>
-          </div>
-          <div class="user">
-            <h2>Ember</h2>
-            <p>6 Hours Ago</p>
+          <div class="user" *ngIf="newUsers.length === 0">
+            <p>No hay nuevos usuarios</p>
           </div>
         </div>
       </div>
@@ -157,14 +131,14 @@
 
       <!-- Recent Orders Table -->
       <div class="recent-orders">
-        <h2>Recent Orders</h2>
+        <h2>Pedidos Recientes</h2>
         <table>
           <thead>
             <tr>
-              <th>Course Name</th>
-              <th>Course Number</th>
-              <th>Payment</th>
-              <th>Status</th>
+              <th>Nombre del Curso</th>
+              <th>Número de Curso</th>
+              <th>Pago</th>
+              <th>Estado</th>
               <th></th>
             </tr>
           </thead>
@@ -174,7 +148,7 @@
               <td>{{ order.productNumber }}</td>
               <td>{{ order.paymentStatus }}</td>
               <td [class]="getStatusClass(order.status)">{{ order.status }}</td>
-              <td class="primary">Details</td>
+              <td class="primary">Detalles</td>
             </tr>
           </tbody>
         </table>
@@ -188,17 +162,11 @@
     <div class="right-section">
       <div class="nav">
         <button id="menu-btn">
-          <span class="material-icons-sharp">
-            menu
-          </span>
+          <i class="pi pi-bars"></i>
         </button>
         <div class="dark-mode">
-          <span class="material-icons-sharp active">
-            light_mode
-          </span>
-          <span class="material-icons-sharp">
-            dark_mode
-          </span>
+          <i class="pi pi-moon active"></i>
+          <i class="pi pi-sun"></i>
         </div>
 
 
@@ -207,63 +175,64 @@
 
       <div class="user-profile">
         <div class="logo">
-          <h2>AsmrProg</h2>
-          <p>Admin</p>
+          <h2>Adrián Garrido</h2>
+          <p>Administrador</p>
         </div>
       </div>
 
       <div class="reminders">
         <div class="header">
-          <h2>Reminders</h2>
-          <span class="material-icons-sharp">
-            notifications_none
-          </span>
+          <h2>Recordatorios</h2>
+          <i class="pi pi-bell"></i>
         </div>
 
-        <div class="notification">
-          <div class="icon">
-            <span class="material-icons-sharp">
-              volume_up
-            </span>
+        <div class="notification" *ngFor="let reminder of reminders" [class.deactive]="reminder.type === 'inactive'">
+          <div class="icon" (click)="toggleReminderType(reminder)">
+            <i [class]="reminder.type === 'active' ? 'pi pi-volume-up' : 'pi pi-volume-off'"></i>
           </div>
           <div class="content">
             <div class="info">
-              <h3>Workshop</h3>
-              <small class="text_muted">
-                08:00 AM - 12:00 PM
-              </small>
+              <h3>{{ reminder.title }}</h3>
+              <small class="text_muted">{{ reminder.time }}</small>
             </div>
-            <span class="material-icons-sharp">
-              more_vert
-            </span>
+            <div class="reminder-actions">
+              <i class="pi pi-pencil" (click)="editReminder(reminder)" title="Edit"></i>
+              <i class="pi pi-trash" (click)="deleteReminder(reminder)" title="Delete"></i>
+            </div>
           </div>
         </div>
 
-        <div class="notification deactive">
-          <div class="icon">
-            <span class="material-icons-sharp">
-              edit
-            </span>
-          </div>
-          <div class="content">
-            <div class="info">
-              <h3>Workshop</h3>
-              <small class="text_muted">
-                08:00 AM - 12:00 PM
-              </small>
+        <!-- Add/Edit Reminder Form -->
+        <div class="notification reminder-form" *ngIf="showAddReminderForm">
+          <div class="form-content">
+            <h3>{{ editingReminder ? 'Editar Recordatorio' : 'Nuevo Recordatorio' }}</h3>
+            <input 
+              type="text" 
+              [(ngModel)]="newReminderTitle" 
+              placeholder="Título del recordatorio"
+              class="reminder-input"
+            >
+            <input 
+              type="text" 
+              [(ngModel)]="newReminderTime" 
+              placeholder="Hora (ej: 08:00 AM - 12:00 PM)"
+              class="reminder-input"
+            >
+            <div class="form-buttons">
+              <button (click)="editingReminder ? saveEditedReminder() : addReminder()" class="save-btn">
+                <i class="pi pi-check"></i> {{ editingReminder ? 'Guardar' : 'Agregar' }}
+              </button>
+              <button (click)="cancelReminderForm()" class="cancel-btn">
+                <i class="pi pi-times"></i> Cancelar
+              </button>
             </div>
-            <span class="material-icons-sharp">
-              more_vert
-            </span>
           </div>
         </div>
 
-        <div class="notification add-reminder">
+        <div class="notification add-reminder" (click)="openAddReminderForm()" *ngIf="!showAddReminderForm">
           <div>
-            <span class="material-icons-sharp">
-              add
-            </span>
-            <h3>Add Reminder</h3>
+            <i class="pi pi-plus"></i>
+            <h3>Agregar Recordatorio</h3>
           </div>
         </div>
 
@@ -272,6 +241,103 @@
     </div>
 
 
+  </div>
+
+  <!-- User Details Modal -->
+  <div class="modal-overlay" *ngIf="showUserModal" (click)="closeUserModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <h2>Información del Usuario</h2>
+        <i class="pi pi-times" (click)="closeUserModal()"></i>
+      </div>
+      
+      <div class="modal-body" *ngIf="selectedUser">
+        <div class="user-info-grid">
+          <div class="info-item">
+            <label>Nombre Completo:</label>
+            <p>{{ selectedUser.fullname || 'No especificado' }}</p>
+          </div>
+          
+          <div class="info-item" *ngIf="selectedUser.type === 'Agricultor' && selectedUser.fincaname">
+            <label>Nombre de Finca:</label>
+            <p>{{ selectedUser.fincaname }}</p>
+          </div>
+          
+          <div class="info-item">
+            <label>Email:</label>
+            <p>{{ selectedUser.email }}</p>
+          </div>
+          
+          <div class="info-item">
+            <label>Tipo de Usuario:</label>
+            <p>
+              <span class="user-type-badge" [class.comprador]="selectedUser.type === 'Comprador'" [class.agricultor]="selectedUser.type === 'Agricultor'">
+                {{ selectedUser.type }}
+              </span>
+            </p>
+          </div>
+          
+          <div class="info-item">
+            <label>Email Verificado:</label>
+            <p>{{ selectedUser.emailverificado ? 'Sí' : 'No' }}</p>
+          </div>
+          
+          <div class="info-item">
+            <label>Onboarding Completado:</label>
+            <p>{{ selectedUser.onboarding ? 'Sí' : 'No' }}</p>
+          </div>
+          
+          <div class="info-item" *ngIf="selectedUser.cellphone">
+            <label>Teléfono:</label>
+            <p>{{ selectedUser.cellphone }}</p>
+          </div>
+          
+          <div class="info-item" *ngIf="selectedUser.address">
+            <label>Dirección:</label>
+            <p>{{ selectedUser.address }}</p>
+          </div>
+          
+          <div class="info-item" *ngIf="selectedUser.birthday">
+            <label>Fecha de Nacimiento:</label>
+            <p>{{ getTimeAgo(selectedUser.birthday) }}</p>
+          </div>
+          
+          <div class="info-item" *ngIf="selectedUser.gender">
+            <label>Género:</label>
+            <p>{{ selectedUser.gender }}</p>
+          </div>
+          
+          <div class="info-item" *ngIf="selectedUser.advertisements">
+            <label>Publicidad:</label>
+            <p>{{ selectedUser.advertisements }}</p>
+          </div>
+          
+          <div class="info-item" *ngIf="selectedUser.type === 'Agricultor' && selectedUser.descripcionFinca">
+            <label>Descripción de Finca:</label>
+            <p>{{ selectedUser.descripcionFinca }}</p>
+          </div>
+          
+          <div class="info-item" *ngIf="selectedUser.creationDate">
+            <label>Fecha de Registro:</label>
+            <p>{{ getTimeAgo(selectedUser.creationDate) }}</p>
+          </div>
+          
+          <div class="info-item">
+            <label>ID de Usuario:</label>
+            <p class="user-id">{{ selectedUser.id }}</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="modal-footer">
+        <button class="delete-user-btn" (click)="deleteUserAccount()">
+          <i class="pi pi-trash"></i> Eliminar Usuario
+        </button>
+        <button class="close-modal-btn" (click)="closeUserModal()">
+          Cerrar
+        </button>
+      </div>
+    </div>
   </div>
 
 </body>
