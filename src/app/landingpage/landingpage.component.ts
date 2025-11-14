@@ -31,6 +31,11 @@ export class LandingpageComponent {
   goToCompradores() {
     this.router.navigate(['comprador/login-comprador']); // Navigates to the AboutComponent
   }
+
+  goToAdministradores() {
+    this.router.navigate(['admin/login']); // Navigates to the AboutComponent
+  } 
+
   goToAgricultores() {
     this.router.navigate(['agricultor/login-agricultor']); // Navigates to the AboutComponent
   }

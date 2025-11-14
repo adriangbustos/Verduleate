@@ -257,6 +257,25 @@ export class AuthService {
     }
   }
 
+  async signInAdmins(email: string, password: string): Promise<User> {
+    try {
+      const userCredential = await signInWithEmailAndPassword(this.auth, email, password);
+      const user = userCredential.user;
+
+      // Verificar si el usuario está en la colección 'administradores'
+      const adminDoc: DocumentSnapshot = await getDoc(doc(this.firestore, 'administradores', user.uid));
+
+      if (!adminDoc.exists()) {
+        throw new Error('Access denied: User not found in administradores collection.');
+      }
+
+      return user;
+    } catch (error) {
+      console.error('Error signing in admin:', error);
+      throw error;
+    }
+  }
+
   async signUp(email: string, password: string) {
     try {
       const userCredential = await createUserWithEmailAndPassword(this.auth, email, password);
@@ -410,6 +429,23 @@ export class AuthService {
       }
     } catch (error) {
       console.error('Error obteniendo datos del usuario:', error);
+      return null;
+    }
+  }
+
+  async getAdminData(userId: string) {
+    try {
+      const adminRef = doc(this.firestore, 'administradores', userId); // Obtén la referencia del documento
+      const adminSnapshot = await getDoc(adminRef); // Obtiene los datos del administrador
+
+      if (adminSnapshot.exists()) {
+        return adminSnapshot.data(); // Devuelve los datos del administrador
+      } else {
+        console.log('El administrador no existe en Firestore');
+        return null;
+      }
+    } catch (error) {
+      console.error('Error obteniendo datos del administrador:', error);
       return null;
     }
   }
