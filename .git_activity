@@ -3,3 +3,4 @@
 2025-11-10T21:46:07 | feat: add fallback assets for missing vegetable thumbnails
 2025-11-12T15:27:10 | docs: improve onboarding guide and developer notes
 2025-11-12T21:21:07 | refactor: modularize catalog filter logic
+2025-11-15T19:48:11 | refactor: clean up form validation handlers
