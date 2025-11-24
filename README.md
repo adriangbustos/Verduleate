@@ -1,141 +1,141 @@
 # Verduleate 🥑
 
-Verduleate is a modern web platform that connects farmers directly with consumers. It provides an online marketplace where farmers can showcase and sell their fresh produce, and buyers can easily find and purchase local agricultural products.
+Verduleate es una plataforma web moderna que conecta a los agricultores directamente con los consumidores. Proporciona un mercado en línea donde los agricultores pueden exhibir y vender sus productos frescos, y los compradores pueden encontrar y comprar fácilmente productos agrícolas locales.
 
-## ✨ Key Features
+## ✨ Características Principales
 
-The platform is divided into three main user roles, each with its own dedicated system:
+La plataforma se divide en tres roles de usuario principales, cada uno con su propio sistema dedicado:
 
-### 👨‍🌾 For Farmers (Sistema Agricultor)
-- **Onboarding:** Easy registration and farm profile setup.
-- **Product Management:** Add, edit, and manage product listings with details like price, stock, and images.
-- **Farm Profile (`Hacienda`):** Manage farm information and location.
-- **Sales Tracking:** View and manage incoming orders.
+### 👨‍🌾 Para Agricultores (Sistema Agricultor)
+- **Onboarding:** Registro fácil y configuración del perfil de la granja.
+- **Gestión de Productos:** Añadir, editar y gestionar listados de productos con detalles como precio, stock e imágenes.
+- **Perfil de la Granja (`Hacienda`):** Gestionar la información y ubicación de la granja.
+- **Seguimiento de Ventas:** Ver y gestionar los pedidos entrantes.
 
-### 🛒 For Buyers (Sistema Comprador)
-- **Interactive Map:** Discover local farmers and products on an interactive map powered by Leaflet.
-- **Product Discovery:** Browse, search, and filter a wide variety of fresh produce.
-- **Shopping Cart:** A simple and intuitive shopping cart experience.
-- **Secure Payments:** Integrated with Stripe for secure and reliable transactions.
-- **User Profile:** Manage personal information and view order history.
+### 🛒 Para Compradores (Sistema Comprador)
+- **Mapa Interactivo:** Descubre agricultores y productos locales en un mapa interactivo impulsado por Leaflet.
+- **Descubrimiento de Productos:** Navega, busca y filtra una amplia variedad de productos frescos.
+- **Carrito de Compras:** Una experiencia de compra simple e intuitiva.
+- **Pagos Seguros:** Integrado con Stripe para transacciones seguras y confiables.
+- **Perfil de Usuario:** Gestiona la información personal y consulta el historial de pedidos.
 
-### ⚙️ For Admins (Sistema Admin)
-- **Dashboard:** A central dashboard to monitor platform activity.
-- **User Management:** Oversee all registered farmers and buyers.
-- **Support:** A chat interface to provide support to users.
+### ⚙️ Para Administradores (Sistema Admin)
+- **Panel de Control:** Un panel central para monitorear la actividad de la plataforma.
+- **Gestión de Usuarios:** Supervisar a todos los agricultores y compradores registrados.
+- **Soporte:** Una interfaz de chat para brindar soporte a los usuarios.
 
-## 🛠️ Tech Stack
+## 🛠️ Tecnologías Utilizadas
 
-This project is built with a modern and robust technology stack:
+Este proyecto está construido con un stack de tecnología moderno y robusto:
 
 - **Frontend:**
   - [Angular](https://angular.io/)
   - [TypeScript](https://www.typescriptlang.org/)
-  - [PrimeNG](https://primeng.org/): Rich UI component library.
-  - [Leaflet.js](https://leafletjs.com/): For interactive maps.
-  - [PrimeIcons](https://primeflex.org/primeicons): Icon library.
+  - [PrimeNG](https://primeng.org/): Biblioteca de componentes de interfaz de usuario.
+  - [Leaflet.js](https://leafletjs.com/): Para mapas interactivos.
+  - [PrimeIcons](https://primeflex.org/primeicons): Biblioteca de iconos.
 
-- **Backend & Database:**
-  - [Firebase](https://firebase.google.com/): Used for authentication (Firebase Auth) and database (Firestore).
+- **Backend y Base de Datos:**
+  - [Firebase](https://firebase.google.com/): Utilizado para autenticación (Firebase Auth) y base de datos (Firestore).
 
-- **Payments:**
-  - [Stripe](https://stripe.com/): For processing online payments.
+- **Pagos:**
+  - [Stripe](https://stripe.com/): Para procesar pagos en línea.
 
-- **Development & API:**
-  - [Node.js](https://nodejs.org/) & [Express](https://expressjs.com/): Powers the Stripe payment server and a data generation API.
-  - [@faker-js/faker](https://fakerjs.dev/): To generate realistic test data for development.
+- **Desarrollo y API:**
+  - [Node.js](https://nodejs.org/) y [Express](https://expressjs.com/): Potencia el servidor de pagos de Stripe y una API de generación de datos.
+  - [@faker-js/faker](https://fakerjs.dev/): Para generar datos de prueba realistas para el desarrollo.
 
-## 🚀 Getting Started
+## 🚀 Cómo Empezar
 
-Follow these instructions to get a local copy of the project up and running.
+Sigue estas instrucciones para obtener una copia local del proyecto en funcionamiento.
 
-### Prerequisites
+### Prerrequisitos
 
-- [Node.js](https://nodejs.org/en/download/) (which includes npm)
+- [Node.js](https://nodejs.org/en/download/) (que incluye npm)
 - [Angular CLI](https://angular.io/cli)
 
 ```bash
 npm install -g @angular/cli
 ```
 
-### Installation & Setup
+### Instalación y Configuración
 
-1.  **Clone the repository:**
+1.  **Clona el repositorio:**
     ```bash
     git clone https://github.com/adriangbustos/Verduleate.git
     cd Verduleate
     ```
 
-2.  **Install Frontend Dependencies:**
+2.  **Instala las Dependencias del Frontend:**
     ```bash
     npm install
     ```
 
-3.  **Install Server Dependencies:**
-    The project contains two separate Node.js servers.
+3.  **Instala las Dependencias del Servidor:**
+    El proyecto contiene dos servidores Node.js separados.
 
-    -   **Payment Server (Stripe):**
+    -   **Servidor de Pagos (Stripe):**
         ```bash
         cd server
         npm install
         cd ..
         ```
-    -   **Data Generation API:**
+    -   **API de Generación de Datos:**
         ```bash
         cd api
         npm install
         cd ..
         ```
 
-4.  **Configure Environment Variables:**
-    You will need to set up your own configuration for Firebase and Stripe.
-    -   **Firebase:** Create a `firebase-config.js` file in the `api/` directory with your Firebase project credentials.
-    -   **Stripe:** Add your Stripe API keys to the `server/index.js` file.
+4.  **Configura las Variables de Entorno:**
+    Necesitarás configurar tu propia configuración para Firebase y Stripe.
+    -   **Firebase:** Crea un archivo `firebase-config.js` en el directorio `api/` con tus credenciales de proyecto de Firebase.
+    -   **Stripe:** Añade tus claves de API de Stripe en el archivo `server/index.js`.
 
-### Running the Application
+### Ejecutando la Aplicación
 
-You need to run three separate processes for the full application to work.
+Necesitas ejecutar tres procesos separados para que la aplicación completa funcione.
 
-1.  **Start the Angular Frontend:**
-    This command starts the development server for the main application.
+1.  **Inicia el Frontend de Angular:**
+    Este comando inicia el servidor de desarrollo para la aplicación principal.
     ```bash
     npm start
     ```
-    Navigate to `http://localhost:4200/`.
+    Navega a `http://localhost:4200/`.
 
-2.  **Start the Payment Server (Stripe):**
-    This server handles payment processing.
+2.  **Inicia el Servidor de Pagos (Stripe):**
+    Este servidor maneja el procesamiento de pagos.
     ```bash
     cd server
     node index.js
     ```
 
-3.  **Start the Data Generation API (Optional):**
-    This API is used to populate the database with test data.
+3.  **Inicia la API de Generación de Datos (Opcional):**
+    Esta API se utiliza para poblar la base de datos con datos de prueba.
     ```bash
     cd api
     npm start
     ```
 
-## 📂 Project Structure
+## 📂 Estructura del Proyecto
 
-The repository is organized as follows:
+El repositorio está organizado de la siguiente manera:
 
 ```
 /
-├── api/              # Node.js API for generating test data.
-├── server/           # Node.js server for Stripe payments.
-├── src/              # Main Angular application source code.
+├── api/              # API de Node.js para generar datos de prueba.
+├── server/           # Servidor de Node.js para pagos con Stripe.
+├── src/              # Código fuente principal de la aplicación Angular.
 │   ├── app/
-│   │   ├── components/   # Global components (e.g., loader).
-│   │   ├── guards/       # Route guards for authentication/authorization.
-│   │   ├── services/     # Core services (Auth, Admin, etc.).
-│   │   ├── sistemaadmin/ # Admin-facing features.
-│   │   ├── sistemaagricultor/ # Farmer-facing features.
-│   │   └── sistemacomprador/  # Buyer-facing features.
-│   ├── assets/         # Static assets like images and icons.
-│   └── environments/   # Environment-specific configurations.
-├── angular.json      # Angular project configuration.
-├── firebase.json     # Firebase hosting and functions configuration.
-└── package.json      # Frontend npm dependencies and scripts.
+│   │   ├── components/   # Componentes globales (ej. loader).
+│   │   ├── guards/       # Guards de ruta para autenticación/autorización.
+│   │   ├── services/     # Servicios principales (Auth, Admin, etc.).
+│   │   ├── sistemaadmin/ # Funcionalidades para administradores.
+│   │   ├── sistemaagricultor/ # Funcionalidades para agricultores.
+│   │   └── sistemacomprador/  # Funcionalidades para compradores.
+│   ├── assets/         # Recursos estáticos como imágenes e iconos.
+│   └── environments/   # Configuraciones específicas del entorno.
+├── angular.json      # Configuración del proyecto Angular.
+├── firebase.json     # Configuración de Firebase hosting y functions.
+└── package.json      # Dependencias y scripts de npm del frontend.
 ```
