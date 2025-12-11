@@ -13,3 +13,4 @@
 2025-11-29T20:05:05 | docs: improve onboarding guide and developer notes
 2025-12-05T19:49:08 | style: adjust button gradients and card borders
 2025-12-11T17:13:59 | chore: update dependencies and remove unused imports
+2025-12-11T19:10:16 | feat: add fallback assets for missing vegetable thumbnails
