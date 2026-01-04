@@ -19,3 +19,4 @@
 2025-12-16T17:42:41 | docs: improve onboarding guide and developer notes
 2025-12-22T14:14:04 | fix: resolve pricing table responsive padding
 2025-12-28T20:35:14 | chore: update dependencies and remove unused imports
+2026-01-04T11:04:45 | refactor: modularize catalog filter logic
