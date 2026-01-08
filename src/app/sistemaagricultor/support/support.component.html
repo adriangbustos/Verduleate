@@ -1,10 +1,84 @@
-<button (click)="startChat()" *ngIf="!chatId">Iniciar Chat</button>
+<!-- FARMER SUPPORT CHAT INTERFACE -->
+<div class="support-chat-container">
+  
+  <!-- Loading State -->
+  <div *ngIf="isLoading" class="loading-state">
+    <div class="spinner"></div>
+    <p>Conectando con soporte...</p>
+  </div>
 
-<div *ngIf="chatId">
-    <div *ngFor="let msg of messages">
-        <b>{{ msg.sender }}:</b> {{ msg.text }}
+  <!-- Error State -->
+  <div *ngIf="error && !isLoading" class="error-state">
+    <div class="error-icon">⚠️</div>
+    <p>{{ error }}</p>
+    <button class="btn-retry" (click)="retry()">Reintentar</button>
+  </div>
+
+  <!-- Chat Interface -->
+  <div *ngIf="!isLoading && !error && currentTicketId" class="chat-interface">
+    
+    <!-- Chat Header -->
+    <div class="chat-header">
+      <div class="header-content">
+        <div class="header-info">
+          <h2>Soporte Técnico</h2>
+          <p class="status-text">{{ getStatusText() }}</p>
+        </div>
+      </div>
+      <div class="ticket-id">Ticket #{{ currentTicketId ? currentTicketId.substring(0, 8) : '' }}</div>
     </div>
 
-    <input [(ngModel)]="message" placeholder="Escribe un mensaje" />
-    <button (click)="createChat()" [disabled]="!userData">Iniciar chat</button>
+    <!-- Messages Container -->
+    <div #messagesContainer class="messages-container">
+      
+      <!-- Welcome Message -->
+      <div *ngIf="messages.length === 0" class="welcome-message">
+        <div class="welcome-icon">👋</div>
+        <h3>¡Bienvenido al Soporte!</h3>
+        <p>Estamos aquí para ayudarte. Envía tu consulta y un agente te responderá pronto.</p>
+      </div>
+
+      <!-- Messages List -->
+      <div *ngFor="let message of messages" 
+           class="message-wrapper"
+           [class.own-message]="isOwnMessage(message)"
+           [class.other-message]="!isOwnMessage(message)">
+        
+        <div class="message-bubble">
+          <div class="message-header">
+            <span class="sender-name">{{ message.senderName }}</span>
+            <span class="message-time">{{ formatTime(message.timestamp) }}</span>
+          </div>
+          <div class="message-text">{{ message.text }}</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Message Input -->
+    <div class="message-input-container">
+      <div class="input-wrapper">
+        <textarea
+          [(ngModel)]="newMessageText"
+          (keypress)="onKeyPress($event)"
+          placeholder="Escribe tu mensaje..."
+          class="message-input"
+          rows="1"
+          [disabled]="ticketDetails?.status === 'closed'"
+        ></textarea>
+        
+        <button 
+          (click)="sendMessage()" 
+          class="btn-send"
+          [disabled]="!newMessageText.trim() || ticketDetails?.status === 'closed'"
+        >
+          <span class="send-icon">📤</span>
+        </button>
+      </div>
+      
+      <div *ngIf="ticketDetails?.status === 'closed'" class="closed-notice">
+        Este chat ha sido cerrado
+      </div>
+    </div>
+
+  </div>
 </div>

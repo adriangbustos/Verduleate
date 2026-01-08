@@ -1,0 +1,338 @@
+/* ============================================
+   ADMIN CHAT LAYOUT - TRI-PANE STYLING
+   Green branding with Light/Dark theme support
+   ============================================ */
+
+/* ==================== CSS VARIABLES ==================== */
+:host {
+  --primary-green: #008f00;
+  --action-green: #218828;
+  --hover-green: #34b23a;
+  --accent-orange: #ff9900;
+  
+  /* Light Theme Colors */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f3f3f3;
+  --bg-tertiary: #f8f9fa;
+  --text-primary: #1a1a1a;
+  --text-secondary: #6c757d;
+  --text-muted: #adb5bd;
+  --border-color: #e9ecef;
+  --shadow-color: rgba(0, 0, 0, 0.08);
+  
+  /* Sidebar specific */
+  --sidebar-bg: #ffffff;
+  --sidebar-hover: #f0f9f0;
+  --sidebar-active: #e8f5e8;
+  
+  /* Chat specific */
+  --chat-bg: #f8f9fa;
+  --message-own-bg: var(--action-green);
+  --message-other-bg: #ffffff;
+}
+
+/* ==================== MAIN LAYOUT GRID ==================== */
+.admin-chat-layout {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  background: var(--bg-tertiary);
+  transition: background-color 0.3s ease;
+}
+
+/* ==================== LEFT SIDEBAR ==================== */
+.sidebar-container {
+  width: 320px;
+  min-width: 320px;
+  height: 100vh;
+  background: var(--sidebar-bg);
+  border-right: 1px solid var(--border-color);
+  transition: all 0.3s ease;
+  overflow: hidden;
+  z-index: 100;
+}
+
+.sidebar-container.collapsed {
+  width: 0;
+  min-width: 0;
+  border-right: none;
+}
+
+/* ==================== CENTRAL CHAT AREA ==================== */
+.chat-main-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--bg-primary);
+}
+
+/* ==================== TOP HEADER BAR ==================== */
+.chat-top-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14.5px 20px;
+  background: var(--bg-primary);
+  border-bottom: 1px solid var(--border-color);
+  min-height: 64px;
+  gap: 16px;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: 1;
+}
+
+.sidebar-toggle {
+  display: flex;
+}
+
+/* Farmer Info in Header */
+.selected-farmer-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.farmer-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary-green), var(--action-green));
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.farmer-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.farmer-name {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.farmer-status {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.farmer-status.online {
+  color: var(--action-green);
+}
+
+.farmer-status.online::before {
+  content: '●';
+  margin-right: 4px;
+  font-size: 8px;
+}
+
+.no-selection-header h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.no-selection-header span {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+/* Header Right Actions */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ==================== BUTTONS ==================== */
+.btn-icon {
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.btn-icon:hover {
+  background: var(--bg-secondary);
+  color: var(--primary-green);
+}
+
+.btn-icon.active {
+  background: var(--sidebar-active);
+  color: var(--primary-green);
+}
+
+.btn-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.btn-action {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background: var(--bg-primary);
+  color: var(--text-secondary);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-action svg {
+  width: 16px;
+  height: 16px;
+}
+
+.btn-action:hover {
+  border-color: var(--hover-green);
+  color: var(--primary-green);
+}
+
+.btn-close-ticket {
+  background: var(--action-green);
+  color: white;
+  border-color: var(--action-green);
+}
+
+.btn-close-ticket:hover {
+  background: var(--hover-green);
+  border-color: var(--hover-green);
+  color: white;
+}
+
+/* ==================== CHAT CONTENT AREA ==================== */
+.chat-content-area {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+  background: var(--chat-bg);
+}
+
+/* ==================== RIGHT INFO PANEL ==================== */
+.info-panel-container {
+  width: 0;
+  min-width: 0;
+  height: 100vh;
+  background: var(--bg-primary);
+  border-left: 1px solid var(--border-color);
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.info-panel-container.open {
+  width: 320px;
+  min-width: 320px;
+}
+
+/* ==================== RESPONSIVE DESIGN ==================== */
+@media (max-width: 1200px) {
+  .sidebar-container {
+    width: 280px;
+    min-width: 280px;
+  }
+  
+  .info-panel-container.open {
+    width: 280px;
+    min-width: 280px;
+  }
+}
+
+@media (max-width: 992px) {
+  .admin-chat-layout {
+    grid-template-columns: 1fr;
+  }
+  
+  .sidebar-container {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 2px 0 10px var(--shadow-color);
+  }
+  
+  .sidebar-container.collapsed {
+    transform: translateX(-100%);
+  }
+  
+  .info-panel-container {
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 1000;
+    box-shadow: -2px 0 10px var(--shadow-color);
+  }
+  
+  .info-panel-container:not(.open) {
+    transform: translateX(100%);
+  }
+
+  .btn-action span {
+    display: none;
+  }
+}
+
+@media (max-width: 576px) {
+  .chat-top-header {
+    padding: 10px 12px;
+  }
+  
+  .farmer-name {
+    font-size: 14px;
+  }
+  
+  .btn-action {
+    padding: 8px 12px;
+  }
+}
+
+/* ==================== SCROLLBAR STYLING ==================== */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--text-muted);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}
+
+/* Dark mode scrollbar */
+.dark ::-webkit-scrollbar-track {
+  background: var(--bg-tertiary);
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+}

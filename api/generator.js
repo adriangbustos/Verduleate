@@ -62,7 +62,6 @@ function generarProducto(agricultorId, agricultorProvincia) {
   const categoria = faker.helpers.arrayElement(categoriasDisponibles);
   const vegetal = faker.helpers.arrayElement(PRODUCTOS_ECUADOR[categoria]);
   
-  const peso = faker.number.int({ min: 1, max: 100 });
   const unidad = faker.helpers.arrayElement(['g', 'kg', 'lb']);
   
   const fechaCultivado = faker.date.recent({ days: 60 });
@@ -76,9 +75,9 @@ function generarProducto(agricultorId, agricultorProvincia) {
       clase: categoria
     },
     medida: {
-      peso: `${peso}${unidad}`
+      peso: `${unidad}`
     },
-    precio: parseFloat(faker.commerce.price({ min: 0.05, max: 5, dec: 2 })),
+    precio: parseFloat(faker.commerce.price({ min: 0.50, max: 5, dec: 2 })),
     cantidadDisponible: faker.number.int({ min: 5, max: 100 }),
     descripcionCultivo: `${vegetal} cultivado orgánicamente. ${faker.lorem.sentence()}`,
     fechaCultivado: fechaCultivado,

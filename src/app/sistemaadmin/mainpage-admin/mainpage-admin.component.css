@@ -5,12 +5,12 @@
   --color-danger: #ff0060;
   --color-success: #1b9c85;
   --color-warning: #f7d060;
-  --color-white: #202528;
-  --color-info-dark: #a3bdcc;
-  --color-dark: #edeffd;
-  --color-light: rgba(0, 0, 0, 0.4);
-  --color-dark-variant: #a3bdcc;
-  --color-background: #181a1e;
+  --color-white: #fff;
+  --color-info-dark: #7d8da1;
+  --color-dark: #363949;
+  --color-light: rgba(140, 200, 132, 0.18);
+  --color-dark-variant: #677483;
+  --color-background: #f6f6f9;
 
   --card-border-radius: 2rem;
   --border-radius-1: 0.4rem;

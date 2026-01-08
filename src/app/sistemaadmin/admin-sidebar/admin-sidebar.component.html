@@ -1,0 +1,284 @@
+<!-- ============================================
+     ADMIN SIDEBAR - CHAT LIST & TICKET MODAL
+     ============================================ -->
+
+<div class="admin-sidebar" [class.collapsed]="isCollapsed">
+
+  <!-- ==================== SIDEBAR HEADER ==================== -->
+  <header class="sidebar-header">
+    <!-- Logo & Title -->
+    <div class="sidebar-brand">
+      <div class="brand-logo">🌱</div>
+      <span class="brand-title" *ngIf="!isCollapsed">Verduleate</span>
+    </div>
+    
+    <!-- Collapse Toggle -->
+    <button 
+      class="btn-collapse"
+      (click)="toggleCollapse.emit()"
+      *ngIf="!isCollapsed"
+      aria-label="Colapsar sidebar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="15 18 9 12 15 6"/>
+      </svg>
+    </button>
+  </header>
+
+  <!-- ==================== SEARCH BAR ==================== -->
+  <div class="search-container" *ngIf="!isCollapsed">
+    <div class="search-input-wrapper">
+      <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="11" cy="11" r="8"/>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+      </svg>
+      <input 
+        type="text" 
+        class="search-input"
+        placeholder="Buscar chat..."
+        [ngModel]="searchQuery()"
+        (ngModelChange)="onSearchChange($event)">
+    </div>
+  </div>
+
+  <!-- ==================== NEW TICKET BUTTON ==================== -->
+  <div class="ticket-selector-trigger" *ngIf="!isCollapsed">
+    <button class="btn-new-ticket" (click)="openTicketModal()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M3 6h18M3 12h18M3 18h18"/>
+      </svg>
+      Seleccionar Ticket
+    </button>
+
+    <!-- Quick Filters -->
+    <div class="quick-filters">
+      <button 
+        class="filter-tag"
+        [class.active]="activeTab() === 'unassigned'"
+        (click)="setActiveTab('unassigned')">
+        Nuevos
+        <span class="filter-count" *ngIf="pendingCount() > 0">{{ pendingCount() }}</span>
+      </button>
+      <button 
+        class="filter-tag"
+        [class.active]="activeTab() === 'assigned'"
+        (click)="setActiveTab('assigned')">
+        Míos
+        <span class="filter-count" *ngIf="assignedCount() > 0">{{ assignedCount() }}</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ==================== INBOX NAVIGATION ==================== -->
+  <nav class="inbox-nav" *ngIf="!isCollapsed">
+    <h4 class="nav-section-title">BANDEJA</h4>
+    <ul class="nav-list">
+      <li>
+        <button 
+          class="nav-item"
+          [class.active]="activeTab() === 'all'"
+          (click)="setActiveTab('all')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+          </svg>
+          <span>Todos</span>
+          <span class="nav-count">{{ pendingCount() + assignedCount() }}</span>
+        </button>
+      </li>
+      <li>
+        <button 
+          class="nav-item"
+          [class.active]="activeTab() === 'assigned'"
+          (click)="setActiveTab('assigned')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+          </svg>
+          <span>Asignados a mí</span>
+          <span class="nav-count">{{ assignedCount() }}</span>
+        </button>
+      </li>
+      <li>
+        <button 
+          class="nav-item"
+          [class.active]="activeTab() === 'unassigned'"
+          (click)="setActiveTab('unassigned')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="12" y1="8" x2="12" y2="12"/>
+            <line x1="12" y1="16" x2="12.01" y2="16"/>
+          </svg>
+          <span>Sin asignar</span>
+          <span class="nav-count pending">{{ pendingCount() }}</span>
+        </button>
+      </li>
+    </ul>
+
+    <h4 class="nav-section-title">ESTADO</h4>
+    <ul class="nav-list">
+      <li>
+        <button 
+          class="nav-item"
+          [class.active]="activeTab() === 'pending'"
+          (click)="setActiveTab('pending')">
+          <span class="status-dot pending"></span>
+          <span>Esperando agente</span>
+          <span class="nav-count">{{ pendingCount() }}</span>
+        </button>
+      </li>
+      <li>
+        <button class="nav-item" [class.active]="activeTab() === 'paused'" (click)="setActiveTab('paused')">
+          <span class="status-dot paused"></span>
+          <span>Pausados</span>
+          <span class="nav-count">0</span>
+        </button>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- ==================== CHAT LIST ==================== -->
+  <div class="chat-list-container" *ngIf="!isCollapsed">
+    <h4 class="chat-list-title">CONVERSACIONES</h4>
+    
+    <!-- Empty State -->
+    <div class="empty-list" *ngIf="filteredTickets().length === 0">
+      <p>No hay tickets en esta categoría</p>
+    </div>
+
+    <!-- Ticket Items -->
+    <ul class="chat-list">
+      <li 
+        *ngFor="let ticket of filteredTickets()"
+        class="chat-item"
+        [class.selected]="isSelected(ticket)"
+        [class.unread]="ticket.status === 'pending'"
+        (click)="selectTicket(ticket)">
+        
+        <!-- Avatar -->
+        <div class="chat-avatar" [class.pending]="ticket.status === 'pending'">
+          {{ getInitials(ticket.farmerName) }}
+        </div>
+
+        <!-- Content -->
+        <div class="chat-content">
+          <div class="chat-header-row">
+            <span class="chat-name">{{ ticket.farmerName }}</span>
+            <span class="chat-time">{{ formatTime(ticket.updatedAt) }}</span>
+          </div>
+          <p class="chat-preview">{{ ticket.lastMessage || 'Sin mensajes' }}</p>
+        </div>
+
+        <!-- Actions -->
+        <div class="chat-actions">
+          <!-- Unread Badge -->
+          <span class="unread-badge" *ngIf="ticket.status === 'pending'">1</span>
+          
+          <!-- Claim Button -->
+          <button 
+            class="btn-claim-inline"
+            *ngIf="ticket.status === 'pending'"
+            (click)="claimTicket(ticket, $event)"
+            title="Tomar ticket">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
+              <path d="M9 12l2 2 4-4"/>
+            </svg>
+          </button>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- ==================== ADMIN FOOTER ==================== -->
+  <footer class="sidebar-footer" *ngIf="!isCollapsed">
+    <div class="admin-info">
+      <div class="admin-avatar">
+        {{ getInitials(getAdminName()) }}
+      </div>
+      <div class="admin-details">
+        <span class="admin-name">{{ getAdminName() }}</span>
+        <span class="admin-role">Administrador</span>
+      </div>
+    </div>
+    <button class="btn-settings" aria-label="Configuración">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="3"/>
+        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+      </svg>
+    </button>
+  </footer>
+
+</div>
+
+<!-- ==================== TICKET SELECTOR MODAL ==================== -->
+<div 
+  class="modal-overlay"
+  *ngIf="isTicketModalOpen()"
+  (click)="closeTicketModal()">
+  
+  <div class="ticket-modal" (click)="$event.stopPropagation()">
+    
+    <!-- Modal Header -->
+    <header class="modal-header">
+      <h3>Seleccionar Ticket</h3>
+      <button class="btn-close-modal" (click)="closeTicketModal()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"/>
+          <line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </header>
+
+    <!-- Modal Filters -->
+    <div class="modal-filters">
+      <button 
+        class="modal-filter-btn"
+        [class.active]="selectedStatusFilter() === 'all'"
+        (click)="setStatusFilter('all')">
+        Todos
+      </button>
+      <button 
+        class="modal-filter-btn"
+        [class.active]="selectedStatusFilter() === 'pending'"
+        (click)="setStatusFilter('pending')">
+        Pendientes
+      </button>
+      <button 
+        class="modal-filter-btn"
+        [class.active]="selectedStatusFilter() === 'active'"
+        (click)="setStatusFilter('active')">
+        Activos
+      </button>
+    </div>
+
+    <!-- Modal Ticket List -->
+    <div class="modal-ticket-list">
+      <div 
+        *ngFor="let ticket of getModalTickets()"
+        class="modal-ticket-item"
+        [class.pending]="ticket.status === 'pending'"
+        (click)="selectTicket(ticket)">
+        
+        <div class="ticket-avatar">{{ getInitials(ticket.farmerName) }}</div>
+        
+        <div class="ticket-info">
+          <span class="ticket-name">{{ ticket.farmerName }}</span>
+          <span class="ticket-id">#{{ ticket.id?.substring(0, 8) }}</span>
+          <p class="ticket-message">{{ ticket.lastMessage || 'Sin mensajes' }}</p>
+        </div>
+
+        <div class="ticket-meta">
+          <span class="ticket-status" [class]="ticket.status">
+            {{ ticket.status === 'pending' ? 'Pendiente' : ticket.status === 'active' ? 'Activo' : 'Cerrado' }}
+          </span>
+          <span class="ticket-time">{{ formatTime(ticket.createdAt) }}</span>
+        </div>
+      </div>
+
+      <!-- Empty Modal State -->
+      <div class="modal-empty" *ngIf="getModalTickets().length === 0">
+        <p>No hay tickets disponibles</p>
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,102 @@
+<!-- ============================================
+     ADMIN CHAT LAYOUT - TRI-PANE ARCHITECTURE
+     ============================================ -->
+
+<div class="admin-chat-layout">
+  
+  <!-- ==================== LEFT SIDEBAR ==================== -->
+  <aside 
+    class="sidebar-container"
+    [class.collapsed]="isSidebarCollapsed()">
+    
+    <app-admin-sidebar
+      [adminProfile]="adminProfile()"
+      [selectedTicketId]="selectedTicket()?.id || null"
+      [isCollapsed]="isSidebarCollapsed()"
+      (ticketSelected)="onTicketSelected($event)"
+      (toggleCollapse)="toggleSidebar()">
+    </app-admin-sidebar>
+  </aside>
+
+  <!-- ==================== CENTRAL CHAT AREA ==================== -->
+  <main class="chat-main-container">
+    
+    <!-- Top Header Bar -->
+    <header class="chat-top-header">
+      <!-- Left: Sidebar Toggle & Farmer Info -->
+      <div class="header-left">
+        <button 
+          class="btn-icon sidebar-toggle"
+          (click)="toggleSidebar()"
+          [attr.aria-label]="isSidebarCollapsed() ? 'Expandir sidebar' : 'Colapsar sidebar'">
+          <svg *ngIf="isSidebarCollapsed()" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+          <svg *ngIf="!isSidebarCollapsed()" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 6h16M4 12h10M4 18h16"/>
+          </svg>
+        </button>
+
+        <!-- Selected Farmer Info -->
+        <div class="selected-farmer-info" *ngIf="selectedTicket()">
+          <div class="farmer-avatar">
+            {{ (selectedFarmerProfile()?.fullname || 'A').charAt(0).toUpperCase() }}
+          </div>
+          <div class="farmer-details">
+            <h2 class="farmer-name">{{ selectedFarmerProfile()?.fullname || 'Agricultor' }}</h2>
+            <span class="farmer-status" [class.online]="selectedTicket()?.status === 'active'">
+              {{ selectedTicket()?.status === 'active' ? 'En línea' : 'Desconectado' }}
+            </span>
+          </div>
+        </div>
+
+        <!-- Empty State -->
+        <div class="no-selection-header" *ngIf="!selectedTicket()">
+          <h2>Panel de Soporte</h2>
+          <span>Selecciona un ticket para comenzar</span>
+        </div>
+      </div>
+
+      <!-- Right: Actions -->
+      <div class="header-right">
+
+        <!-- Info Panel Toggle -->
+        <button 
+          class="btn-icon info-toggle"
+          (click)="toggleInfoPanel()"
+          [class.active]="isInfoPanelOpen()"
+          aria-label="Toggle info panel">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="12" y1="16" x2="12" y2="12"/>
+            <line x1="12" y1="8" x2="12.01" y2="8"/>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Chat Content -->
+    <div class="chat-content-area">
+      <app-chat
+        [ticket]="selectedTicket()"
+        (farmerSelected)="onFarmerSelected($event)"
+        (ticketClosed)="onTicketClosed()">
+      </app-chat>
+    </div>
+
+  </main>
+
+  <!-- ==================== RIGHT INFO PANEL ==================== -->
+  <aside 
+    class="info-panel-container"
+    [class.open]="isInfoPanelOpen() && selectedTicket()">
+    
+    <app-farmer-info-panel
+      *ngIf="selectedTicket()"
+      [farmerProfile]="selectedFarmerProfile()"
+      [ticket]="selectedTicket()!"
+      (closePanel)="toggleInfoPanel()">
+    </app-farmer-info-panel>
+  </aside>
+
+</div>
