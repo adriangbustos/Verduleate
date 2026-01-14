@@ -26,3 +26,4 @@
 2026-01-09T20:36:30 | style: adjust button gradients and card borders
 2026-01-09T22:59:56 | docs: improve onboarding guide and developer notes
 2026-01-14T14:06:06 | refactor: clean up form validation handlers
+2026-01-14T17:26:29 | feat: add fallback assets for missing vegetable thumbnails
