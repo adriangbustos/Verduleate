@@ -28,3 +28,4 @@
 2026-01-14T14:06:06 | refactor: clean up form validation handlers
 2026-01-14T17:26:29 | feat: add fallback assets for missing vegetable thumbnails
 2026-01-14T21:27:22 | refactor: modularize catalog filter logic
+2026-01-20T11:25:46 | fix: resolve pricing table responsive padding
