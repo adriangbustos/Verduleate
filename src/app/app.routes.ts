@@ -1,8 +1,10 @@
 import { Routes } from '@angular/router';
 import { LandingpageComponent } from './landingpage/landingpage.component';
+import { PricingpageComponent } from './pricingpage/pricingpage.component';
 
 export const routes: Routes = [
   { path: 'landing', component: LandingpageComponent },
+  { path: 'pricing', component: PricingpageComponent },
   { path: '', redirectTo: '/landing', pathMatch: 'full' },  // Redirige al landing por defecto
   // Redirect route for Stripe success URL
   { path: 'payment-success', redirectTo: 'comprador/payment-success', pathMatch: 'full' },

@@ -16,12 +16,17 @@ export class LoginAdminComponent {
   email: string = '';
   password: string = '';
   errorMessage: string = '';
+  passwordVisible = false;
 
   constructor(
     private authService: AuthService,
     private router: Router,
     private loadingService: LoadingService
   ) {}
+
+  togglePasswordVisibility() {
+    this.passwordVisible = !this.passwordVisible;
+  }
 
   goToLanding() {
     this.router.navigate(['/landing']);

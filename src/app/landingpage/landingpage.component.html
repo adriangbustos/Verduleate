@@ -1,316 +1,523 @@
 <p-toast></p-toast>
-<header class="header">
-  <div class="logo">
-    <img src="assets/LogoCompleto.png" />
-  </div>
-  <div>
-    <button class="boton-elegante" (click)="goToAdministradores()">
-      Administradores
-    </button>
-    <button class="boton-elegante" (click)="goToCompradores()">
-      Compradores
-    </button>
-    <button class="boton-elegante" (click)="goToAgricultores()">
-      Agricultores
-    </button>
-    <button class="btn" (click)="scrollToSection()">
-      <i class="fa-solid fa-phone fa-xs"></i>
-    </button>
-  </div>
-</header>
-<div class="container">
-  <div class="slider">
-    <input type="radio" name="slider" id="slideOne" checked />
-    <input type="radio" name="slider" id="slideTwo" />
 
-    <div class="buttons">
-      <label for="slideOne"><i class="bx bxs-left-arrow"></i></label>
-      <label for="slideTwo"><i class="bx bxs-right-arrow"></i></label>
-    </div>
+<!-- ========== HERO SECTION ========== -->
+<section class="hero">
+  <img src="assets/NewLandingAssets/hero-bg.png" alt="" class="hero-bg" />
+  <div class="hero-decoration-gris">
+    <img src="assets/NewLandingAssets/gris-decoration.png" alt="" />
+  </div>
+  <div class="hero-decoration-gris-flipped">
+    <img src="assets/NewLandingAssets/gris-decoration.png" alt="" />
+  </div>
+  <div class="hero-verde">
+    <img src="assets/NewLandingAssets/verde-decoration.png" alt="" />
+  </div>
+  <h1 class="hero-title">Verduleate</h1>
+  <p class="hero-subtitle">dEL CAMPO A TU MESA</p>
+  <div class="hero-camion">
+    <svg class="video-keyer" aria-hidden="true" focusable="false">
+      <filter id="white-to-alpha" color-interpolation-filters="sRGB">
+        <feColorMatrix type="matrix" values="1 0 0 0 0
+                  0 1 0 0 0
+                  0 0 1 0 0
+                 -1 -1 -1 3 0" />
+      </filter>
+    </svg>
+    <video #heroCamionVideo class="hero-camion-video" src="assets/NewLandingAssets/camionvideo.mp4" autoplay muted loop
+      playsinline></video>
+  </div>
 
-    <div class="content">
-      <div class="firstslide">
-        <div id="posicion2">
-          <h2 id="welcome2">Bienvenido,</h2>
-          <h1 id="text2">
-            ¿Desea vender<br /><span>sin intermediarios?</span>
-          </h1>
-          <div
-            style="
-              display: flex;
-              justify-content: center;
-              height: 100%;
-              width: 100%;
-              margin-top: 20px;
-            "
-          >
-            <button class="animated-button2" (click)="goToAgricultores()">
-              <svg
-                viewBox="0 0 24 24"
-                class="arr-2"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
-                ></path>
-              </svg>
-              <span class="text">Regístrese o Inicie Sesión</span>
-              <span class="circle"></span>
-              <svg
-                viewBox="0 0 24 24"
-                class="arr-1"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
-                ></path>
-              </svg>
-            </button>
-          </div>
-        </div>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <div class="navbar-logo">
+        <img src="assets/LogoV.png" alt="Verduléate" />
       </div>
-      <div class="secondslide">
-        <div id="posicion">
-          <h2 id="welcome">Bienvenido,</h2>
-          <h1 id="text">
-            ¿Quiere verduras a <br /><span>precios bajos?</span>
-          </h1>
-          <div
-            style="
-              display: flex;
-              justify-content: center;
-              height: 100%;
-              width: 100%;
-              margin-top: 20px;
-            "
-          >
-            <button class="animated-button" (click)="goToCompradores()">
-              <svg
-                viewBox="0 0 24 24"
-                class="arr-2"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
-                ></path>
-              </svg>
-              <span class="text">Regístrese o Inicie Sesión</span>
-              <span class="circle"></span>
-              <svg
-                viewBox="0 0 24 24"
-                class="arr-1"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
-                ></path>
-              </svg>
-            </button>
-          </div>
-        </div>
+      <div class="navbar-links">
+        <a (click)="goToCompradores()">Compradores</a>
+        <a (click)="goToAdministradores()">Administradores</a>
+        <a (click)="goToAgricultores()">Agricultores</a>
+      </div>
+      <div class="navbar-icons">
+        <img (click)="goToPricing()" src="assets/NewLandingAssets/icon-pricing.svg" alt="Precios" class="nav-icon nav-icon-sm" />
+        <img src="assets/NewLandingAssets/icon-map.svg" alt="Mapa" class="nav-icon" />
       </div>
     </div>
-  </div>
-</div>
-<section class="about" id="about">
-  <div class="about-img">
-    <img src="../../assets/LandingPage/ImagenAnalytics.png" alt="" />
-  </div>
-  <div class="about-text">
-    <h3>Somos Verduléate</h3>
-    <ul>
-      <li>
-        En Verduléate conectamos a productores ecuatorianos con tu mesa,
-        asegurando productos frescos y de calidad.
-      </li>
-      <li>
-        Garantizamos frutas y verduras sin intermediarios, directamente del
-        campo a tu hogar.
-      </li>
-      <li>
-        Compra desde casa de manera fácil y segura, sin necesidad de salir.
-      </li>
-      <li>Apoya a pequeños agricultores, fortaleciendo la economía local.</li>
-      <li>
-        Contribuye a un consumo más sostenible, promoviendo prácticas
-        responsables.
-      </li>
-    </ul>
-  </div>
+  </nav>
 </section>
 
-<div class="video-container">
-  <video autoplay loop muted>
-    <source src="../../assets/LandingPage/video.mp4" type="video/mp4" />
-  </video>
-  <section class="offers">
-    <h1 id="offering">¿Qué Ofrecemos?</h1>
-    <div class="offer-content">
-      <div class="row">
-        <i class="fa-solid">🌱</i>
-        <h3>Frescura Garantizada</h3>
-        <p>Verduras frescas directamente del campo a tu puerta.</p>
-      </div>
-      <div class="row">
-        <i class="fa-solid fa-truck-fast"></i>
-        <h3>Entrega Rápida y Confiable</h3>
-        <p>Recibe tu pedido en pocas horas.</p>
-      </div>
-      <div class="row">
-        <i class="fa-solid">📦</i>
-        <h3>Gran Variedad de Productos</h3>
-        <p>Desde productos locales hasta opciones exóticas.</p>
-      </div>
-
-      <div class="row">
-        <i class="fa-solid">🔒</i>
-        <h3>Pagos Seguros y Convenientes</h3>
-        <p>Múltiples opciones de pago, incluyendo efectivo y online.</p>
-      </div>
-      <div class="row">
-        <i class="fa-solid">⌛</i>
-        <h3>Seguimiento de Pedido en Tiempo Real</h3>
-        <p>Conoce exactamente cuándo llegará tu pedido.</p>
-      </div>
-      <div class="row">
-        <i class="fa-solid">🤝</i>
-        <h3>Apoyo a Agricultores Locales</h3>
+<!-- ========== WHY US SECTION ========== -->
+<section class="why-us">
+  <h2 class="why-us-title scroll-animate">
+    Para todos los ecuatorianos,
+    <hr style="opacity: 0%" />
+    desde agricultores hasta compradores
+  </h2>
+  <div class="why-us-cards">
+    <div class="why-card scroll-animate delay-1">
+      <div class="why-card-image"></div>
+      <div class="why-card-content">
+        <h3>Comienza con rapidez</h3>
         <p>
-          Cada compra beneficia directamente a los agricultores ecuatorianos.
+          La Favorita, hacienda en solitario, puso en marcha su cuenta de
+          Verduléate, obteniendo más ganancia que nunca, incluso ofreciendo
+          precios bajos.
         </p>
       </div>
     </div>
-  </section>
-</div>
-
-<section class="review" id="review">
-  <div class="main-txt">
-    <h3>Opiniones del Público</h3>
-  </div>
-
-  <div class="review-content">
-    <p-carousel [value]="comments" [numVisible]="3" [numScroll]="3">
-      <ng-template pTemplate="item" let-comment>
-        <div class="comment-card">
-          <img
-            [src]="comment.image"
-            alt="{{ comment.author }}"
-            class="comment-image"
-          />
-          <p class="comment-text">"{{ comment.text }}"</p>
-          <h4 class="comment-author">{{ comment.author }}</h4>
-          <p-rating
-            [cancel]="false"
-            [ngModel]="comment.rating"
-            [readonly]="true"
-          ></p-rating>
-        </div>
-      </ng-template>
-    </p-carousel>
-  </div>
-</section>
-
-<section class="contact" id="contact" #targetSection>
-  <div class="content-text">
-    <h2>¿Tiene algún problema?</h2>
-    <p>
-      Nosotros nos encargamos, deje sus datos y requerimientos para que podamos
-      asistirle.
-    </p>
-  </div>
-
-  <div class="contact-form">
-    <form (ngSubmit)="sendEmail()" #contactForm="ngForm">
-      <input
-        class="color"
-        type="text"
-        name="title"
-        [(ngModel)]="formData.title"
-        placeholder="Asunto"
-        required
-      />
-
-      <input
-        class="color"
-        type="text"
-        name="user_name"
-        [(ngModel)]="formData.user_name"
-        placeholder="Nombre"
-        required
-      />
-
-      <input
-        class="color"
-        name="phone"
-        [(ngModel)]="formData.phone"
-        placeholder="Celular"
-        required
-      />
-
-      <input
-        class="color"
-        type="email"
-        name="user_email"
-        [(ngModel)]="formData.user_email"
-        placeholder="Correo"
-        required
-      />
-
-      <p-dropdown
-        name="tipo_cuenta"
-        [options]="accounts"
-        [(ngModel)]="formData.tipo_cuenta"
-        optionLabel="name"
-        placeholder="Tipo de Cuenta"
-        required
-      >
-      </p-dropdown>
-
-      <textarea
-        class="color"
-        name="message"
-        [(ngModel)]="formData.message"
-        cols="35"
-        rows="10"
-        placeholder="Mensaje"
-        required
-      ></textarea>
-
-      <button type="submit" class="submit">Enviar</button>
-    </form>
-  </div>
-</section>
-
-<footer class="pie-pagina">
-  <div class="grupo-1">
-    <div class="box2">
-      <figure>
-        <a href="index.html">
-          <img src="../../assets/LogoV.png" />
-        </a>
-      </figure>
+    <div class="why-card scroll-animate delay-2">
+      <div class="why-card-image2"></div>
+      <div class="why-card-content">
+        <h3>Crece todo lo que quieras</h3>
+        <p>
+          La hacienda Santa María pasó de ser pequeña a convertirse en una
+          hacienda de 10 hectáreas, con más de US$100.000 anuales.
+        </p>
+      </div>
     </div>
-    <div class="box2">
-      <h2>NUESTROS SISTEMAS</h2>
-      <a (click)="goToAgricultores()">- Agricultor</a> <br />
-      <a (click)="goToCompradores()">- Comprador</a>
-    </div>
-    <div class="box2">
-      <h2>SÍGANOS</h2>
-      <div class="red-social">
-        <a href="https://www.instagram.com/" target="_blank"
-          ><i class="fa-brands fa-instagram"></i
-        ></a>
-        <a href="https://twitter.com/" target="_blank"
-          ><i class="fa-brands fa-twitter"></i
-        ></a>
-        <a href="https://www.youtube.com/" target="_blank"
-          ><i class="fa-brands fa-youtube"></i
-        ></a>
+    <div class="why-card scroll-animate delay-3">
+      <div class="why-card-image3"></div>
+      <div class="why-card-content">
+        <h3>Aumenta las expectativas</h3>
+        <p>
+          Con la ayuda de Verduléate, todos los ecuatorianos reciben sus
+          verduras a mejor precio, y generando más dinero para nuestros
+          agricultores.
+        </p>
       </div>
     </div>
   </div>
-  <div class="grupo-2">
-    <small>Verduléate - Todos los Derechos Reservados &copy; 2025 </small>
+  <div class="why-us-buttons scroll-animate delay-4">
+    <a routerLink="/precios" class="btn-ver-precios">Ver precios</a>
+    <button class="btn-unete" (click)="scrollToAccountTypes()">
+      Únete a Verduléate
+    </button>
+  </div>
+</section>
+
+<!-- ========== MAP INVITATION SECTION ========== -->
+<section style="height: 100vh; padding-bottom: 60px">
+  <section class="map-invitation">
+    <div class="map-card scroll-animate">
+      <img src="assets/NewLandingAssets/map-card-bg.png" alt="" class="map-card-bg" />
+      <div class="map-card-overlay"></div>
+      <div class="map-card-text-group">
+        <h2 class="map-card-title-white">
+          Encuentre Su <span class="map-card-title-outline">Próxima</span>
+        </h2>
+        <h2 class="map-card-title-outline map-card-title-second-line">
+          Compra
+        </h2>
+      </div>
+      <p class="map-card-description">
+        En Verduléate, manejamos múltiples fincas de nuestros agricultores, vea
+        sus ubicaciones dentro de un mapa.
+      </p>
+      <button class="map-card-btn" (click)="goToCompradores()">
+        Explore el mapa
+      </button>
+      <div class="map-card-images">
+        <div class="map-card-img">
+          <img src="assets/NewLandingAssets/farm-1.png" alt="Finca 1" />
+        </div>
+        <div class="map-card-img">
+          <img src="assets/NewLandingAssets/farm-2.png" alt="Finca 2" />
+        </div>
+        <div class="map-card-img">
+          <img src="assets/NewLandingAssets/farm-3.png" alt="Finca 3" />
+        </div>
+      </div>
+    </div>
+  </section>
+</section>
+<!-- ========== GLOBE SECTION ========== -->
+<section class="globe-section">
+  <div #globeContainer class="globe-container"></div>
+
+  <!-- Feature info cards positioned around the globe -->
+  <div class="globe-cards-overlay">
+    <!-- Top-left -->
+    <div class="globe-feature-card card-top-left scroll-animate delay-1">
+      <div class="feature-icon-box">
+        <i class="fa-solid fa-seedling feature-fa-icon"></i>
+      </div>
+      <h4>Frescura Garantizada</h4>
+      <p>Verduras frescas directamente del campo a tu puerta.</p>
+    </div>
+
+    <!-- Top-right -->
+    <div class="globe-feature-card card-top-right scroll-animate delay-2">
+      <div class="feature-icon-box">
+        <i class="fa-solid fa-truck-fast feature-fa-icon"></i>
+      </div>
+      <h4>Entrega Rápida y Confiable</h4>
+      <p>Recibe tu pedido en pocas horas.</p>
+    </div>
+
+    <!-- Middle-left -->
+    <div class="globe-feature-card card-mid-left scroll-animate delay-3">
+      <div class="feature-icon-box">
+        <i class="fa-solid fa-basket-shopping feature-fa-icon"></i>
+      </div>
+      <h4>Gran Variedad de Productos</h4>
+      <p>Desde productos locales hasta opciones exóticas.</p>
+    </div>
+
+    <!-- Middle-right -->
+    <div class="globe-feature-card card-mid-right scroll-animate delay-1">
+      <div class="feature-icon-box">
+        <i class="fa-solid fa-lock feature-fa-icon"></i>
+      </div>
+      <h4>Pagos Seguros y Convenientes</h4>
+      <p>Múltiples opciones de pago, incluyendo efectivo y online.</p>
+    </div>
+
+    <!-- Bottom-left -->
+    <div class="globe-feature-card card-bottom-left scroll-animate delay-2">
+      <div class="feature-icon-box">
+        <i class="fa-solid fa-hourglass-half feature-fa-icon"></i>
+      </div>
+      <h4>Seguimiento en Tiempo Real</h4>
+      <p>Conoce exactamente cuándo llegará tu pedido.</p>
+    </div>
+
+    <!-- Bottom-right -->
+    <div class="globe-feature-card card-bottom-right scroll-animate delay-3">
+      <div class="feature-icon-box">
+        <i class="fa-solid fa-handshake feature-fa-icon"></i>
+      </div>
+      <h4>Apoyo a Agricultores Locales</h4>
+      <p>Cada compra beneficia directamente a los agricultores ecuatorianos.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== REVIEWS SECTION ========== -->
+<section class="reviews-section">
+  <img src="assets/LandingPage/newBackground.png" alt="" class="reviews-video" />
+
+  <div class="reviews-content scroll-animate">
+    <div class="reviews-grid">
+      <div class="review-tile1 review-tile--summary div1">
+        <div style="display: flex; flex-direction: column; gap: 16px">
+          <div class="summary-badge">Opiniones verificadas</div>
+          <div class="summary-score">4.5</div>
+          <div class="summary-stars">
+            <span class="star active">★</span>
+            <span class="star active">★</span>
+            <span class="star active">★</span>
+            <span class="star active">★</span>
+            <span class="star">★</span>
+          </div>
+          <div class="summary-caption">Basado en 1,200 reseñas</div>
+          <div class="summary-breakdown">
+            <div class="summary-row">
+              <span class="summary-row-label">5</span>
+              <div class="summary-bar"><span style="width: 72%"></span></div>
+              <span class="summary-row-value">72%</span>
+            </div>
+            <div class="summary-row">
+              <span class="summary-row-label">4</span>
+              <div class="summary-bar"><span style="width: 18%"></span></div>
+              <span class="summary-row-value">18%</span>
+            </div>
+            <div class="summary-row">
+              <span class="summary-row-label">3</span>
+              <div class="summary-bar"><span style="width: 6%"></span></div>
+              <span class="summary-row-value">6%</span>
+            </div>
+            <div class="summary-row">
+              <span class="summary-row-label">2</span>
+              <div class="summary-bar"><span style="width: 3%"></span></div>
+              <span class="summary-row-value">3%</span>
+            </div>
+            <div class="summary-row">
+              <span class="summary-row-label">1</span>
+              <div class="summary-bar"><span style="width: 1%"></span></div>
+              <span class="summary-row-value">1%</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="summary-footer">
+          <div class="summary-brand">Verduléate</div>
+          <div class="summary-mini-stars">
+            <span class="star active">★</span>
+            <span class="star active">★</span>
+            <span class="star active">★</span>
+            <span class="star active">★</span>
+            <span class="star">★</span>
+          </div>
+          <div class="summary-mini-text">Calificado 4.5/5.0</div>
+        </div>
+      </div>
+
+      <div class="review-tile div4">
+        <p class="review-text">{{ comments[0].text }}</p>
+        <div class="review-author">
+          <div class="review-avatar">
+            <img [src]="comments[0].image" [alt]="comments[0].author" />
+          </div>
+          <div class="review-author-info">
+            <strong>{{ comments[0].author }}</strong>
+            <span>Comprador</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-tile div5">
+        <p class="review-text">{{ comments[1].text }}</p>
+        <div class="review-author">
+          <div class="review-avatar">
+            <img [src]="comments[1].image" [alt]="comments[1].author" />
+          </div>
+          <div class="review-author-info">
+            <strong>{{ comments[1].author }}</strong>
+            <span>Comprador</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-tile div7">
+        <p class="review-text">{{ comments[2].text }}</p>
+        <div class="review-author">
+          <div class="review-avatar">
+            <img [src]="comments[2].image" [alt]="comments[2].author" />
+          </div>
+          <div class="review-author-info">
+            <strong>{{ comments[2].author }}</strong>
+            <span>Comprador</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-tile review-tile--insights div12">
+        <div class="insights-header">
+          <div class="insights-title">Actividad reciente</div>
+          <div class="insights-tag">Ecuador</div>
+        </div>
+        <div class="insights-times">
+          <span>3am</span>
+          <span>5am</span>
+          <span>9am</span>
+          <span>11am</span>
+          <span>1pm</span>
+          <span>5pm</span>
+        </div>
+        <div class="insights-bars">
+          <span class="bar" style="height: 40%"></span>
+          <span class="bar" style="height: 65%"></span>
+          <span class="bar" style="height: 85%"></span>
+          <span class="bar" style="height: 50%"></span>
+          <span class="bar" style="height: 72%"></span>
+          <span class="bar" style="height: 60%"></span>
+        </div>
+        <div class="insights-metrics">
+          <div>
+            <div class="metric-value">50.4%</div>
+            <div class="metric-label">Tasa de recompra</div>
+          </div>
+          <div>
+            <div class="metric-value">3.2B</div>
+            <div class="metric-label">Ventas anuales</div>
+          </div>
+        </div>
+        <div class="insights-footer">
+          <div class="insights-activity">
+            <div class="activity-label">Usuarios activos</div>
+            <div class="activity-value">24m</div>
+          </div>
+          <div class="insights-avatars">
+            <span class="avatars-label">Top compradores</span>
+            <div class="avatar-stack">
+              <img [src]="comments[4].image" [alt]="comments[4].author" />
+              <img [src]="comments[5].image" [alt]="comments[5].author" />
+              <img [src]="comments[6].image" [alt]="comments[6].author" />
+            </div>
+          </div>
+        </div>
+        <div class="insights-link">Productos Mas Vendidos</div>
+        <div class="top-products">
+          <div class="product-card">
+            <img src="assets/vegetales/tomate.png" alt="Tomate" />
+            <div class="product-info">
+              <span class="product-name">Tomate Riñon</span>
+              <span class="product-meta">Finca El Sol • Pichincha</span>
+            </div>
+          </div>
+          <div class="product-card">
+            <img src="assets/vegetales/aguacate.png" alt="Aguacate" />
+            <div class="product-info">
+              <span class="product-name">Aguacate</span>
+              <span class="product-meta">Hacienda Monteverde • Manabi</span>
+            </div>
+          </div>
+          <div class="product-card">
+            <img src="assets/vegetales/zanahoria.png" alt="Zanahoria" />
+            <div class="product-info">
+              <span class="product-name">Zanahoria Fresca</span>
+              <span class="product-meta">Finca Los Andes • Cotopaxi</span>
+            </div>
+          </div>
+          <div class="product-card">
+            <img src="assets/vegetales/lechuga.png" alt="Lechuga" />
+            <div class="product-info">
+              <span class="product-name">Lechuga Romana</span>
+              <span class="product-meta">Granja La Esperanza • Azuay</span>
+            </div>
+          </div>
+        </div>
+        <div class="insights-link insights-link--section">Haciendas Mas Destacadas</div>
+        <div class="top-haciendas">
+          <div class="hacienda-card">
+            <span class="hacienda-province">Pichincha</span>
+            <span class="hacienda-name">Hacienda Santa Lucia</span>
+            <span class="hacienda-joined">Se unio a Verduleate: 2022</span>
+          </div>
+          <div class="hacienda-card">
+            <span class="hacienda-province">Chimborazo</span>
+            <span class="hacienda-name">Finca El Mirador</span>
+            <span class="hacienda-joined">Se unio a Verduleate: 2021</span>
+          </div>
+          <div class="hacienda-card">
+            <span class="hacienda-province">Imbabura</span>
+            <span class="hacienda-name">Hacienda Los Pinos</span>
+            <span class="hacienda-joined">Se unio a Verduleate: 2023</span>
+          </div>
+          <div class="hacienda-card">
+            <span class="hacienda-province">Tungurahua</span>
+            <span class="hacienda-name">Finca Valle Verde</span>
+            <span class="hacienda-joined">Se unio a Verduleate: 2020</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-tile div13">
+        <p class="review-text">{{ comments[3].text }}</p>
+        <div class="review-author">
+          <div class="review-avatar">
+            <img [src]="comments[3].image" [alt]="comments[3].author" />
+          </div>
+          <div class="review-author-info">
+            <strong>{{ comments[3].author }}</strong>
+            <span>Comprador</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== ACCOUNT TYPE SECTION ========== -->
+<section class="account-types" #accountTypes>
+  <div class="accounts-container">
+    <div class="account-card scroll-animate delay-1" (click)="goToAgricultores()">
+      <img src="assets/NewLandingAssets/agricultor.png" alt="Agricultor" />
+      <span class="account-label">Agricultor</span>
+    </div>
+    <div class="account-card scroll-animate delay-2" (click)="goToCompradores()">
+      <img src="assets/NewLandingAssets/comprador.png" alt="Comprador" />
+      <span class="account-label">Comprador</span>
+    </div>
+    <div class="account-card scroll-animate delay-3" (click)="goToAdministradores()">
+      <img src="assets/NewLandingAssets/administrador.png" alt="Administrador" />
+      <span class="account-label">Administrador</span>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer class="site-footer scroll-animate" #targetSection>
+  <div class="footer-inner">
+    <!-- Feedback form -->
+    <div class="footer-feedback">
+      <div class="feedback-top">
+        <div class="feedback-intro">
+          <span class="footer-label">Retroalimentación</span>
+          <p class="feedback-title">
+            <span class="feedback-title-dim">Busca soporte personalizado?</span>
+            Nuestro equipo podrá ayudarlo
+          </p>
+        </div>
+        <div class="feedback-fields">
+          <div class="feedback-field">
+            <label>NOMBRE</label>
+            <input type="text" name="user_name" [(ngModel)]="formData.user_name" />
+          </div>
+          <div class="feedback-field">
+            <label>NÚMERO CELULAR</label>
+            <input type="tel" name="phone" [(ngModel)]="formData.phone" />
+          </div>
+        </div>
+        <button class="feedback-send-btn" (click)="sendEmail()">Enviar</button>
+      </div>
+      <a class="footer-privacy">Privacidad</a>
+    </div>
+
+    <!-- Main footer content -->
+    <div class="footer-main">
+      <div class="footer-main-top">
+        <div class="footer-columns">
+          <div class="footer-col">
+            <span class="footer-label">Info</span>
+            <div class="footer-links">
+              <a>Inicio</a>
+              <a>Productos</a>
+              <a>Preguntas Frecuentes</a>
+              <a>Servicios</a>
+              <a>Blog</a>
+            </div>
+          </div>
+          <div class="footer-col">
+            <span class="footer-label">Sobre Nosotros</span>
+            <div class="footer-links">
+              <a>Galería</a>
+              <a>Tecnologías</a>
+              <a>Contactos</a>
+            </div>
+          </div>
+          <div class="footer-col-contact">
+            <div class="footer-col">
+              <span class="footer-label">Contacto</span>
+              <div class="footer-links">
+                <a>+593 9-999-9999</a>
+                <a>info&#64;Verduléate.com</a>
+                <a>Guayaquil, Ecuador</a>
+              </div>
+            </div>
+            <div class="footer-brand">
+              <img src="assets/NewLandingAssets/logo-icon.png" alt="Verduléate" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Newsletter -->
+        <div class="footer-newsletter">
+          <span class="footer-label">Newsletter</span>
+          <div class="newsletter-input">
+            <input type="email" placeholder="Email" name="newsletter_email" [(ngModel)]="newsletterEmail" />
+            <div class="newsletter-btn">
+              <div class="newsletter-sep"></div>
+              <img src="assets/NewLandingAssets/icon-arrow-right.svg" alt="Enviar" class="newsletter-arrow" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom bar -->
+      <div class="footer-bottom">
+        <div class="footer-social">
+          <a href="https://www.facebook.com/" target="_blank"><img src="assets/NewLandingAssets/social-facebook.svg"
+              alt="Facebook" /></a>
+          <a href="https://www.instagram.com/" target="_blank"><img src="assets/NewLandingAssets/social-instagram.svg"
+              alt="Instagram" /></a>
+          <a href="https://twitter.com/" target="_blank"><img src="assets/NewLandingAssets/social-twitter.svg"
+              alt="Twitter" /></a>
+          <a href="https://www.youtube.com/" target="_blank"><img src="assets/NewLandingAssets/social-youtube.svg"
+              alt="YouTube" /></a>
+        </div>
+        <span class="footer-copyright">© 2026 — Copyright</span>
+      </div>
+    </div>
   </div>
 </footer>

@@ -1,40 +1,49 @@
 <div class="login-container">
   <div class="overlay"></div>
-  
-  <div class="login-box">
-    <img src="assets/LogoCompleto.png" alt="Logo" class="logo" (click)="goToLanding()">
-    
+
+  <div class="login-card">
+    <button type="button" class="brand" (click)="goToLanding()" aria-label="Ir al inicio">
+      <img src="../../../assets/LogoV.png" alt="Verdulate" />
+    </button>
+
     <form (ngSubmit)="onSubmit()" class="login-form">
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input 
-          type="email" 
-          id="email" 
-          name="email" 
-          [(ngModel)]="email" 
-          placeholder="admin@example.com"
-          required
-        >
+      <h1>Bienvenido,</h1>
+      <p class="subtext">Ingresa a tu cuenta</p>
+
+      <label class="field-label" for="email">Email</label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        [(ngModel)]="email"
+        placeholder="you@example.com"
+        required
+      />
+
+      <div class="field-row">
+        <label class="field-label" for="password">Contraseña</label>
       </div>
-      
-      <div class="form-group">
-        <label for="password">Contraseña</label>
-        <input 
-          type="password" 
-          id="password" 
-          name="password" 
-          [(ngModel)]="password" 
+      <div class="password-container">
+        <input
+          [type]="passwordVisible ? 'text' : 'password'"
+          id="password"
+          name="password"
+          [(ngModel)]="password"
           placeholder="••••••••"
           required
-        >
+        />
+        <button type="button" (click)="togglePasswordVisibility()" aria-label="Mostrar contrasena">
+          <i class="fa-regular" [ngClass]="passwordVisible ? 'fa-eye-slash' : 'fa-eye'"
+            [ngStyle]="{ opacity: 0.6}"></i>
+        </button>
       </div>
-      
+
       <div class="error-message" *ngIf="errorMessage">
         {{ errorMessage }}
       </div>
-      
+
       <button type="submit" class="submit-button">
-        Iniciar Sesión
+        Iniciar Sesion
       </button>
     </form>
   </div>

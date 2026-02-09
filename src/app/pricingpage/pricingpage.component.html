@@ -1,0 +1,72 @@
+<section class="pricing-page">
+  <header class="top-bar">
+    <button type="button" class="brand" (click)="goToHome()" aria-label="Ir al inicio">
+      <img src="assets/LogoCompleto.png" alt="Verduleate" />
+    </button>
+  </header>
+
+  <div class="hero">
+    <div class="hero-title">
+      <p class="eyebrow">Mejora tu cuenta</p>
+      <h1>Eleva tu experiencia en Verduléate</h1>
+    </div>
+
+    <div class="toggle" role="tablist" aria-label="Tipo de cuenta">
+      <button
+        type="button"
+        class="toggle-option"
+        [class.active]="accountType === 'agricultor'"
+        (click)="setAccountType('agricultor')"
+        role="tab"
+        [attr.aria-selected]="accountType === 'agricultor'"
+      >
+        Agricultor
+      </button>
+      <button
+        type="button"
+        class="toggle-option"
+        [class.active]="accountType === 'comprador'"
+        (click)="setAccountType('comprador')"
+        role="tab"
+        [attr.aria-selected]="accountType === 'comprador'"
+      >
+        Comprador
+      </button>
+      <span class="toggle-pill" [class.right]="accountType === 'comprador'"></span>
+    </div>
+  </div>
+
+  <div class="plans" role="list">
+    <article
+      class="plan-card"
+      *ngFor="let plan of activePlans"
+      [class.featured]="plan.isFeatured"
+      role="listitem"
+    >
+      <div class="plan-header">
+        <div>
+          <h2>{{ plan.name }}</h2>
+          <div class="plan-price">
+            <span class="amount">{{ plan.price }}</span>
+            <span class="cadence">/ {{ plan.cadence }}</span>
+          </div>
+          <p class="plan-desc">{{ plan.description }}</p>
+        </div>
+        <span class="badge" *ngIf="plan.badge">{{ plan.badge }}</span>
+      </div>
+
+      <button type="button" class="plan-cta">
+        {{ plan.cta }}
+      </button>
+
+      <ul class="plan-features">
+        <li *ngFor="let feature of plan.features">
+          <span class="feature-icon" aria-hidden="true">
+            <i [class]="feature.icon"></i>
+          </span>
+          <span class="feature-text">{{ feature.text }}</span>
+        </li>
+      </ul>
+    </article>
+  </div>
+</section>
