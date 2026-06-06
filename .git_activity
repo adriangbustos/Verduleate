@@ -39,3 +39,4 @@
 2026-02-12T11:24:16 | feat: add fallback assets for missing vegetable thumbnails
 2026-02-12T18:18:27 | refactor: clean up form validation handlers
 2026-06-06T13:12:18 | feat: add fallback assets for missing vegetable thumbnails
+2026-06-06T14:03:37 | chore: update dependencies and remove unused imports
