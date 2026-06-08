@@ -116,26 +116,3 @@ You need to run three separate processes for the complete application to work.
     cd api
     npm start
     ```
-
-## 📂 Project Structure
-
-The repository is organized as follows:
-
-```
-/
-├── api/              # Node.js API for generating test data.
-├── server/           # Node.js server for Stripe payments.
-├── src/              # Main source code of the Angular application.
-│   ├── app/
-│   │   ├── components/   # Global components (e.g., loader).
-│   │   ├── guards/       # Route guards for authentication/authorization.
-│   │   ├── services/     # Main services (Auth, Admin, etc.).
-│   │   ├── sistemaadmin/ # Admin functionalities.
-│   │   ├── sistemaagricultor/ # Farmer functionalities.
-│   │   └── sistemacomprador/  # Buyer functionalities.
-│   ├── assets/         # Static resources such as images and icons.
-│   └── environments/   # Environment-specific configurations.
-├── angular.json      # Angular project configuration.
-├── firebase.json     # Firebase hosting and functions configuration.
-└── package.json      # Frontend npm dependencies and scripts.
-```
