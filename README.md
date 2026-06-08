@@ -51,7 +51,7 @@ Sigue estas instrucciones para obtener una copia local del proyecto en funcionam
 
 ### Prerrequisitos
 
-- [Node.js](https://nodejs.org/en/download/) (que incluye npm)
+- [Node.js](https://nodejs.org/en/download/)
 - [Angular CLI](https://angular.io/cli)
 
 ```bash
