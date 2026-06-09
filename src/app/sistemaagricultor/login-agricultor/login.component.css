@@ -17,11 +17,29 @@
     font-family: 'Poppins', sans-serif;
 }
 
+:host-context(.light) {
+    --panel-dark: #ffffff;
+    --panel-darker: #f4f5f0;
+    --panel-border: #d9dad4;
+    --panel-muted: #5c5c5c;
+    --panel-green: #178a52;
+    --panel-green-border: #1f9a60;
+    --text-main: #1b1b1b;
+}
+
 body {
     background-color: #0f0f0f;
     height: 100vh;
     width: 100vw;
     overflow: hidden;
+}
+
+:host-context(.light) body {
+    background-color: #f4f5f0;
+}
+
+:host-context(.light) .signup-text a {
+    color: #292929;
 }
 
 .login-layout {
@@ -46,6 +64,7 @@ body {
     background: rgba(0, 0, 0, 0.45);
 }
 
+
 .hero-card {
     position: absolute;
     top: 50%;
@@ -55,6 +74,10 @@ body {
     max-width: 520px;
     padding: 30px 40px;
     border-radius: 16px;
+    :host-context(.light) .password-container button {
+        background: #f1f2ed;
+        color: #1b1b1b;
+    }
     border: 1px solid #151515;
     backdrop-filter: blur(21px);
     background: linear-gradient(166deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 100%);
@@ -138,6 +161,10 @@ body {
     color: #6e6e6e;
 }
 
+:host-context(.light) .subtext {
+    color: #5c5c5c;
+}
+
 .google-button {
     height: 31px;
     border-radius: 5px;
@@ -151,6 +178,11 @@ body {
     font-size: 10px;
     cursor: pointer;
     transition: border-color 0.2s ease;
+}
+
+:host-context(.light) .google-button {
+    background-color: #ffffff;
+    color: #1b1b1b;
 }
 
 .google-button:hover {
@@ -167,6 +199,10 @@ body {
     margin: 6px 0 2px;
 }
 
+:host-context(.light) .divider {
+    color: #1b1b1b;
+}
+
 .divider::before,
 .divider::after {
     content: '';
@@ -175,9 +211,18 @@ body {
     background: #6a6a6a;
 }
 
+:host-context(.light) .divider::before,
+:host-context(.light) .divider::after {
+    background: #c0c0c0;
+}
+
 .field-label {
     font-size: 10px;
     color: #ffffff;
+}
+
+:host-context(.light) .field-label {
+    color: #1b1b1b;
 }
 
 .login-card input {
@@ -191,8 +236,17 @@ body {
     outline: none;
 }
 
+:host-context(.light) .login-card input {
+    background-color: #f7f7f3;
+    color: #1b1b1b;
+}
+
 .login-card input::placeholder {
     color: #8c8c8c;
+}
+
+:host-context(.light) .login-card input::placeholder {
+    color: #7a7a7a;
 }
 
 .field-row {
@@ -207,6 +261,10 @@ body {
     color: var(--panel-muted);
     font-size: 10px;
     cursor: pointer;
+}
+
+:host-context(.light) .forgot-link {
+    color: #5c5c5c;
 }
 
 .forgot-link:hover {
@@ -234,6 +292,11 @@ body {
     border-radius: 5px;
     color: #ffffff;
     cursor: pointer;
+}
+
+:host-context(.light) .password-container button {
+    background: #f1f2ed;
+    color: #1b1b1b;
 }
 
 :host ::ng-deep .login-button {
@@ -266,6 +329,10 @@ body {
     margin-top: 4px;
 }
 
+:host-context(.light) .signup-text {
+    color: #1b1b1b;
+}
+
 .signup-text a {
     color: #ffffff;
     text-decoration: underline;
@@ -281,6 +348,10 @@ body {
     color: var(--panel-muted);
     text-align: center;
     line-height: 1.4;
+}
+
+:host-context(.light) .terms-text {
+    color: #5c5c5c;
 }
 
 .terms-text .link {

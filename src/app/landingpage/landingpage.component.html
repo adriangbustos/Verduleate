@@ -39,8 +39,8 @@
         <a (click)="goToAgricultores()">Agricultores</a>
       </div>
       <div class="navbar-icons">
-        <img (click)="goToPricing()" src="assets/NewLandingAssets/icon-pricing.svg" alt="Precios" class="nav-icon nav-icon-sm" />
-        <img src="assets/NewLandingAssets/icon-map.svg" alt="Mapa" class="nav-icon" />
+        <i (click)="goToPricing()" class="fa-solid fa-credit-card nav-icon"></i>
+        <i class="fa-regular fa-map nav-icon"></i>
       </div>
     </div>
   </nav>
@@ -459,7 +459,7 @@
       <div class="footer-main-top">
         <div class="footer-columns">
           <div class="footer-col">
-            <span class="footer-label">Info</span>
+            <span class="footer-label footer-label-non-feedback">Info</span>
             <div class="footer-links">
               <a>Inicio</a>
               <a>Productos</a>
@@ -468,17 +468,9 @@
               <a>Blog</a>
             </div>
           </div>
-          <div class="footer-col">
-            <span class="footer-label">Sobre Nosotros</span>
-            <div class="footer-links">
-              <a>Galería</a>
-              <a>Tecnologías</a>
-              <a>Contactos</a>
-            </div>
-          </div>
           <div class="footer-col-contact">
             <div class="footer-col">
-              <span class="footer-label">Contacto</span>
+              <span class="footer-label footer-label-non-feedback">Contacto</span>
               <div class="footer-links">
                 <a>+593 9-999-9999</a>
                 <a>info&#64;Verduléate.com</a>
@@ -491,14 +483,20 @@
           </div>
         </div>
 
-        <!-- Newsletter -->
-        <div class="footer-newsletter">
-          <span class="footer-label">Newsletter</span>
-          <div class="newsletter-input">
-            <input type="email" placeholder="Email" name="newsletter_email" [(ngModel)]="newsletterEmail" />
-            <div class="newsletter-btn">
-              <div class="newsletter-sep"></div>
-              <img src="assets/NewLandingAssets/icon-arrow-right.svg" alt="Enviar" class="newsletter-arrow" />
+        <!-- Newsletter + Theme -->
+        <div class="footer-newsletter-row">
+          <div class="footer-theme">
+            <span class="footer-label footer-label-non-feedback">Tema</span>
+            <div class="theme-select" [class.open]="themeMenuOpen">
+              <button type="button" class="theme-trigger" (click)="toggleThemeMenu()">
+                <span>{{ getThemeLabel(themePreference) }}</span>
+                <span class="theme-caret">▾</span>
+              </button>
+              <div class="theme-options" *ngIf="themeMenuOpen">
+                <button type="button" (click)="setThemePreference('light')">Claro</button>
+                <button type="button" (click)="setThemePreference('dark')">Oscuro</button>
+                <button type="button" (click)="setThemePreference('system')">Sistema</button>
+              </div>
             </div>
           </div>
         </div>

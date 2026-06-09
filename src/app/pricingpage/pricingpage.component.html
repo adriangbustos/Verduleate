@@ -1,3 +1,5 @@
+<p-toast></p-toast>
+
 <section class="pricing-page">
   <header class="top-bar">
     <button type="button" class="brand" (click)="goToHome()" aria-label="Ir al inicio">
@@ -69,4 +71,98 @@
       </ul>
     </article>
   </div>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <!-- Feedback form -->
+      <div class="footer-feedback">
+        <div class="feedback-top">
+          <div class="feedback-intro">
+            <span class="footer-label">Retroalimentación</span>
+            <p class="feedback-title">
+              <span class="feedback-title-dim">Busca soporte personalizado?</span>
+              Nuestro equipo podrá ayudarlo
+            </p>
+          </div>
+          <div class="feedback-fields">
+            <div class="feedback-field">
+              <label>NOMBRE</label>
+              <input type="text" name="user_name" [(ngModel)]="formData.user_name" />
+            </div>
+            <div class="feedback-field">
+              <label>NÚMERO CELULAR</label>
+              <input type="tel" name="phone" [(ngModel)]="formData.phone" />
+            </div>
+          </div>
+          <button class="feedback-send-btn" (click)="sendEmail()">Enviar</button>
+        </div>
+        <a class="footer-privacy">Privacidad</a>
+      </div>
+
+      <!-- Main footer content -->
+      <div class="footer-main">
+        <div class="footer-main-top">
+          <div class="footer-columns">
+            <div class="footer-col">
+              <span class="footer-label footer-label-non-feedback">Info</span>
+              <div class="footer-links">
+                <a>Inicio</a>
+                <a>Productos</a>
+                <a>Preguntas Frecuentes</a>
+                <a>Servicios</a>
+                <a>Blog</a>
+              </div>
+            </div>
+            <div class="footer-col-contact">
+              <div class="footer-col">
+                <span class="footer-label footer-label-non-feedback">Contacto</span>
+                <div class="footer-links">
+                  <a>+593 9-999-9999</a>
+                  <a>info&#64;Verduléate.com</a>
+                  <a>Guayaquil, Ecuador</a>
+                </div>
+              </div>
+              <div class="footer-brand">
+                <img src="assets/NewLandingAssets/logo-icon.png" alt="Verduléate" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Newsletter + Theme -->
+          <div class="footer-newsletter-row">
+            <div class="footer-theme">
+              <span class="footer-label footer-label-non-feedback">Tema</span>
+              <div class="theme-select" [class.open]="themeMenuOpen">
+                <button type="button" class="theme-trigger" (click)="toggleThemeMenu()">
+                  <span>{{ getThemeLabel(themePreference) }}</span>
+                  <span class="theme-caret">▾</span>
+                </button>
+                <div class="theme-options" *ngIf="themeMenuOpen">
+                  <button type="button" (click)="setThemePreference('light')">Claro</button>
+                  <button type="button" (click)="setThemePreference('dark')">Oscuro</button>
+                  <button type="button" (click)="setThemePreference('system')">Sistema</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom bar -->
+        <div class="footer-bottom">
+          <div class="footer-social">
+            <a href="https://www.facebook.com/" target="_blank"><img src="assets/NewLandingAssets/social-facebook.svg"
+                alt="Facebook" /></a>
+            <a href="https://www.instagram.com/" target="_blank"><img src="assets/NewLandingAssets/social-instagram.svg"
+                alt="Instagram" /></a>
+            <a href="https://twitter.com/" target="_blank"><img src="assets/NewLandingAssets/social-twitter.svg"
+                alt="Twitter" /></a>
+            <a href="https://www.youtube.com/" target="_blank"><img src="assets/NewLandingAssets/social-youtube.svg"
+                alt="YouTube" /></a>
+          </div>
+          <span class="footer-copyright">© 2026 — Copyright</span>
+        </div>
+      </div>
+    </div>
+  </footer>
 </section>

@@ -4,12 +4,14 @@ import { RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { CommonModule } from '@angular/common';
 import emailjs from '@emailjs/browser';
+import { ThemePreference, ThemeService } from '../services/theme.service';
 
 
 @Component({
   selector: 'app-landingpage',
-  imports: [ToastModule, RouterModule, FormsModule],
+  imports: [ToastModule, RouterModule, FormsModule, CommonModule],
   templateUrl: './landingpage.component.html',
   styleUrl: './landingpage.component.css',
   standalone: true,
@@ -20,7 +22,11 @@ export class LandingpageComponent implements AfterViewInit, OnDestroy {
   @ViewChild('heroCamionVideo', { static: false }) heroCamionVideo?: ElementRef<HTMLVideoElement>;
   private globeInstance: any;
 
-  constructor(private router: Router, private messageService: MessageService) { }
+  constructor(
+    private router: Router,
+    private messageService: MessageService,
+    private themeService: ThemeService
+  ) { }
 
   ngAfterViewInit() {
     this.setupScrollAnimations();
@@ -72,7 +78,7 @@ export class LandingpageComponent implements AfterViewInit, OnDestroy {
     world.controls().enableZoom = false;
 
     // Point camera at Ecuador (-1.8, -78.2)
-    world.pointOfView({ lat: -1.8, lng: -78.2, altitude: 2.5 });
+    world.pointOfView({ lat: -1.8, lng: -78.2, altitude: 3 });
 
     // Shift globe upward so top edge aligns with top cards
     world.globeOffset([0, -110]);
@@ -147,9 +153,34 @@ export class LandingpageComponent implements AfterViewInit, OnDestroy {
   }
 
   newsletterEmail = '';
+  themeMenuOpen = false;
+
+  get themePreference(): ThemePreference {
+    return this.themeService.currentPreference();
+  }
 
   goToCompradores() {
     this.router.navigate(['comprador/login-comprador']);
+  }
+
+  toggleThemeMenu(): void {
+    this.themeMenuOpen = !this.themeMenuOpen;
+  }
+
+  setThemePreference(preference: ThemePreference): void {
+    this.themeService.setPreference(preference);
+    this.themeMenuOpen = false;
+  }
+
+  getThemeLabel(preference: ThemePreference): string {
+    switch (preference) {
+      case 'dark':
+        return 'Oscuro';
+      case 'system':
+        return 'Sistema';
+      default:
+        return 'Claro';
+    }
   }
 
   goToPricing() {

@@ -1,6 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
+import emailjs from '@emailjs/browser';
+import { ThemePreference, ThemeService } from '../services/theme.service';
 
 interface PlanFeature {
   icon: string;
@@ -23,12 +28,50 @@ type AccountType = 'agricultor' | 'comprador';
 @Component({
   selector: 'app-pricingpage',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule, ToastModule],
   templateUrl: './pricingpage.component.html',
   styleUrls: ['./pricingpage.component.css'],
+  providers: [MessageService]
 })
 export class PricingpageComponent {
+  constructor(
+    private router: Router,
+    private messageService: MessageService,
+    private themeService: ThemeService
+  ) {}
+
   accountType: AccountType = 'agricultor';
+  newsletterEmail = '';
+  themeMenuOpen = false;
+
+  formData = {
+    user_name: '',
+    phone: ''
+  };
+
+  get themePreference(): ThemePreference {
+    return this.themeService.currentPreference();
+  }
+
+  toggleThemeMenu(): void {
+    this.themeMenuOpen = !this.themeMenuOpen;
+  }
+
+  setThemePreference(preference: ThemePreference): void {
+    this.themeService.setPreference(preference);
+    this.themeMenuOpen = false;
+  }
+
+  getThemeLabel(preference: ThemePreference): string {
+    switch (preference) {
+      case 'dark':
+        return 'Oscuro';
+      case 'system':
+        return 'Sistema';
+      default:
+        return 'Claro';
+    }
+  }
 
   readonly plans: Record<AccountType, Plan[]> = {
     agricultor: [
@@ -248,8 +291,6 @@ export class PricingpageComponent {
     ],
   };
 
-  constructor(private router: Router) {}
-
   setAccountType(type: AccountType) {
     this.accountType = type;
   }
@@ -258,7 +299,51 @@ export class PricingpageComponent {
     return this.plans[this.accountType];
   }
 
-  goToHome() {
-    this.router.navigate(['/landing']);
+  goToHome(): void {
+    this.router.navigate(['/']);
+  }
+
+  sendEmail() {
+    const serviceID = 'service_k9nwi8u';
+    const templateID = 'template_6b35tk8';
+    const publicKey = 'YQXyAyAu66MaWYCl1';
+
+    if (!this.formData.user_name || !this.formData.phone) {
+      this.messageService.add({
+        severity: 'warn',
+        summary: 'Campos requeridos',
+        detail: 'Por favor, completa todos los campos antes de enviar.'
+      });
+      return;
+    }
+
+    const emailData = {
+      title: 'Solicitud de llamada',
+      user_name: this.formData.user_name,
+      phone: this.formData.phone,
+      message: `Solicitud de llamada de ${this.formData.user_name} - Telefono: ${this.formData.phone}`
+    };
+
+    emailjs
+      .send(serviceID, templateID, emailData, publicKey)
+      .then(() => {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Exito',
+          detail: 'Solicitud enviada correctamente'
+        });
+        this.formData = {
+          user_name: '',
+          phone: ''
+        };
+      })
+      .catch((error) => {
+        console.error(error);
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Hubo un problema',
+          detail: 'Error al enviar la solicitud'
+        });
+      });
   }
 }
