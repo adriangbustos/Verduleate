@@ -1,8 +1,10 @@
 # Verduleate 🥬
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-44CC11?style=for-the-badge)](LICENSE)
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Access_Platform-blue?style=for-the-badge&logo=netlify)](#)
 
-Una plataforma web y mercado agrícola digital que conecta a los agricultores ecuatorianos directamente con los consumidores finales, eliminando intermediarios y promoviendo el comercio justo de productos frescos.
+A digital agricultural marketplace connecting Ecuadorian smallholder farmers directly with local consumers, eliminating intermediaries to ensure fair trade and fresh produce access.
+
+![Verduleate Marketplace Preview](src/assets/preview.png)
 
 <div align="center">
   <img src="https://img.shields.io/badge/Angular_17-DD0031?style=for-the-badge&logo=angular&logoColor=white" alt="Angular" />
@@ -16,66 +18,67 @@ Una plataforma web y mercado agrícola digital que conecta a los agricultores ec
 
 ---
 
-## Características Principales
+## Key Capabilities
 
-### 👨‍🌾 Para Agricultores (Sistema Agricultor)
-- **Onboarding de Productores:** Registro asistido y configuración del perfil de la hacienda o granja.
-- **Gestión de Cosechas:** Catálogo para añadir, editar y gestionar inventario, precios por quintal/libra, stock y fotografías.
-- **Geolocalización:** Ubicación cartográfica de la finca para rutas logísticas y proximidad.
-- **Panel de Ventas:** Control de pedidos entrantes, despachos y liquidaciones.
+### 👨‍🌾 For Farmers & Growers (`sistema-agricultor`)
+- **Producer Onboarding:** Guided registration and farm profile configuration.
+- **Harvest & Inventory Management:** Add, edit, and catalog farm yields with pricing per pound/quintal, stock levels, and crop photos.
+- **Geolocation:** Plot farmlands on geographic maps to optimize local distribution and buyer proximity.
+- **Sales Analytics:** Manage incoming orders, fulfillment dispatches, and payout balances.
 
-### 🛒 Para Compradores (Sistema Comprador)
-- **Mapa Interactivo de Fincas:** Explorador interactivo impulsado por Leaflet para ubicar parcelas y productores cercanos.
-- **Catálogo de Frescura:** Filtros inteligentes por hortalizas, tubérculos, frutas, legumbres y productos orgánicos.
-- **Carrito y Pasarela:** Checkout integrado con Stripe para transacciones seguras.
-- **Historial y Despacho:** Seguimiento en tiempo real del estado de cada pedido.
+### 🛒 For Consumers & Buyers (`sistema-comprador`)
+- **Interactive Farm Map:** Interactive Leaflet map explorer to discover nearby farms and local harvest points.
+- **Freshness Catalog:** Smart filtering across greens, root vegetables, fruits, legumes, and organic goods.
+- **Cart & Secure Checkout:** Seamless shopping cart with integrated Stripe payments.
+- **Order Tracking:** Real-time visibility into order status from field harvest to doorstep delivery.
 
-### 🛡️ Para Administradores (Sistema Admin)
-- **Panel Central:** Métricas de volumen comercializado, usuarios activos y transacciones.
-- **Soporte y Mensajería:** Canal de chat para soporte directo entre compradores y administradores.
+### 🛡️ For Administrators (`sistema-admin`)
+- **Central Dashboard:** Monitor transaction volume, active agricultural sellers, and customer fulfillment.
+- **Customer Support:** Real-time messaging and inquiry channel between buyers and platform admins.
 
 ---
 
-## Estructura del Proyecto
+## Project Structure
 
 ```
 VERDULEATE/
 ├── src/
 │   ├── app/
-│   │   ├── landingpage/         # Portal de bienvenida y catálogo público
-│   │   ├── sistema-agricultor/  # Módulo administrativo para productores agrícolas
-│   │   ├── sistema-comprador/   # Carrito, mapa de fincas y pedidos para clientes
-│   │   ├── sistema-admin/       # Monitoreo general y gestión de usuarios
-│   │   └── services/            # Servicios de Firebase Auth, Firestore y Stripe
-│   ├── assets/                  # Iconografía y recursos visuales
-│   └── environments/            # Configuraciones de Firebase y pasarela
-└── angular.json                 # Configuración de compilación Angular CLI
+│   │   ├── landingpage/         # Public discovery portal and showcase
+│   │   ├── sistema-agricultor/  # Farm administration portal for producers
+│   │   ├── sistema-comprador/   # Cart, farm maps, and order tracking for buyers
+│   │   ├── sistema-admin/       # Platform oversight and user management
+│   │   └── services/            # Firebase Auth, Firestore, and Stripe payment services
+│   ├── assets/                  # Icons, vector graphics, and previews
+│   │   └── preview.png          # Marketplace landing screenshot preview
+│   └── environments/            # Firebase credentials and environment config
+└── angular.json                 # Angular CLI build configuration
 ```
 
 ---
 
-## Primeros Pasos
+## Getting Started
 
-### Requisitos Previos
+### Prerequisites
 - Node.js 18+
 - Angular CLI (`npm install -g @angular/cli`)
 
-### Instalación
+### Installation
 ```bash
-# Clonar el repositorio
+# Clone the repository
 git clone https://github.com/adriangbustos/Verduleate.git
 cd Verduleate
 
-# Instalar dependencias
+# Install dependencies
 npm install
 
-# Iniciar servidor de desarrollo
+# Start development server
 ng serve
 ```
-Abre tu navegador en `http://localhost:4200`.
+Open `http://localhost:4200` in your web browser.
 
 ---
 
-## Licencia
+## License
 
-Este proyecto está bajo la Licencia MIT - consulta el archivo [LICENSE](LICENSE) para más detalles.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
