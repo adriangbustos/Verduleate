@@ -1,118 +1,81 @@
-# Verduleate 🥑
+# Verduleate 🥬
 
-Verduleate is a modern web platform that connects farmers directly with consumers. It provides an online marketplace where farmers can display and sell their products.
+[![License: MIT](https://img.shields.io/badge/License-MIT-44CC11?style=for-the-badge)](LICENSE)
 
-## ✨ Main Features
+Una plataforma web y mercado agrícola digital que conecta a los agricultores ecuatorianos directamente con los consumidores finales, eliminando intermediarios y promoviendo el comercio justo de productos frescos.
 
-The platform is divided into three main user roles, each with its own dedicated system:
+<div align="center">
+  <img src="https://img.shields.io/badge/Angular_17-DD0031?style=for-the-badge&logo=angular&logoColor=white" alt="Angular" />
+  <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
+  <img src="https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=black" alt="Firebase" />
+  <img src="https://img.shields.io/badge/Leaflet-199900?style=for-the-badge&logo=leaflet&logoColor=white" alt="Leaflet" />
+  <img src="https://img.shields.io/badge/Stripe-008CDD?style=for-the-badge&logo=stripe&logoColor=white" alt="Stripe" />
+  <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS" />
+  <img src="https://img.shields.io/badge/License-MIT-44CC11?style=for-the-badge" alt="MIT License" />
+</div>
 
-### 👨‍🌾 For Farmers (Farmer System)
-- **Onboarding:** Easy registration and farm profile setup.
-- **Product Management:** Add, edit, and manage product listings with details such as price, stock, and images.
-- **Farm Profile (`Hacienda`):** Manage farm information and location.
-- **Sales Tracking:** View and manage incoming orders.
+---
 
-### 🛒 For Buyers (Buyer System)
-- **Interactive Map:** Discover local farmers and products on an interactive map powered by Leaflet.
-- **Product Discovery:** Browse, search, and filter a wide variety of fresh products.
-- **Shopping Cart:** A simple and intuitive shopping experience.
-- **Secure Payments:** Integrated with Stripe for secure and reliable transactions.
-- **User Profile:** Manage personal information and view order history.
+## Características Principales
 
-### ⚙️ For Administrators (Admin System)
-- **Control Panel:** A central dashboard to monitor platform activity.
-- **User Management:** Oversee all registered farmers and buyers.
-- **Support:** A chat interface to provide user support.
+### 👨‍🌾 Para Agricultores (Sistema Agricultor)
+- **Onboarding de Productores:** Registro asistido y configuración del perfil de la hacienda o granja.
+- **Gestión de Cosechas:** Catálogo para añadir, editar y gestionar inventario, precios por quintal/libra, stock y fotografías.
+- **Geolocalización:** Ubicación cartográfica de la finca para rutas logísticas y proximidad.
+- **Panel de Ventas:** Control de pedidos entrantes, despachos y liquidaciones.
 
-## 🛠️ Technologies Used
+### 🛒 Para Compradores (Sistema Comprador)
+- **Mapa Interactivo de Fincas:** Explorador interactivo impulsado por Leaflet para ubicar parcelas y productores cercanos.
+- **Catálogo de Frescura:** Filtros inteligentes por hortalizas, tubérculos, frutas, legumbres y productos orgánicos.
+- **Carrito y Pasarela:** Checkout integrado con Stripe para transacciones seguras.
+- **Historial y Despacho:** Seguimiento en tiempo real del estado de cada pedido.
 
-This project is built with a modern and robust technology stack:
+### 🛡️ Para Administradores (Sistema Admin)
+- **Panel Central:** Métricas de volumen comercializado, usuarios activos y transacciones.
+- **Soporte y Mensajería:** Canal de chat para soporte directo entre compradores y administradores.
 
-- **Frontend:**
-  - [Angular](https://angular.io/)
-  - [TypeScript](https://www.typescriptlang.org/)
-  - [PrimeNG](https://primeng.org/): UI component library.
-  - [Leaflet.js](https://leafletjs.com/): For interactive maps.
-  - [PrimeIcons](https://primeflex.org/primeicons): Icon library.
+---
 
-- **Backend and Database:**
-  - [Firebase](https://firebase.google.com/): Used for authentication (Firebase Auth) and database (Firestore).
+## Estructura del Proyecto
 
-- **Payments:**
-  - [Stripe](https://stripe.com/): For processing online payments.
-
-- **Development and API:**
-  - [Node.js](https://nodejs.org/) and [Express](https://expressjs.com/): Powers the Stripe payment server and a data generation API.
-  - [@faker-js/faker](https://fakerjs.dev/): For generating realistic test data for development.
-
-## 🚀 Getting Started
-
-Follow these instructions to get a local copy of the project up and running.
-
-### Prerequisites
-
-- [Node.js](https://nodejs.org/en/download/)
-- [Angular CLI](https://angular.io/cli)
-
-```bash
-npm install -g @angular/cli
+```
+VERDULEATE/
+├── src/
+│   ├── app/
+│   │   ├── landingpage/         # Portal de bienvenida y catálogo público
+│   │   ├── sistema-agricultor/  # Módulo administrativo para productores agrícolas
+│   │   ├── sistema-comprador/   # Carrito, mapa de fincas y pedidos para clientes
+│   │   ├── sistema-admin/       # Monitoreo general y gestión de usuarios
+│   │   └── services/            # Servicios de Firebase Auth, Firestore y Stripe
+│   ├── assets/                  # Iconografía y recursos visuales
+│   └── environments/            # Configuraciones de Firebase y pasarela
+└── angular.json                 # Configuración de compilación Angular CLI
 ```
 
-### Installation and Configuration
+---
 
-1.  **Clone the repository:**
-    ```bash
-    git clone https://github.com/adriangbustos/Verduleate.git
-    cd Verduleate
-    ```
+## Primeros Pasos
 
-2.  **Install Frontend Dependencies:**
-    ```bash
-    npm install
-    ```
+### Requisitos Previos
+- Node.js 18+
+- Angular CLI (`npm install -g @angular/cli`)
 
-3.  **Install Server Dependencies:**
-    The project contains two separate Node.js servers.
+### Instalación
+```bash
+# Clonar el repositorio
+git clone https://github.com/adriangbustos/Verduleate.git
+cd Verduleate
 
-    -   **Payment Server (Stripe):**
-        ```bash
-        cd server
-        npm install
-        cd ..
-        ```
-    -   **Data Generation API:**
-        ```bash
-        cd api
-        npm install
-        cd ..
-        ```
+# Instalar dependencias
+npm install
 
-4.  **Configure Environment Variables:**
-    You'll need to set up your own configuration for Firebase and Stripe.
-    -   **Firebase:** Create a `firebase-config.js` file in the `api/` directory with your Firebase project credentials.
-    -   **Stripe:** Add your Stripe API keys in the `server/index.js` file.
+# Iniciar servidor de desarrollo
+ng serve
+```
+Abre tu navegador en `http://localhost:4200`.
 
-### Running the Application
+---
 
-You need to run three separate processes for the complete application to work.
+## Licencia
 
-1.  **Start the Angular Frontend:**
-    This command starts the development server for the main application.
-    ```bash
-    npm start
-    ```
-    Navigate to `http://localhost:4200/`.
-
-2.  **Start the Payment Server (Stripe):**
-    This server handles payment processing.
-    ```bash
-    cd server
-    node index.js
-    ```
-
-3.  **Start the Data Generation API (Optional):**
-    This API is used to populate the database with test data.
-    ```bash
-    cd api
-    npm start
-    ```
+Este proyecto está bajo la Licencia MIT - consulta el archivo [LICENSE](LICENSE) para más detalles.

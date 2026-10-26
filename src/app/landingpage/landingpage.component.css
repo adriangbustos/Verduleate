@@ -204,7 +204,7 @@
 
 .hero-camion {
   position: absolute;
-  bottom: -90px;
+  bottom: -73px;
   left: 50%;
   transform: translateX(-50%);
   width: clamp(500px, 55vw, 1063px);

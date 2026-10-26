@@ -54,3 +54,11 @@ src/app/app.config.ts
 
 data-generator/.env
 data-generator/node_modules/
+# Archives & Blobs
+*.zip
+*.rar
+*.tar.gz
+
+# Scratch & Agent
+.agents/
+.gemini/
