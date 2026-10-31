@@ -1,6 +1,6 @@
-# Verduleate 🥬
+# Verduleate
 
-[![Live Demo](https://img.shields.io/badge/Live_Demo-Access_Platform-blue?style=for-the-badge&logo=netlify)](#)
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Access_Platform-blue?style=for-the-badge&logo=netlify)](https://verduleate.netlify.app/landing)
 
 A digital agricultural marketplace connecting Ecuadorian smallholder farmers directly with local consumers, eliminating intermediaries to ensure fair trade and fresh produce access.
 
