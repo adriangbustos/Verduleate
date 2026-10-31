@@ -50,7 +50,7 @@ src/environments
 
 src/server/
 
-src/app/app.config.ts
+# src/app/app.config.ts
 
 data-generator/.env
 data-generator/node_modules/
