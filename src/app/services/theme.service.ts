@@ -78,14 +78,14 @@ export class ThemeService {
    * Get theme from localStorage or system preference
    */
   private getStoredPreference(): ThemePreference {
-    if (typeof window === 'undefined') return 'light';
+    if (typeof window === 'undefined') return 'dark';
     
     const stored = localStorage.getItem(this.STORAGE_KEY);
     if (stored === 'light' || stored === 'dark' || stored === 'system') {
       return stored;
     }
 
-    return 'light';
+    return 'dark';
   }
 
   /**
